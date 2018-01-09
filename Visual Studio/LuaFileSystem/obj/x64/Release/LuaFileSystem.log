@@ -1,0 +1,7 @@
+﻿  lfs.c
+..\..\work\luafilesystem\src\lfs.c(195): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data
+     Creating library bin\x64\Release\lfs.lib and object bin\x64\Release\lfs.exp
+  Generating code
+  All 46 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  LuaFileSystem.vcxproj -> C:\Users\russh\Git\PUC-Lua-VS2017\Visual Studio\LuaFileSystem\bin\x64\Release\lfs.dll

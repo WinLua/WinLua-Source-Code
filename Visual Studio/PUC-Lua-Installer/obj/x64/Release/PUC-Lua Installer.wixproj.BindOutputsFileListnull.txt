@@ -1,0 +1,2 @@
+C:\Users\russh\Git\PUC-Lua-VS2017\Visual Studio\bin\x64\Release\PUC-Lua Installer.msi
+C:\Users\russh\Git\PUC-Lua-VS2017\Visual Studio\bin\x64\Release\PUC-Lua Installer.wixpdb
