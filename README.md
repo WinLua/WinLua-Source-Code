@@ -5,3 +5,4 @@ This is a VS 2017 Solution that builds the current version (5.3.4) of Lua from [
 
 If you are looking for the latest version of Lua to run on Windows 10, download a PUC-Lua-Installer.msi file from Visual/Studio/bin/x86/Release and enjoy.
 
+The only intellectual property of mine is the installer. It's FreeBSD licensed. 
