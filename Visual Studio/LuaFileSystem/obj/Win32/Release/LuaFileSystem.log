@@ -1,6 +1,0 @@
-﻿  lfs.c
-     Creating library bin\Win32\Release\lfs.lib and object bin\Win32\Release\lfs.exp
-  Generating code
-  All 46 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-  LuaFileSystem.vcxproj -> C:\Users\russh\Git\PUC-Lua-VS2017\Visual Studio\LuaFileSystem\bin\Win32\Release\lfs.dll

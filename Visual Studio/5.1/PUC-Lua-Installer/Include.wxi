@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--http://wixtoolset.org/documentation/manual/v3/overview/preprocessor.html -> WIX-->
+<!--https://stackoverflow.com/a/577793/351301 -> SO Answer-->
+<!--http://robmensching.com/blog/posts/2010/5/2/the-wix-toolsets-remember-property-pattern/ -> Good Article-->
+
+<Include>
+  <!-- Product name as you want it to appear in Add/Remove Programs-->
+  <?define LuaVersion = "5.1"?>
+  <?define LuaPatch = "5"?>
+  <?define ProdName="PUC-Lua" ?>
+  <?define LuaFilesystemSources="..\work\luafilesystem\src"?>
+  <?define LuaSources="..\..\..\work\lua-5.1.5\src"?>
+  
+  <?if $(var.Platform) = x64 ?>
+    <?define PlatName = "64" ?>
+    <?define PlatConf = "x64"?>
+    <?define Win64 = "yes" ?>
+    <?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
+    <?else ?>
+    <?define PlatName = "32" ?>
+    <?define PlatConf = "Win32"?>
+    <?define Win64 = "no" ?>
+    <?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+    <?endif ?>
+    <?define ProductName = "$(var.ProdName) $(var.LuaVersion) $(var.PlatName) bit Interpreter" ?>
+  </Include>
