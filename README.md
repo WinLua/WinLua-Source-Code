@@ -6,4 +6,4 @@ This is a VS 2017 Solution that builds the current version (5.3.4) of Lua from [
 
 If you are looking for the latest version of Lua to run on Windows 10, download a "WinLuaI nstaller.msi" file from VisualStudio/bin/x86/Release and enjoy.
 
-The only intellectual property of mine is the installer. It's MIT licensed. 
+The only intellectual property of the WinLua project is the installer. It's MIT licensed. 
