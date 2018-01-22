@@ -10,12 +10,12 @@ As well as side by side 32/64 bit installations. God help us all.-->
          Name="$(var.ProdName) $(var.LuaVersion) $(var.PlatName) Bit"
          Language="1033"
          Version="$(var.LuaVersion).$(var.LuaPatch)"
-         UpgradeCode="ae597931-56f4-4d2d-9984-1e241a127872"
-         Manufacturer="PUC-Rio">
+         UpgradeCode="$(var.LuaVersionCode)"
+         Manufacturer="$(var.ProjectName)">
     <Package Description="Lua is a powerful, efficient, lightweight, embeddable scripting language.
              It supports procedural programming, object-oriented programming, functional programming,
              data-driven programming, and data description."
-             Comments="Comments"
+             Comments="Binary Distribution of Lua for Windows."
              InstallerVersion="200"
              Compressed="yes"
              InstallScope="perMachine"/>

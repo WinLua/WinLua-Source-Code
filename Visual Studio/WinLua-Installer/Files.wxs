@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <?include Include.wxi ?>
+  <?include $(var.SolutionDir)\Include.wxi ?>
   <Fragment>
     
     <DirectoryRef Id="luabindir">

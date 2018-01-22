@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--http://wixtoolset.org/documentation/manual/v3/overview/preprocessor.html -> WIX-->
+<!--https://stackoverflow.com/a/577793/351301 -> SO Answer-->
+<!--http://robmensching.com/blog/posts/2010/5/2/the-wix-toolsets-remember-property-pattern/ -> Good Article-->
+
+<Include>
+  <!-- Product name as you want it to appear in Add/Remove Programs-->
+  <?define LuaMajor = "5"?>
+  <?define LuaMinor = "1"?>
+  <?define LuaPatch = "5"?>
+  <?define LuaVersion = "$(var.LuaMajor).$(var.LuaMinor)"?>
+  <?define LuaVersionCode="df60df95-efb5-43eb-946f-06f976c58311"?>
+  <?define ProdName="Lua" ?>
+  <?define LuaLibName="$(var.ProdName)$(var.LuaMajor)$(var.LuaMinor)"?>
+  <?define LuaFilesystemSources="..\..\work\luafilesystem\src"?>
+  <?define LuaSources="..\..\work\lua-$(var.LuaVersion).$(var.LuaPatch)\src"?>
+  <?define ProjectName="WinLua"?>
+   
+<!--
+  This sets the correct ProgramFiles folder for our installation,
+  as well as our Platform Configuration (which in the VS solution
+  is x86 but outputs to a folder called Win32. :-/
+-->
+  <?if $(var.Platform) = x64 ?>
+    <?define PlatName = "64" ?>
+    <?define PlatConf = "x64"?>
+    <?define Win64 = "yes" ?>
+    <?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
+    <?else ?>
+    <?define PlatName = "32" ?>
+    <?define PlatConf = "Win32"?>
+    <?define Win64 = "no" ?>
+    <?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+    <?endif ?>
+    <?define ProductName = "$(var.ProdName) $(var.LuaVersion) $(var.PlatName) bit Interpreter" ?>
+  </Include>
+
+<!--
+This is the magic sauce that will make the Installer portable to non-VS code.
+We build the output paths here instead of relying on project references. Project references
+don't work for us becuase we build multiple versions of Lua (i.e 5.1, 5.3, 5.x).
+-->
+  <?define BaseDir="$(var.SolutionDir)"?>
+  <?define BuildPathPart="bin\$(var.PlatConf)\$(var.Configuration)"?>
+  <?define InterpDir="$(var.BaseDir)\$(var.ProdName)-Interpreter\$(var.BuildPathPart)"?>
+  <?define LibDir ="$(var.BaseDir)\$(var.ProdName)-Library\$(var.BuildPathPart)"?>
+  <?define ComplDir="$(var.BaseDir)\$(var.ProdName)-Compiler\$(var.BuildPathPart)"?>
+  <?define StcLibDir="$(var.BaseDir)\$(var.ProdName)-Static-Library\$(var.BuildPathPart)"?>
+  <?define LFSDir="$(var.BaseDir)\LuaFileSystem\$(var.BuildPathPart)"?>
+  
+  <?define InterpName="$(var.ProdName).exe"?>
+  <?define LibName ="$(var.LuaLibName).dll"?>
+  <?define ComplName="$(var.ProdName)c.exe"?>
+  <?define StcLibName="$(var.LuaLibName).dll"?>
+  <?define LFSName="lfs.dll"?>

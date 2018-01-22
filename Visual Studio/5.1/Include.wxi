@@ -5,12 +5,22 @@
 
 <Include>
   <!-- Product name as you want it to appear in Add/Remove Programs-->
-  <?define LuaVersion = "5.1"?>
+  <?define LuaMajor = "5"?>
+  <?define LuaMinor = "1"?>
   <?define LuaPatch = "5"?>
-  <?define InstallerName = "WinLua Installer"?>
+  <?define LuaVersion = "$(var.LuaMajor).$(var.LuaMinor)"?>
+  <?define LuaVersionCode="df60df95-efb5-43eb-946f-06f976c58311"?>
   <?define ProdName="Lua" ?>
-  <?define LuaFilesystemSources="..\..\..\work\luafilesystem\src"?>
-  <?define LuaSources="..\..\..\work\lua-5.1.5\src"?>
+  <?define LuaFilesystemSources="..\..\work\luafilesystem\src"?>
+  <?define LuaSources="..\..\work\lua-$(var.LuaVersion).$(var.LuaPatch)\src"?>
+  <?define ProjectName="WinLua"?>
+  
+  <?define BaseDir=""?>
+  <?define InterpDir=""?>
+  <?define LibDir =""?>
+  <?define ComplDir=""?>
+  <?define StcLibDir=""?>
+  <?define LibName="$(var.ProdName)$(var.LuaMajor)$(var.LuaMinor)"?>
   
   <?if $(var.Platform) = x64 ?>
     <?define PlatName = "64" ?>
