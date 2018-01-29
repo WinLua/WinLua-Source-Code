@@ -34,6 +34,9 @@ As well as side by side 32/64 bit installations. God help us all.-->
         <Directory Id="INSTALLDIR" Name="$(var.ProjectName)">
         <Directory Id="luabasedir" Name="$(var.ProdName)">
           <Directory Id="luaversiondir" Name="$(var.LuaVersion)">
+            <Directory Id="luatoolsdir" Name="tools">
+              <Directory Id="adjustpathdir" Name="adjust-paths"/>
+            </Directory>
             <Directory Id="luabindir" Name="bin"/>
             <Directory Id="luastaticdir" Name="staticlib"/>
             <Directory Id="luaincludedir" Name="include"/>
@@ -54,7 +57,7 @@ As well as side by side 32/64 bit installations. God help us all.-->
         <ComponentRef Id="luaconf.h_h"/>
       </Feature>
 
-      <Feature Id="Binary" Title="Lua Binary Files" Level="1">
+      <Feature Id="Binary" Title="WinLua Binary Files" Level="1">
         <ComponentRef Id="lua.exe"/>
         <ComponentRef Id="$(var.Lua-Library.TargetFileName)"/>
         <ComponentRef Id="lfs.dll"/>
@@ -67,6 +70,10 @@ As well as side by side 32/64 bit installations. God help us all.-->
         <ComponentRef Id="set_path"/>
         <ComponentRef Id="ApplicationShortcut_$(var.Platform)"/>
       </Feature>
+
+      <Feature Id="Tools" Title="WinLua Tools" Level="1">
+        <ComponentGroupRef Id="ToolsComponents"/>
+      </Feature>
     </Feature>
     <Property Id="WIXUI_INSTALLDIR">INSTALLDIR</Property>
     <UIRef Id="WixUI_InstallDir"/>
@@ -74,8 +81,8 @@ As well as side by side 32/64 bit installations. God help us all.-->
 
   <Fragment>
 
-
-    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+    <!--<CustomAction Id="CallCmd" Value="[SystemFolder]cmd.exe" />-->
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLDIR">
       <!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
       <!-- <Component Id="ProductComponent"> -->
       <!-- TODO: Insert files, registry keys, and other resources here. -->
@@ -89,5 +96,18 @@ As well as side by side 32/64 bit installations. God help us all.-->
       <ComponentRef Id="set_path"/>
       <ComponentRef Id="ApplicationShortcut_$(var.Platform)"/>
     </ComponentGroup>
+
+    <ComponentGroup Id="ToolsComponents" Directory="luatoolsdir">
+      <ComponentRef Id="fetchluarocks"/>
+      <ComponentRef Id="adjustpath"/>
+    </ComponentGroup>
+    
+    <CustomAction Id="RunLua"
+                  FileKey="lua.exe"
+                  Win64="no"
+                  ExeCommand="fetch-luarocks.lua" />
+    <InstallExecuteSequence>
+      <Custom Action="RunLua" After="InstallFinalize" />
+    </InstallExecuteSequence>
   </Fragment>
 </Wix>

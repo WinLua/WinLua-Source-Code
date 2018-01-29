@@ -2,7 +2,18 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?include $(var.SolutionDir)\Include.wxi ?>
   <Fragment>
-    
+    <DirectoryRef Id="luatoolsdir">
+      <Component Id="fetchluarocks" Guid="de8c6e4d-0647-43d9-a185-7d7495df9dbf" Win64="$(var.Win64)">
+        <File Id="fetch_luarocks.lua" Source ="tools\fetch-luarocks.lua" KeyPath="yes" Checksum="yes" />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="adjustpathdir">
+      <Component Id="adjustpath" Guid="70bb9075-6136-4287-ad38-b83e526d8eeb" Win64="$(var.Win64)" KeyPath="yes">
+        <File Id="init.lua" Source ="tools\adjust-path\init.lua" Checksum="yes" />
+        <File Id="choices.lua" Source ="tools\adjust-path\choices.lua" Checksum="yes" />
+        <File Id="commands.lua" Source ="tools\adjust-path\commands.lua" Checksum="yes" />
+      </Component>
+    </DirectoryRef>
     <DirectoryRef Id="luabindir">
       <Component Id="Product_License.rtf" Guid="5d023b5b-2992-4434-a0c3-c30bda50eb94" Win64="$(var.Win64)">
         <File Id="Product_License.rtf" Source="Product-License.rtf" KeyPath="yes" Checksum="yes"/>
