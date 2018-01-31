@@ -1,3 +1,7 @@
+--[[
+Fetch-luarocks - Download and run the Luarocks installer. 
+--]]
+
 local lfs = require("lfs")
 local outfile = true
 local sf = string.format
@@ -57,6 +61,60 @@ local function return_shell_output(cmd, pattern)
   end
   handle:close()
   return match
+end
+
+local function return_shell_output2(cmd, pattern)
+  if not cmd then io.stderr:write("cmd to pass to a shell was blank") return nil end
+  if debug_flag then 
+    local out = sf("%s %s, Pattern: %s",cmdhdr, cmd, pattern) 
+    applog(out)
+  end
+  
+  --~ cmd = string.format("%s %s",shell.name, cmd)
+  local match = false
+  local handle = io.popen(cmd)
+  if not pattern then 
+    match = handle:read("*a")
+  elseif type(pattern) == "string" or type(pattern) == "function"then
+    for v in handle:lines() do 
+      if debug_flag then applog(v) end			
+      match = string.match(v, pattern)
+      if match then
+        if debug_flag then applog(string.format("Found %s", match)) end
+        break
+      end
+    end
+  else
+    io.stderr:write("Pattern was of wrong type for command " .. cmd)
+  end
+  handle:close()
+  return match
+end
+
+--Debug removed so we can call this before our logger is set up
+local function resolve_path(str, no_debug)	
+	if no_debug then debug_flag = false	end	
+	local val =  return_shell_output(sf("(resolve-path %s).Path", str), "(.+)")	
+	if no_debug then debug_flag = true end
+	return val
+end
+
+--Debug removed so we can call this before our logger is set up
+local function get_lua_version(lua_exe, no_debug)
+	if no_debug then debug_flag = false	end
+	local cnt = 0
+	--~ lua_exe = lua_exe:gsub("\\", "\\\\")
+	lua_exe, cnt = lua_exe:gsub("Program Files (x86)","'Program Files (x86)'")
+	if cnt == 0 then 
+		lua_exe, cnt = lua_exe:gsub('Program Files','"Program Files"')
+	end
+	--~ local cmd = sf('%s -e "print(_VERSION:match(\'(%%d.%%d)\'))"', lua_exe)
+	local cmd = sf('%s -e "print(_VERSION:match(\'(%%d.%%d)\'))"', lua_exe)
+	print(cmd)
+	local val = return_shell_output2(cmd, "(.+)")
+	print(val)
+	if no_debug then debug_flag = true end
+	return val
 end
 
 local function dir_exists(dir)
@@ -141,9 +199,9 @@ local function run_install(I)
   local cmd = I.installer
   local t = { 
     Q = I.quiet,
-    P = sf("%s %s", I.install_dir, I.lr_dir),
+    P = I.install_dir,
     LV = I.lua_version,
-    LUA = I.lua_bin,  
+    LUA = I.lua_dir,  
     SELFCONTAINED = true
   }
 
@@ -166,8 +224,8 @@ local function run(I)
   applog(sf("LuaRocks %s for  WinLua. %s", I.INSTALL_NAME, os.date("%Y-%b-%d %I:%M:%S %p")))
   
     if debug_flag then
-    applog(sf("%s state:",p.INSTALL_NAME))
-    for i,v in pairs(p) do
+    applog(sf("%s state:",I.INSTALL_NAME))
+    for i,v in pairs(I) do
       applog(sf("\t%s->\t%s",i,v))
     end
   end
@@ -206,50 +264,57 @@ local function run(I)
   outfile:close()
 end
 
-local function init(url,temp_dir, install_dir, bin_dir, version, set_debug)
+local function init(params, set_debug)
   debug_flag = set_debug
-  p = {}
-  p.run_path = script_path()
-  p.log_name = "lri.log"
-  p.log_full_path = sf("%s\\%s",p.run_path,p.log_name)
-  outfile = io.open(p.log_full_path,"w")
-  assert(outfile, sf("Logger was unable to start. Path: %s",p.log_path));
+  params.installer = "install.bat"
+  params.log_name = "lri.log"
+  params.log_full_path = sf("%s\\%s", params.temp_dir,params.log_name)
+  outfile = io.open(params.log_full_path, "w")
+  assert(outfile, sf("Logger was unable to start. Path: %s", params.log_full_path));
   
-  if not url then 
+  if not params.url then 
     applog("Error: You must provide a download uri for the Luarocks Win32 zip file.")
     applog("\t--> See http://luarocks.github.io/luarocks/releases/ for files")
     print("Early exit. Check logs.")
     os.exit(1)
   end
   
-  if not temp_dir or not version then 
-    applog("Error: You must provide a temporary download directory (that you have permission to) and a lua version")
-    print("Early exit, check logs.")
-    os.exit(1)
-  end
-  
-  p.url = url
-  p.link_parsed = parse_url(p.url)
-  p.INSTALL_NAME = string.sub(p.link_parsed[2],1,-5) --"luarocks-2.4.3-win32"
+  --~ if not temp_dir or not version then 
+    --~ applog("Error: You must provide a temporary download directory (that you have permission to) and a lua version")
+    --~ print("Early exit, check logs.")
+    --~ os.exit(1)
+  --~ end
+
+  params.link_parsed = parse_url(params.url)
+  params.INSTALL_NAME = string.sub(params.link_parsed[2],1,-5) --"luarocks-2.4.3-win32"
   -- get script path and strip off tools dir
-  p.base_path = string.sub(script_path(),1,(string.len("\\tools\\")*-1))
-  p.lua_bin = bin_dir -- sf("%s\\bin", p.base_path)
-  p.install_dir = install_dir --sf("%s", p.base_path)
-  p.temp_dir = temp_dir
-  p.temp_file = sf("%s\\%s",p.temp_dir,p.link_parsed[2])
-  p.extracted_dir = sf("%s\\%s",p.temp_dir,p.INSTALL_NAME)
-  p.lua_version = version
-  p.debug = set_debug
-  p.lr_dir = "LuaRocks"
-  p.installer = "install.bat"
-  
-  return p
+  --~ p.base_path = string.sub(script_path(),1,(string.len("\\tools\\")*-1))
+
+  params.temp_file = sf("%s\\%s", params.temp_dir, params.link_parsed[2])
+  params.extracted_dir = sf("%s\\%s", params.temp_dir, params.INSTALL_NAME)
+ 
+  return params
 end 
-local link = "http://luarocks.github.io/luarocks/releases/luarocks-2.4.3-win32.zip"
-local temp = "C:\\Temp"
-local lua_bin = ("C:\\Program Files (x86)\\WinLua\\Lua\\5.3" or arg[-1])
-local install_dir = (nil or "C:\\Temp")
-local ver = "5.3"
+
+local p ={}
 --Link, temp, install, bin, version, debug
---local result = pcall(run, init(arg[1],arg[2],arg[3], arg[4], arg[5], arg[6]))
-local result = pcall(run, init(link, temp, install_dir, lua_bin, ver, true))
+if arg[1] == "-h" or arg[1] == "--help" then
+	print("url, temp_dir, install_dir, lua_base_dir, version, debug")
+	os.exit()
+elseif arg[1] == "-u" or arg[1] == "--unattended" then
+	p.url = "http://luarocks.github.io/luarocks/releases/luarocks-2.4.3-win32.zip"
+	p.temp_dir = resolve_path('$env:localappdata', true) -- or "C:\\Temp"
+	p.install_dir = string.sub(script_path(),1,(string.len("\\tools\\")*-1)).."LuaRocks"
+	p.lua_dir = string.sub(arg[-1],1,(string.len("\\bin\\lua.exe")*-1))
+	p.lua_version = get_lua_version(arg[-1],true)
+else
+	p.url = arg[1]
+	p.temp_dir = resolve_path(arg[2], true) -- or "C:\\Temp"
+	p.install_dir = resolve_path(arg[3], true)
+	p.lua_dir = string.sub(arg[-1],1,(string.len("\\lua.exe")*-1))
+	p.lau_version = get_lua_version(arg[-1],true)
+end
+
+local result = pcall(run, init(p, true))
+
+print(sf("Is okay? %s", result))
