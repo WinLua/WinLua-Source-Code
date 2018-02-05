@@ -105,7 +105,7 @@ As well as side by side 32/64 bit installations. God help us all.-->
     <CustomAction Id="RunLua"
                   FileKey="lua.exe"
                   Win64="no"
-                  ExeCommand="C:\Program Files\WinLua\Lua\5.3\tools\fetch-luarocks.lua" />
+                  ExeCommand="..\tools\fetch-luarocks.lua -u" />
     <InstallExecuteSequence>
       <Custom Action="RunLua" After="InstallFinalize" />
     </InstallExecuteSequence>
