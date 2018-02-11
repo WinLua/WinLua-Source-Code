@@ -5,6 +5,7 @@
     <DirectoryRef Id="luatoolsdir">
       <Component Id="fetchluarocks" Guid="de8c6e4d-0647-43d9-a185-7d7495df9dbf" Win64="$(var.Win64)">
         <File Id="fetch_luarocks.lua" Source ="tools\fetch-luarocks.lua" KeyPath="yes" Checksum="yes" />
+        <File Id="run_fetch.bat" Source ="tools\run-fetch.bat" KeyPath="no" Checksum="yes" />
       </Component>
     </DirectoryRef>
     <DirectoryRef Id="adjustpathdir">
@@ -72,7 +73,7 @@
                   WorkingDirectory="luabindir">
         </Shortcut>
         <RemoveFolder Id="CleanUpShortCut_$(var.Platform)" Directory="ApplicationProgramsFolder" On="uninstall"/>
-        <RegistryValue Root="HKCU" Key="Software\Microsoft\$(var.ProdName)-$(var.LuaVersion)-$(var.PlatName)" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+        <RegistryValue Root="HKCU" Key="Software\WinLua\$(var.ProdName)-$(var.LuaVersion)-$(var.PlatName)" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
       </Component>
     </DirectoryRef>
 
