@@ -92,7 +92,7 @@ As well as side by side 32/64 bit installations. God help us all.-->
       <ComponentRef Id="adjustpath"/>
     </ComponentGroup>
     
-    <!--<panelsw:shellexecute Id="FetchLuaRocks" Target="[#lua.exe]" Args=""/>--> 
+    <!--<PanelSW:ShellExecute Id="FetchLuaRocks" Target="[#lua.exe]" Args=""/>-->
     
  <!--THIS WORKS, BUT I WANT TO LAUNCH MY SCRIPT-->
   <!--<Property Id="WixShellExecTarget" Value="[#lua.exe]"  />
