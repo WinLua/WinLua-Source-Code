@@ -38,6 +38,10 @@
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
+    <WixExtension Include="PanelSwWixExtension">
+      <HintPath>..\5.3\packages\PanelSwWixExtension.1.1.23\tools\lib\PanelSwWixExtension.dll</HintPath>
+      <Name>PanelSwWixExtension</Name>
+    </WixExtension>
     <WixExtension Include="WixUtilExtension">
       <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
       <Name>WixUtilExtension</Name>
@@ -90,10 +94,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="PanelSwWixExtension.xsd" />
     <Content Include="README.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Strings1.wxl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="PanelSwWixExtension">
+      <HintPath>..\5.3\packages\PanelSwWixExtension.1.1.23\tools\lib\PanelSwWixExtension.dll</HintPath>
+      <Name>PanelSwWixExtension</Name>
+    </WixExtension>
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
