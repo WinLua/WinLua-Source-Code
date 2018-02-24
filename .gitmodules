@@ -1,3 +1,6 @@
 [submodule "work/luafilesystem"]
 	path = work/luafilesystem
 	url = https://github.com/keplerproject/luafilesystem
+[submodule "work/sol2"]
+	path = work/sol2
+	url = https://github.com/ThePhD/sol2.git

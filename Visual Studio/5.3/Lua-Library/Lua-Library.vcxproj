@@ -164,6 +164,10 @@
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>LUA_BUILD_AS_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <PostBuildEvent>
+      <Command>cd "$(SolutionDir)..\..\work\lua-5.3.4\src\"
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do xcopy /iery %%f "$(TargetDir)include\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -173,6 +177,10 @@
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>LUA_BUILD_AS_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <PostBuildEvent>
+      <Command>cd "$(SolutionDir)..\..\work\lua-5.3.4\src\"
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do xcopy /iery %%f "$(TargetDir)include\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -188,6 +196,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PostBuildEvent>
+      <Command>cd "$(SolutionDir)..\..\work\lua-5.3.4\src\"
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do xcopy /iery %%f "$(TargetDir)include\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -206,6 +218,10 @@
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
     </Link>
+    <PostBuildEvent>
+      <Command>cd "$(SolutionDir)..\..\work\lua-5.3.4\src\"
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do xcopy /iery %%f "$(TargetDir)include\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

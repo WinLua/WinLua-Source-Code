@@ -8,18 +8,18 @@
   <?define LuaMajor = "5"?>
   <?define LuaMinor = "3"?>
   <?define LuaPatch = "4"?>
+  <?define SOL2_SUPPORT ?>
   <?define LuaVersion = "$(var.LuaMajor).$(var.LuaMinor)"?>
   <?define LuaVersionCode="ae597931-56f4-4d2d-9984-1e241a127872"?>
+  <?define ReleaseCode = "18031"?>
   <?define ProdName="Lua" ?>
-  <?define LuaFilesystemSources="..\..\work\luafilesystem\src"?>
-  <?define LuaSources="..\..\work\lua-$(var.LuaVersion).$(var.LuaPatch)\src"?>
+  <?define RootDir="$(var.SolutionDir)..\..\"?>
+  <?define WorkDir="$(var.RootDir)work\" ?>
+  <?define LfsSourceDir="$(var.WorkDir)luafilesystem\src\"?>
+  <?define LuaSourceDir="$(var.WorkDir)lua-$(var.LuaVersion).$(var.LuaPatch)\src\"?>
+  <?define Sol2Dir="$(var.WorkDir)sol2\single\sol\"?>  
   <?define ProjectName="WinLua"?>
   
-  <?define BaseDir=""?>
-  <?define InterpDir=""?>
-  <?define LibDir =""?>
-  <?define ComplDir=""?>
-  <?define StcLibDir=""?>
   <?define LibName="$(var.ProdName)$(var.LuaMajor)$(var.LuaMinor)"?>
   
   <?if $(var.Platform) = x64 ?>

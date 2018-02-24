@@ -6,7 +6,7 @@
     <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>18f27821-d3a6-4dfa-b53e-9461c1dd79a9</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>WinLua Installer</OutputName>
+    <OutputName>WinLua-Installer</OutputName>
     <OutputType>Package</OutputType>
     <Name>WinLua Installer</Name>
   </PropertyGroup>
@@ -30,7 +30,7 @@
     <OutputPath>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
     <SuppressAllWarnings>False</SuppressAllWarnings>
-    <Pedantic>True</Pedantic>
+    <Pedantic>False</Pedantic>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Files.wxs" />
@@ -94,8 +94,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
-    <Content Include="PanelSwWixExtension.xsd" />
     <Content Include="README.txt" />
   </ItemGroup>
   <ItemGroup>

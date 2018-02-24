@@ -1,28 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" InitialTargets="EnsureWixToolsetInstalled" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>3.10</ProductVersion>
-    <ProjectGuid>18f27821-d3a6-4dfa-b53e-9461c1dd79a9</ProjectGuid>
+    <ProjectGuid>1fdd4b76-d413-43b3-b491-9514e69888ac</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>WinLua Installer</OutputName>
-    <OutputType>Package</OutputType>
-    <Name>WinLua Installer</Name>
+    <OutputName>WinLua-MergeModule</OutputName>
+    <OutputType>Module</OutputType>
+    <Name>WinLuaMM</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <OutputPath>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <DefineConstants>Debug</DefineConstants>
-    <SuppressIces>ICE69</SuppressIces>
-    <SuppressPdbOutput>False</SuppressPdbOutput>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <VerboseOutput>True</VerboseOutput>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DefineConstants>Debug</DefineConstants>
     <OutputPath>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
@@ -31,20 +29,10 @@
     <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Files.wxs" />
-    <Compile Include="Product.wxs" />
+    <Compile Include="MergeModule.wxs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Include.wxi" />
-  </ItemGroup>
-  <ItemGroup>
-    <WixExtension Include="WixUIExtension">
-      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
-      <Name>WixUIExtension</Name>
-    </WixExtension>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Lua-Compiler\Lua-Compiler.vcxproj">
+    <ProjectReference Include="$(SolutionDir)\Lua-Compiler\Lua-Compiler.vcxproj">
       <Name>Lua-Compiler</Name>
       <Project>{bf6d881b-caf7-4b99-ba28-43febaec4acc}</Project>
       <Private>True</Private>
@@ -52,7 +40,7 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
-    <ProjectReference Include="..\Lua-Interpreter\Lua-Interpreter.vcxproj">
+    <ProjectReference Include="$(SolutionDir)\Lua-Interpreter\Lua-Interpreter.vcxproj">
       <Name>Lua-Interpreter</Name>
       <Project>{88dc0221-75b3-4c8a-b8dc-c947cd953ae0}</Project>
       <Private>True</Private>
@@ -60,7 +48,7 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
-    <ProjectReference Include="..\Lua-Library\Lua-Library.vcxproj">
+    <ProjectReference Include="$(SolutionDir)\Lua-Library\Lua-Library.vcxproj">
       <Name>Lua-Library</Name>
       <Project>{24d061da-9753-4b62-bf91-393e3330580d}</Project>
       <Private>True</Private>
@@ -68,7 +56,7 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
-    <ProjectReference Include="..\Lua-Static-Library\Lua-Static-Library.vcxproj">
+    <ProjectReference Include="$(SolutionDir)\Lua-Static-Library\Lua-Static-Library.vcxproj">
       <Name>Lua-Static-Library</Name>
       <Project>{1d31cc65-ec2e-4083-a176-d27f83a658bd}</Project>
       <Private>True</Private>
@@ -76,7 +64,7 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
-    <ProjectReference Include="..\LuaFileSystem\LuaFileSystem.vcxproj">
+    <ProjectReference Include="$(SolutionDir)\LuaFileSystem\LuaFileSystem.vcxproj">
       <Name>LuaFileSystem</Name>
       <Project>{d2028014-1b8c-4022-b0a0-5998b108964f}</Project>
       <Private>True</Private>
@@ -90,6 +78,10 @@
   <Target Name="EnsureWixToolsetInstalled" Condition=" '$(WixTargetsImported)' != 'true' ">
     <Error Text="The WiX Toolset v3.11 (or newer) build tools must be installed to build this project. To download the WiX Toolset, see http://wixtoolset.org/releases/" />
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent />
+  </PropertyGroup>
+
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.
 	Other similar extension points exist, see Wix.targets.

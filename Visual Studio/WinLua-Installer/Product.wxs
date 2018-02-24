@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <!-- This installer is designed to create side by side installations of PUC-Lua based on major/minor releases (i.e. 5.3->5.4 or 5.3->6)
+  <!-- This installer is designed to create side by side installations of WinLua based on major/minor releases (i.e. 5.3->5.4 or 5.3->6)
 As well as side by side 32/64 bit installations. God help us all.-->
-
 
   <?include $(var.SolutionDir)\Include.wxi ?>
 
   <Product Id="*"
          Name="$(var.ProjectName) $(var.LuaVersion) $(var.PlatName) Bit"
          Language="1033"
-         Version="$(var.LuaVersion).$(var.LuaPatch)"
+         Version="$(var.LuaVersion).$(var.ReleaseCode)"
          UpgradeCode="$(var.LuaVersionCode)"
          Manufacturer="$(var.ProjectName)">
     <Package Description="Lua is a powerful, efficient, lightweight, embeddable scripting language.
@@ -23,12 +22,12 @@ As well as side by side 32/64 bit installations. God help us all.-->
     <MajorUpgrade DowngradeErrorMessage="A newer version of Lua is already installed." />
 
     <Media Id="1" Cabinet="contents.cab" EmbedCab="yes" CompressionLevel="high"/>
-    <WixVariable Id="WixUILicenseRtf" Value="Product-License.rtf" />
-    <WixVariable Id="WixUIBannerBmp" Value="images/Lua-Banner.png" />
-    <WixVariable Id="WixUIDialogBmp" Value="images/WinLua-Installer-Panel-gray.png" />
-    <Icon Id="icon.ico" SourceFile="images/Lua-Icon.ico"/>
-    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
-    
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.WorkDir)ProjectResources\Product-License.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="$(var.WorkDir)ProjectResources\images\Lua-Banner.png" />
+    <WixVariable Id="WixUIDialogBmp" Value="$(var.WorkDir)ProjectResources\images\WinLua-Installer-Panel-gray.png" />
+    <Icon Id="icon.ico" SourceFile="$(var.WorkDir)ProjectResources\images\Lua-Icon.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="Lua_Icon.ico" />
+
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="$(var.PlatformProgramFilesFolder)" Name="$(var.ProjectName)">
         <Directory Id="INSTALLDIR" Name="$(var.ProjectName)">
@@ -53,10 +52,7 @@ As well as side by side 32/64 bit installations. God help us all.-->
       <Feature Id="WinLua" Title="WinLua Binary Files" Level="1">
         <ComponentGroupRef Id="IncludeFiles"/>
         <ComponentGroupRef  Id="WinLuaComponents"/>
-      </Feature>
-
-      <Feature Id="Tools" Title="WinLua Tools" Level="1">
-        <ComponentGroupRef Id="ToolsComponents"/>
+        <ComponentGroupRef Id="WinLuaStaticLib"/>
       </Feature>
     </Feature>
     <Property Id="WIXUI_INSTALLDIR">INSTALLDIR</Property>
@@ -72,51 +68,32 @@ As well as side by side 32/64 bit installations. God help us all.-->
       <ComponentRef Id="lualib.h_h"/>
       <ComponentRef Id="lauxlib.h_h"/>
       <ComponentRef Id="luaconf.h_h"/>
+      <ComponentRef Id="lua.hpp_h"/>
+      <?ifdef SOL2_SUPPORT?>
+        <ComponentRef Id="sol.hpp"/>
+      <?endif?>
     </ComponentGroup>
-     <ComponentGroup Id="WinLuaComponents" Directory="INSTALLDIR">
-       <ComponentRef Id="lua.exe"/>
-       <ComponentRef Id="$(var.Lua-Library.TargetFileName)"/>
-       <ComponentRef Id="lfs.dll"/>
-       <ComponentRef Id="$(var.Lua-Library.TargetName).lib"/>
-       <ComponentRef Id="static_$(var.Lua-Static-Library.TargetFileName)"/>
-       <ComponentRef Id="Product_License.rtf"/>
-       <!--TODO: add ref to README about different lib files?-->
-       <!--<ComponentRef Id="static_lua53.lib"/>-->
-       <ComponentRef Id="luac.exe"/>
-       <ComponentRef Id="set_path"/>
-       <ComponentRef Id="ApplicationShortcut_$(var.Platform)"/>
+    <ComponentGroup Id="WinLuaComponents" Directory="INSTALLDIR">
+      <ComponentRef Id="lua.exe"/>
+      <ComponentRef Id="lfs.dll"/>
+      <ComponentRef Id="$(var.Lua-Library.TargetFileName)"/>
+      <ComponentRef Id="$(var.Lua-Library.TargetName).lib"/>
+      <ComponentRef Id="static_$(var.Lua-Static-Library.TargetFileName)"/>
+      <ComponentRef Id="Product_License.rtf"/>
+      <ComponentRef Id="luac.exe"/>
+      <ComponentRef Id="set_path"/>
+      <ComponentRef Id="ApplicationShortcut_$(var.Platform)"/>
     </ComponentGroup>
-
-    <ComponentGroup Id="ToolsComponents" Directory="luatoolsdir">
-      <ComponentRef Id="fetchluarocks"/>
-      <ComponentRef Id="adjustpath"/>
+    <ComponentGroup Id="WinLuaStaticLib" Directory="luastaticdir">
+      <ComponentRef Id="static_$(var.Lua-Static-Library.TargetFileName)"/>
     </ComponentGroup>
-    
-    <!--<PanelSW:ShellExecute Id="FetchLuaRocks" Target="[#lua.exe]" Args=""/>-->
-    
- <!--THIS WORKS, BUT I WANT TO LAUNCH MY SCRIPT-->
-  <!--<Property Id="WixShellExecTarget" Value="[#lua.exe]"  />
+    <!--Optionall Launch Lua-->
+    <!--<Property Id="WixShellExecTarget" Value="[#lua.exe]"  />
   <CustomAction Id="LaunchApplication" 
-              BinaryKey="PanelSwWixExtension" 
+              BinaryKey="CAWixExtensions" 
               DllEntry="ShellExecute" 
               Impersonate="yes" />-->
-    
-<!--THIS FAILED WITH ERROR CODE 2762-->
-  <!--<CustomAction Id="LaunchApplication" 
-              FileKey="run_fetch" 
-              ExeCommand=""
-              Execute="immediate"
-              Impersonate="yes"/>-->
-    
-    <!--THIS DIDN"T WORK AT ALL. Exit code 1 
-    <CustomAction Id="RunLua"
-                  FileKey="lua.exe"
-                  Win64="no"
-                  ExeCommand="..\tools\fetch-luarocks.lua -u" />
-    <InstallExecuteSequence>
-      <Custom Action="RunLua" After="InstallFinalize" />
-    </InstallExecuteSequence>-->
   </Fragment>
 
- 
+
 </Wix>
