@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "WinLua-InstallerMM", "WinLua-InstallerMM\WinLua-InstallerMM.wixproj", "{E23D790A-DD2B-419B-8CA2-31249DF501B8}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "WinLua-Installer", "WinLua-Installer\WinLua-Installer.wixproj", "{F3F3367D-C49D-427E-A1E4-8F90E11AD140}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E23D790A-DD2B-419B-8CA2-31249DF501B8}.Debug|x86.ActiveCfg = Debug|x86
+		{E23D790A-DD2B-419B-8CA2-31249DF501B8}.Debug|x86.Build.0 = Debug|x86
+		{E23D790A-DD2B-419B-8CA2-31249DF501B8}.Release|x86.ActiveCfg = Release|x86
+		{E23D790A-DD2B-419B-8CA2-31249DF501B8}.Release|x86.Build.0 = Release|x86
+		{F3F3367D-C49D-427E-A1E4-8F90E11AD140}.Debug|x86.ActiveCfg = Debug|x86
+		{F3F3367D-C49D-427E-A1E4-8F90E11AD140}.Debug|x86.Build.0 = Debug|x86
+		{F3F3367D-C49D-427E-A1E4-8F90E11AD140}.Release|x86.ActiveCfg = Release|x86
+		{F3F3367D-C49D-427E-A1E4-8F90E11AD140}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B478147-4E5A-40F4-8696-95360AA1FD85}
+	EndGlobalSection
+EndGlobal

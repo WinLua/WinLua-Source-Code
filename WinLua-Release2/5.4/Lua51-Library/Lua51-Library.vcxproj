@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{6047E61C-C8ED-4BD5-B0A1-C799C00FDBF6}</ProjectGuid>
+    <RootNamespace>Lua51Library</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetExt>.dll</TargetExt>
+    <OutDir>$(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>lua51</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetExt>.dll</TargetExt>
+    <OutDir>$(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>lua51</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetExt>.dll</TargetExt>
+    <OutDir>$(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>lua51</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <TargetExt>.dll</TargetExt>
+    <OutDir>$(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>lua51</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>LUA_BUILD_AS_DLL;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>copy $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\bin\5.1\$(TargetFileName)
+copy $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\bin\5.1\$(TargetName).lib
+
+cd "$(SolutionDir)..\..\work\lua-5.1.5\src\"
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\include\5.1\%%f"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>LUA_BUILD_AS_DLL;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>copy $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\bin\5.1\$(TargetFileName)
+copy $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\bin\5.1\$(TargetName).lib
+
+cd "$(SolutionDir)..\..\work\lua-5.1.5\src\"
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\include\5.1\%%f"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>LUA_BUILD_AS_DLL;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\bin\5.1\$(TargetFileName)
+copy $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\bin\5.1\$(TargetName).lib
+
+cd "$(SolutionDir)..\..\work\lua-5.1.5\src\"
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\include\5.1\%%f"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>LUA_BUILD_AS_DLL;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\bin\5.1\$(TargetFileName)
+copy $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\bin\5.1\$(TargetName).lib
+
+cd "$(SolutionDir)..\..\work\lua-5.1.5\src\"
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\include\5.1\%%f"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lapi.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lauxlib.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lbaselib.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lcode.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\ldblib.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\ldebug.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\ldo.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\ldump.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lfunc.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lgc.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\linit.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\liolib.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\llex.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lmathlib.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lmem.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\loadlib.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lobject.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lopcodes.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\loslib.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lparser.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lstate.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lstring.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lstrlib.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\ltable.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\ltablib.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\ltm.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lua.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lundump.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lvm.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\lzio.c" />
+    <ClCompile Include="..\..\..\work\lua-5.1.5\src\print.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lapi.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lauxlib.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lcode.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\ldebug.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\ldo.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lfunc.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lgc.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\llex.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\llimits.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lmem.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lobject.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lopcodes.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lparser.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lstate.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lstring.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\ltable.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\ltm.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lua.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lua.hpp" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\luaconf.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lualib.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lundump.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lvm.h" />
+    <ClInclude Include="..\..\..\work\lua-5.1.5\src\lzio.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
