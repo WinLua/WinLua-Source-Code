@@ -3,7 +3,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>3.7</ProductVersion>
-    <ProjectGuid>{f3f3367d-c49d-427e-a1e4-8f90e11ad140}</ProjectGuid>
+    <ProjectGuid>{5cf5315f-84e4-482d-afdd-e2338ceffdbf}</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
     <OutputName>WinLua_Installer</OutputName>
     <OutputType>Package</OutputType>
@@ -60,9 +60,9 @@
     <Content Include="Resources\Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WinLua_InstallerMM\WinLua_InstallerMM.wixproj">
-      <Name>WinLua_InstallerMM</Name>
-      <Project>{e23d790a-dd2b-419b-8ca2-31249df501b8}</Project>
+    <ProjectReference Include="..\WinLua-InstallerMM\WinLuaMM.wixproj">
+      <Name>WinLuaMM</Name>
+      <Project>{2d1a7c33-deda-4b58-bfd3-60d427997f4c}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>

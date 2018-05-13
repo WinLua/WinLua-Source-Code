@@ -1,0 +1,13 @@
+- rebuild each solution
+- report failures. save succeeded.
+Create new build directory and copy msm and msi
+
+git commit with standardized message
+git push
+
+
+Each external project:
+Build
+Report and push to binary dir
+call wix (msbuild?)
+

@@ -17,7 +17,7 @@
     
     <DirectoryRef Id="INSTALLLOCATION">
       <Directory Id="webSite" Name="WebSite">
-        <Component Id="webSite" Guid="95d84ec2-f1a0-45f6-a58e-95a95c87c131" KeyPath="yes">
+        <Component Id="webSite" Guid="1c821c59-eae4-4bb1-bdd4-ff6fb7c0880a" KeyPath="yes">
           <iis:WebAppPool Id="webSite" Name="WinLua_Installer" Identity="applicationPoolIdentity" ManagedRuntimeVersion="v4.0" ManagedPipelineMode="Integrated"/>
           <iis:WebSite Id="webSite" SiteId="*" Description="WinLua_Installer Web Site" Directory="webSite" ConfigureIfExists="no">
             <iis:WebAddress Id="webSite" Port="8080" />

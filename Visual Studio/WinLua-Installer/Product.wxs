@@ -22,7 +22,7 @@ As well as side by side 32/64 bit installations. God help us all.-->
     <MajorUpgrade DowngradeErrorMessage="A newer version of Lua is already installed." />
 
     <Media Id="1" Cabinet="contents.cab" EmbedCab="yes" CompressionLevel="high"/>
-    <WixVariable Id="WixUILicenseRtf" Value="$(var.WorkDir)ProjectResources\Product-License.rtf" />
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.SolutionDir)Product-License.rtf" />
     <WixVariable Id="WixUIBannerBmp" Value="$(var.WorkDir)ProjectResources\images\Lua-Banner.png" />
     <WixVariable Id="WixUIDialogBmp" Value="$(var.WorkDir)ProjectResources\images\WinLua-Installer-Panel-gray.png" />
     <Icon Id="icon.ico" SourceFile="$(var.WorkDir)ProjectResources\images\Lua-Icon.ico"/>

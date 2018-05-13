@@ -27,6 +27,9 @@
     <ClInclude Include="..\..\..\work\desktopLua\src\util.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\work\sol2\single\sol\sol.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Lua-Interpreter.rc">
@@ -39,7 +42,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\work\desktopLua\src\dtlua.c">
+    <ClCompile Include="..\..\..\work\desktopLua\src\dtlua.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

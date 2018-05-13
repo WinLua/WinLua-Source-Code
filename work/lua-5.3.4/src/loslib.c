@@ -140,7 +140,11 @@ static time_t l_checktime (lua_State *L, int arg) {
 
 static int os_execute (lua_State *L) {
   const char *cmd = luaL_optstring(L, 1, NULL);
-  int stat = system(cmd);
+  int stat;
+#if defined(LUA_USE_WINDOWS)
+  errno = 0;
+#endif
+  stat = system(cmd);
   if (cmd != NULL)
     return luaL_execresult(L, stat);
   else {

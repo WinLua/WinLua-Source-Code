@@ -73,25 +73,25 @@
     <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>lua</TargetName>
-    <IncludePath>..\..\..\work\lua-5.4.0\src;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\..\work\sol2\single\sol;..\..\..\work\lua-5.4.0\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>lua</TargetName>
-    <IncludePath>..\..\..\work\lua-5.4.0\src;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\..\work\sol2\single\sol;..\..\..\work\lua-5.4.0\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>lua</TargetName>
-    <IncludePath>..\..\..\work\lua-5.4.0\src;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\..\work\sol2\single\sol;..\..\..\work\lua-5.4.0\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>lua</TargetName>
-    <IncludePath>..\..\..\work\lua-5.4.0\src;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\..\work\sol2\single\sol;..\..\..\work\lua-5.4.0\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -99,8 +99,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp14</LanguageStandard>
-      <CompileAs>CompileAsC</CompileAs>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <CompileAs>CompileAsCpp</CompileAs>
       <CallingConvention>Cdecl</CallingConvention>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;LUA_NILINTABLE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -118,8 +118,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp14</LanguageStandard>
-      <CompileAs>CompileAsC</CompileAs>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <CompileAs>CompileAsCpp</CompileAs>
       <CallingConvention>Cdecl</CallingConvention>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;LUA_NILINTABLE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -139,8 +139,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp14</LanguageStandard>
-      <CompileAs>CompileAsC</CompileAs>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <CompileAs>CompileAsCpp</CompileAs>
       <CallingConvention>Cdecl</CallingConvention>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;LUA_NILINTABLE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -165,8 +165,8 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <CallingConvention>Cdecl</CallingConvention>
-      <LanguageStandard>stdcpp14</LanguageStandard>
-      <CompileAs>CompileAsC</CompileAs>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <CompileAs>CompileAsCpp</CompileAs>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;LUA_NILINTABLE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -193,6 +193,7 @@
     <ClInclude Include="..\..\..\work\desktopLua\src\util.h" />
     <ClInclude Include="..\..\..\work\lua-5.4.0\src\lua.h" />
     <ClInclude Include="..\..\..\work\lua-5.4.0\src\luaconf.h" />
+    <ClInclude Include="..\..\..\work\sol2\single\sol\sol.hpp" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -202,7 +203,7 @@
     <Image Include="..\Icon\Lua_Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\work\desktopLua\src\dtlua.c" />
+    <ClCompile Include="..\..\..\work\desktopLua\src\dtlua.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

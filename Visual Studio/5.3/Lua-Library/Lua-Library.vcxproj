@@ -163,6 +163,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>LUA_BUILD_AS_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAs>CompileAsC</CompileAs>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <PostBuildEvent>
       <Command>cd "$(SolutionDir)..\..\work\lua-5.3.4\src\"
@@ -176,6 +179,9 @@ for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do xcopy /iery %%f "
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>LUA_BUILD_AS_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAs>CompileAsC</CompileAs>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <PostBuildEvent>
       <Command>cd "$(SolutionDir)..\..\work\lua-5.3.4\src\"
@@ -191,6 +197,9 @@ for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do xcopy /iery %%f "
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>LUA_BUILD_AS_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAs>CompileAsC</CompileAs>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -211,6 +220,8 @@ for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do xcopy /iery %%f "
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>LUA_BUILD_AS_DLL;LUA_CORE;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CallingConvention>Cdecl</CallingConvention>
+      <CompileAs>CompileAsC</CompileAs>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

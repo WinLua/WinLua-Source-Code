@@ -264,6 +264,9 @@ static int io_open (lua_State *L) {
 */
 static int io_pclose (lua_State *L) {
   LStream *p = tolstream(L);
+#if defined(LUA_USE_WINDOWS)
+  errno = 0;
+#endif
   return luaL_execresult(L, l_pclose(L, p->f));
 }
 

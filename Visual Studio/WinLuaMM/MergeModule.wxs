@@ -2,18 +2,16 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?include $(var.SolutionDir)\Include.wxi ?>
   <Module Id="WinLuaMM" Language="1033" Version="$(var.LuaVersion).$(var.LuaPatch).$(var.ReleaseCode)">
-		<Package Id="709bf2bf-d60b-4ad5-a832-2ab93f6138a7"  Manufacturer="$(var.ProjectName)" InstallerVersion="200"/>
-		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="MergeRedirectFolder">
-        <Directory Id="luabasedir" Name="$(var.ProdName)">
-          <Directory Id="luaversiondir" Name="$(var.LuaVersion)">
-            <Directory Id="luabindir" Name="bin"/>              
-            <Directory Id="luastaticdir" Name="staticlib"/>
-            <Directory Id="luaincludedir" Name="include"/>
-          </Directory>
+    <Package Id="709bf2bf-d60b-4ad5-a832-2ab93f6138a7"  Manufacturer="$(var.ProjectName)" InstallerVersion="200"/>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="MergeRedirectFolder">
+        <Directory Id="luaversiondir" Name="$(var.LuaVersion)">
+          <Directory Id="luabindir" Name="bin"/>
+          <Directory Id="luastaticdir" Name="staticlib"/>
+          <Directory Id="luaincludedir" Name="include"/>
         </Directory>
-			</Directory>
-		</Directory>
+      </Directory>
+    </Directory>
     <DirectoryRef Id="luabindir">
       <Component Id="Product_License.rtf" Guid="5D023B5B-2992-4434-A0C3-C30BDA50EB94" Win64="$(var.Win64)">
         <File Id="Product_License.rtf" Source="$(var.WorkDir)ProjectResources\Product-License.rtf" KeyPath="yes" Checksum="yes"/>
@@ -66,9 +64,9 @@
         <File Id="lua.hpp_h" Source="$(var.Lua-Library.TargetDir)include\lua.hpp" KeyPath="yes" Checksum="yes"/>
       </Component>
       <?ifdef SOL2_SUPPORT?>
-        <Component Id="sol.hpp" Guid="30EB2842-54AF-47CF-BB87-E769E4829904">
-          <File Id="sol.hpp" Source="$(var.Sol2Dir)sol.hpp" KeyPath="yes" Checksum="yes"/>
-        </Component>
+      <Component Id="sol.hpp" Guid="30EB2842-54AF-47CF-BB87-E769E4829904">
+        <File Id="sol.hpp" Source="$(var.Sol2Dir)sol.hpp" KeyPath="yes" Checksum="yes"/>
+      </Component>
       <?endif?>
     </DirectoryRef>
 

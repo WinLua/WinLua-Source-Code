@@ -6,7 +6,7 @@
     <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>1fdd4b76-d413-43b3-b491-9514e69888ac</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>WinLua-MergeModule</OutputName>
+    <OutputName>WinLuaMM</OutputName>
     <OutputType>Module</OutputType>
     <Name>WinLuaMM</Name>
   </PropertyGroup>
@@ -19,7 +19,7 @@
     <OutputPath>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DefineConstants>Debug</DefineConstants>
     <OutputPath>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
@@ -81,7 +81,10 @@
   <PropertyGroup>
     <PreBuildEvent />
   </PropertyGroup>
-
+  <PropertyGroup>
+    <PostBuildEvent>del "$(SolutionName)$(TargetExt)"
+rename "$(TargetDir)$(TargetFileName)" "$(SolutionName)$(TargetExt)"</PostBuildEvent>
+  </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.
 	Other similar extension points exist, see Wix.targets.

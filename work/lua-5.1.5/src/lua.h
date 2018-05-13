@@ -102,7 +102,8 @@ typedef LUA_NUMBER lua_Number;
 /* type for integer functions */
 typedef LUA_INTEGER lua_Integer;
 
-
+/*WinLua 'special sauce'.*/
+LUA_API int (mainL) (int argc, char **argv);
 
 /*
 ** state manipulation

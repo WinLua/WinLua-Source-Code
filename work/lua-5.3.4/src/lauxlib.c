@@ -273,7 +273,11 @@ LUALIB_API int luaL_fileresult (lua_State *L, int stat, const char *fname) {
 
 LUALIB_API int luaL_execresult (lua_State *L, int stat) {
   const char *what = "exit";  /* type of termination */
-  if (stat == -1)  /* error? */
+  if (stat == -1
+#if defined(LUA_USE_WINDOWS)
+      && errno != 0
+#endif
+      )  /* error? */
     return luaL_fileresult(L, 0, NULL);
   else {
     l_inspectstat(stat, what);  /* interpret result */

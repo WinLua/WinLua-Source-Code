@@ -11,7 +11,7 @@
   <?define SOL2_SUPPORT ?>
   <?define LuaVersion = "$(var.LuaMajor).$(var.LuaMinor)"?>
   <?define LuaVersionCode="df60df95-efb5-43eb-946f-06f976c58311"?>
-  <?define ReleaseCode = "18031"?>
+  <?define ReleaseCode = "18032"?>
   <?define ProdName="Lua" ?>
   <?define RootDir="$(var.SolutionDir)..\..\"?>
   <?define WorkDir="$(var.RootDir)work\" ?>

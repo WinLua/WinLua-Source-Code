@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <!-- 
   MSIProductVersion is defined in WinLua_Installer.wixproj as 0.0.1 for local desktop builds.  
@@ -8,42 +8,23 @@
   The Product@Id attribute (ProductCode Property) will be a random GUID for each build.  This is to support "Major Upgrades" where each install 
   is a seamless uninstall/reinstall.
   -->
-
-  <Product Id="*"
-        Name="$(var.ProjectName) $(var.LuaVersion) $(var.PlatName) Bit"
-        Language="1033"
-        Version="$(var.LuaVersion).$(var.ReleaseCode)"
-        UpgradeCode="$(var.LuaVersionCode)"
-        Manufacturer="$(var.ProjectName)">
-    <!--"$(var.MSIProductVersion)"-->
-    <Package Description="Lua is a powerful, efficient, lightweight, embeddable scripting language.
-             It supports procedural programming, object-oriented programming, functional programming,
-             data-driven programming, and data description."
-             Comments="Comments"
-             InstallerVersion="301"
-             Compressed="yes"
-             InstallScope="perMachine"/>
-
-    <MajorUpgrade DowngradeErrorMessage="A newer version of Lua is already installed." />
-    
+  <Product Id="*" Name="WinLua" Language="1033" Version="$(var.MSIProductVersion)" Manufacturer="WinLua" UpgradeCode="5849f6bd-16b5-4b7a-9053-1c95ab8b60bf">
+    <Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" Description="WinLua Installer package" Manufacturer="WinLua" />
+    <MediaTemplate EmbedCab="yes" />
+    <!-- Major Upgrade Rule to disallow downgrades -->
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <!--Common Launch Condition-->
     <!-- Examples at http://wixtoolset.org/documentation/manual/v3/customactions/wixnetfxextension.html -->
-    <PropertyRef Id="NETFRAMEWORK40FULL"/>
+    <PropertyRef Id="NETFRAMEWORK40FULL" />
     <Condition Message="[ProductName] requires .NET Framework 4.0.">Installed OR NETFRAMEWORK40FULL</Condition>
-
-    <!--<Media Id="1" Cabinet="contents.cab" EmbedCab="yes" CompressionLevel="high"/>-->
-    <!--Icons and banners-->
-    <WixVariable Id="WixUILicenseRtf" Value="$(var.SolutionDir)Product-License.rtf" />
-    <WixVariable Id="WixUIBannerBmp" Value="$(var.WorkDir)ProjectResources\images\Lua-Banner.png" />
-    <WixVariable Id="WixUIDialogBmp" Value="$(var.WorkDir)ProjectResources\images\WinLua-Installer-Panel-gray.png" />
-    <Icon Id="icon.ico" SourceFile="$(var.WorkDir)ProjectResources\images\Lua-Icon.ico"/>
-    <Property Id="ARPPRODUCTICON" Value="Lua_Icon.ico" />
-    
     <!-- Include User Interface Experience -->
-    <UIRef Id="UI"/>
-
+    <Icon Id="Icon.ico" SourceFile="Resources\Icon.ico" />
+    <Property Id="ARPPRODUCTICON" Value="Icon.ico"></Property>
+    
+    <UIRef Id="UI" />
     <!-- Include Features and Directories Fragment -->
-    <DirectoryRef Id="INSTALLLOCATION"/>
-
+    <DirectoryRef Id="LUA_INSTALLLOCATION" />
+    <DirectoryRef Id="LIBRESSL_INSTALLLOCATION" />
+    <DirectoryRef Id="JAMPLUS_INSTALLLOCATION" />
   </Product>
 </Wix>
