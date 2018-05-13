@@ -2,10 +2,10 @@
 
 Visual Studio 2017 Project and WIX Installers for the WinLua and Distribution
 
-This is a VS 2017 Solution for building WinLua and the installers. The installers also package JamPlus and LibreSSL, though they are not currently part of the build system.
+This repository contains the build solution files for WinLua. The Visual Studio directory contains the files for WinLua Release 1. That is, Lua 5.1 and Lua 5.3 including installers. Release 2 contains a new branch of code that has a modified interpreter (lua.exe) that loads Lua 5.4 by default, or lua 5.1 if the -51 flag is specified. Release 2 also contains an ISWix project files for building an installer for WinLua R2, LibreSSL and JamPlus. *WinLua R2 works, the installers don't.*
 
-## Lua
-Currently our version of lua is divergent from the standard Lua and the changes are *unmarked*. I am working to bring clarity to this. To build our Lua Interpreter with 5.1 and 5.current, Lua 5.4, Lua 5.1.5 and LuaFileSystem for both projects, open the Lua 5.4.sln file and build. To build the installers, open the WinLua-Installer.sln file and build. 
+## Lua in Release2
+Currently our version of lua in the Release2 branch is divergent from the standard Lua and the changes are *unmarked*. I am working to bring clarity to this.
 
 ## Executables
 If you are looking for the latest version of Lua to run on Windows 10, please see our [bin repository](https://github.com/WinLua/bin)
