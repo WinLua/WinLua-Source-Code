@@ -84,7 +84,7 @@ static void print_usage (const char *badoption) {
 ** Prints an error message, adding the program name in front of it
 ** (if present)
 */
-LUA_API void l_message (const char *pname, const char *msg) {
+static void l_message (const char *pname, const char *msg) {
   if (pname) lua_writestringerror("%s: ", pname);
   lua_writestringerror("%s\n", msg);
 }
@@ -155,7 +155,7 @@ static void print_version (void) {
 ** other arguments (before the script name) go to negative indices.
 ** If there is no script name, assume interpreter's name as base.
 */
-LUA_API void createargtable (lua_State *L, char **argv, int argc, int script) {
+static void createargtable (lua_State *L, char **argv, int argc, int script) {
   int i, narg;
   if (script == argc) script = 0;  /* no script name? */
   narg = argc - (script + 1);  /* number of positive indices */
@@ -179,7 +179,7 @@ static int dofile (lua_State *L, const char *name) {
 }
 
 
-LUA_API int dostring (lua_State *L, const char *s, const char *name) {
+static int dostring (lua_State *L, const char *s, const char *name) {
   return dochunk(L, luaL_loadbuffer(L, s, strlen(s), name));
 }
 
@@ -599,6 +599,7 @@ static int pmain (lua_State *L) {
   return 1;
 }
 
+/*2018-05-10 - WinLua modification*/
 LUA_API int mainL (int argc, char **argv) {
   int status, result;
   lua_State *L = luaL_newstate();  /* create state */

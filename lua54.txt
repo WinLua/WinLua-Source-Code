@@ -1,0 +1,722 @@
+diff -u work/lua-5.4.0/src/lauxlib.c work-orig/lua-5.4.0-work1/src/lauxlib.c
+--- work/lua-5.4.0/src/lauxlib.c	2018-05-06 13:07:28.334256500 -0700
++++ work-orig/lua-5.4.0-work1/src/lauxlib.c	2018-02-27 10:47:32.000000000 -0800
+@@ -1,5 +1,5 @@
+ /*
+-** $Id: lauxlib.c,v 1.289 2016/12/20 18:37:00 roberto Exp $
++** $Id: lauxlib.c,v 1.294 2018/02/27 18:47:32 roberto Exp $
+ ** Auxiliary functions for building Lua libraries
+ ** See Copyright Notice in lua.h
+ */
+@@ -76,7 +76,7 @@
+   lua_getfield(L, LUA_REGISTRYINDEX, LUA_LOADED_TABLE);
+   if (findfield(L, top + 1, 2)) {
+     const char *name = lua_tostring(L, -1);
+-    if (strncmp(name, "_G.", 3) == 0) {  /* name start with '_G.'? */
++    if (strncmp(name, LUA_GNAME ".", 3) == 0) {  /* name start with '_G.'? */
+       lua_pushstring(L, name + 3);  /* push name without prefix */
+       lua_remove(L, -2);  /* remove original name */
+     }
+@@ -273,11 +273,7 @@
+ 
+ LUALIB_API int luaL_execresult (lua_State *L, int stat) {
+   const char *what = "exit";  /* type of termination */
+-  if (stat == -1
+-#if defined(LUA_USE_WINDOWS)
+-      && errno != 0
+-#endif
+-      )  /* error? */
++  if (stat == -1)  /* error? */
+     return luaL_fileresult(L, 0, NULL);
+   else {
+     l_inspectstat(stat, what);  /* interpret result */
+@@ -484,10 +480,10 @@
+ 
+ 
+ static void *newbox (lua_State *L, size_t newsize) {
+-  UBox *box = (UBox *)lua_newuserdata(L, sizeof(UBox));
++  UBox *box = (UBox *)lua_newuserdatauv(L, sizeof(UBox), 0);
+   box->box = NULL;
+   box->bsize = 0;
+-  if (luaL_newmetatable(L, "LUABOX")) {  /* creating metatable? */
++  if (luaL_newmetatable(L, "_UBOX*")) {  /* creating metatable? */
+     lua_pushcfunction(L, boxgc);
+     lua_setfield(L, -2, "__gc");  /* metatable.__gc = boxgc */
+   }
+@@ -850,87 +846,6 @@
+ 
+ 
+ /*
+-** {======================================================
+-** Compatibility with 5.1 module functions
+-** =======================================================
+-*/
+-#if defined(LUA_COMPAT_MODULE)
+-
+-static const char *luaL_findtable (lua_State *L, int idx,
+-                                   const char *fname, int szhint) {
+-  const char *e;
+-  if (idx) lua_pushvalue(L, idx);
+-  do {
+-    e = strchr(fname, '.');
+-    if (e == NULL) e = fname + strlen(fname);
+-    lua_pushlstring(L, fname, e - fname);
+-    if (lua_rawget(L, -2) == LUA_TNIL) {  /* no such field? */
+-      lua_pop(L, 1);  /* remove this nil */
+-      lua_createtable(L, 0, (*e == '.' ? 1 : szhint)); /* new table for field */
+-      lua_pushlstring(L, fname, e - fname);
+-      lua_pushvalue(L, -2);
+-      lua_settable(L, -4);  /* set new table into field */
+-    }
+-    else if (!lua_istable(L, -1)) {  /* field has a non-table value? */
+-      lua_pop(L, 2);  /* remove table and value */
+-      return fname;  /* return problematic part of the name */
+-    }
+-    lua_remove(L, -2);  /* remove previous table */
+-    fname = e + 1;
+-  } while (*e == '.');
+-  return NULL;
+-}
+-
+-
+-/*
+-** Count number of elements in a luaL_Reg list.
+-*/
+-static int libsize (const luaL_Reg *l) {
+-  int size = 0;
+-  for (; l && l->name; l++) size++;
+-  return size;
+-}
+-
+-
+-/*
+-** Find or create a module table with a given name. The function
+-** first looks at the LOADED table and, if that fails, try a
+-** global variable with that name. In any case, leaves on the stack
+-** the module table.
+-*/
+-LUALIB_API void luaL_pushmodule (lua_State *L, const char *modname,
+-                                 int sizehint) {
+-  luaL_findtable(L, LUA_REGISTRYINDEX, LUA_LOADED_TABLE, 1);
+-  if (lua_getfield(L, -1, modname) != LUA_TTABLE) {  /* no LOADED[modname]? */
+-    lua_pop(L, 1);  /* remove previous result */
+-    /* try global variable (and create one if it does not exist) */
+-    lua_pushglobaltable(L);
+-    if (luaL_findtable(L, 0, modname, sizehint) != NULL)
+-      luaL_error(L, "name conflict for module '%s'", modname);
+-    lua_pushvalue(L, -1);
+-    lua_setfield(L, -3, modname);  /* LOADED[modname] = new table */
+-  }
+-  lua_remove(L, -2);  /* remove LOADED table */
+-}
+-
+-
+-LUALIB_API void luaL_openlib (lua_State *L, const char *libname,
+-                               const luaL_Reg *l, int nup) {
+-  luaL_checkversion(L);
+-  if (libname) {
+-    luaL_pushmodule(L, libname, libsize(l));  /* get/create library table */
+-    lua_insert(L, -(nup + 1));  /* move library table to below upvalues */
+-  }
+-  if (l)
+-    luaL_setfuncs(L, l, nup);
+-  else
+-    lua_pop(L, nup);  /* remove upvalues */
+-}
+-
+-#endif
+-/* }====================================================== */
+-
+-/*
+ ** set functions from list 'l' into table at top - 'nup'; each
+ ** function gets the 'nup' elements at the top as upvalues.
+ ** Returns with only the table at the stack.
+diff -u work/lua-5.4.0/src/liolib.c work-orig/lua-5.4.0-work1/src/liolib.c
+--- work/lua-5.4.0/src/liolib.c	2018-05-06 11:43:59.946085200 -0700
++++ work-orig/lua-5.4.0-work1/src/liolib.c	2018-03-02 10:25:00.000000000 -0800
+@@ -1,5 +1,5 @@
+ /*
+-** $Id: liolib.c,v 2.151 2016/12/20 18:37:00 roberto Exp $
++** $Id: liolib.c,v 2.156 2018/03/02 18:25:00 roberto Exp $
+ ** Standard I/O (and system) library
+ ** See Copyright Notice in lua.h
+ */
+@@ -186,7 +186,7 @@
+ ** handle is in a consistent state.
+ */
+ static LStream *newprefile (lua_State *L) {
+-  LStream *p = (LStream *)lua_newuserdata(L, sizeof(LStream));
++  LStream *p = (LStream *)lua_newuserdatauv(L, sizeof(LStream), 0);
+   p->closef = NULL;  /* mark file handle as 'closed' */
+   luaL_setmetatable(L, LUA_FILEHANDLE);
+   return p;
+@@ -206,11 +206,16 @@
+ }
+ 
+ 
++static int f_close (lua_State *L) {
++  tofile(L);  /* make sure argument is an open stream */
++  return aux_close(L);
++}
++
++
+ static int io_close (lua_State *L) {
+   if (lua_isnone(L, 1))  /* no argument? */
+     lua_getfield(L, LUA_REGISTRYINDEX, IO_OUTPUT);  /* use standard output */
+-  tofile(L);  /* make sure argument is an open stream */
+-  return aux_close(L);
++  return f_close(L);
+ }
+ 
+ 
+@@ -264,9 +269,6 @@
+ */
+ static int io_pclose (lua_State *L) {
+   LStream *p = tolstream(L);
+-#if defined(LUA_USE_WINDOWS)
+-  errno = 0;
+-#endif
+   return luaL_execresult(L, l_pclose(L, p->f));
+ }
+ 
+@@ -445,7 +447,7 @@
+   decp[1] = '.';  /* always accept a dot */
+   l_lockfile(rn.f);
+   do { rn.c = l_getc(rn.f); } while (isspace(rn.c));  /* skip spaces */
+-  test2(&rn, "-+");  /* optional signal */
++  test2(&rn, "-+");  /* optional sign */
+   if (test2(&rn, "00")) {
+     if (test2(&rn, "xX")) hex = 1;  /* numeral is hexadecimal */
+     else count = 1;  /* count initial '0' as a valid digit */
+@@ -454,7 +456,7 @@
+   if (test2(&rn, decp))  /* decimal point? */
+     count += readdigits(&rn, hex);  /* fractional part */
+   if (count > 0 && test2(&rn, (hex ? "pP" : "eE"))) {  /* exponent mark? */
+-    test2(&rn, "-+");  /* exponent signal */
++    test2(&rn, "-+");  /* exponent sign */
+     readdigits(&rn, 0);  /* exponent digits */
+   }
+   ungetc(rn.c, rn.f);  /* unread look-ahead char */
+@@ -526,14 +528,14 @@
+ 
+ static int g_read (lua_State *L, FILE *f, int first) {
+   int nargs = lua_gettop(L) - 1;
+-  int success;
+-  int n;
++  int n, success;
+   clearerr(f);
+   if (nargs == 0) {  /* no arguments? */
+     success = read_line(L, f, 1);
+-    n = first+1;  /* to return 1 result */
++    n = first + 1;  /* to return 1 result */
+   }
+-  else {  /* ensure stack space for all results and for auxlib's buffer */
++  else {
++    /* ensure stack space for all results and for auxlib's buffer */
+     luaL_checkstack(L, nargs+LUA_MINSTACK, "too many arguments");
+     success = 1;
+     for (n = first; nargs-- && success; n++) {
+@@ -715,7 +717,7 @@
+ ** methods for file handles
+ */
+ static const luaL_Reg flib[] = {
+-  {"close", io_close},
++  {"close", f_close},
+   {"flush", f_flush},
+   {"lines", f_lines},
+   {"read", f_read},
+diff -u work/lua-5.4.0/src/loslib.c work-orig/lua-5.4.0-work1/src/loslib.c
+--- work/lua-5.4.0/src/loslib.c	2018-05-06 11:43:59.980603000 -0700
++++ work-orig/lua-5.4.0-work1/src/loslib.c	2017-03-14 05:40:44.000000000 -0700
+@@ -1,5 +1,5 @@
+ /*
+-** $Id: loslib.c,v 1.65 2016/07/18 17:58:58 roberto Exp $
++** $Id: loslib.c,v 1.66 2017/03/14 12:40:44 roberto Exp $
+ ** Standard Operating System library
+ ** See Copyright Notice in lua.h
+ */
+@@ -140,11 +140,7 @@
+ 
+ static int os_execute (lua_State *L) {
+   const char *cmd = luaL_optstring(L, 1, NULL);
+-  int stat;
+-#if defined(LUA_USE_WINDOWS)
+-  errno = 0;
+-#endif
+-  stat = system(cmd);
++  int stat = system(cmd);
+   if (cmd != NULL)
+     return luaL_execresult(L, stat);
+   else {
+@@ -297,7 +293,8 @@
+   else
+     stm = l_localtime(&t, &tmr);
+   if (stm == NULL)  /* invalid date? */
+-    luaL_error(L, "time result cannot be represented in this installation");
++    return luaL_error(L,
++                 "time result cannot be represented in this installation");
+   if (strcmp(s, "*t") == 0) {
+     lua_createtable(L, 0, 9);  /* 9 = number of fields */
+     setallfields(L, stm);
+@@ -344,7 +341,8 @@
+     setallfields(L, &ts);  /* update fields with normalized values */
+   }
+   if (t != (time_t)(l_timet)t || t == (time_t)(-1))
+-    luaL_error(L, "time result cannot be represented in this installation");
++    return luaL_error(L,
++                  "time result cannot be represented in this installation");
+   l_pushtime(L, t);
+   return 1;
+ }
+diff -u work/lua-5.4.0/src/lua.c work-orig/lua-5.4.0-work1/src/lua.c
+--- work/lua-5.4.0/src/lua.c	2018-05-14 22:02:29.124723400 -0700
++++ work-orig/lua-5.4.0-work1/src/lua.c	2018-03-06 12:30:17.000000000 -0800
+@@ -5,7 +5,7 @@
+ */
+ 
+ #define lua_c
+-#define LUA_LIB
++
+ #include "lprefix.h"
+ 
+ 
+@@ -599,8 +599,8 @@
+   return 1;
+ }
+ 
+-/*2018-05-10 - WinLua modification*/
+-LUA_API int mainL (int argc, char **argv) {
++
++int main (int argc, char **argv) {
+   int status, result;
+   lua_State *L = luaL_newstate();  /* create state */
+   if (L == NULL) {
+@@ -616,3 +616,4 @@
+   lua_close(L);
+   return (result && status == LUA_OK) ? EXIT_SUCCESS : EXIT_FAILURE;
+ }
++
+diff -u work/lua-5.4.0/src/lua.h work-orig/lua-5.4.0-work1/src/lua.h
+--- work/lua-5.4.0/src/lua.h	2018-05-14 22:02:35.596632800 -0700
++++ work-orig/lua-5.4.0-work1/src/lua.h	2018-03-13 05:05:24.000000000 -0700
+@@ -217,8 +217,6 @@
+ LUA_API int   (lua_rawequal) (lua_State *L, int idx1, int idx2);
+ LUA_API int   (lua_compare) (lua_State *L, int idx1, int idx2, int op);
+ 
+-/*2018-05-10 - WinLua modification*/
+-LUA_API int (mainL) (int argc, char **argv);
+ 
+ /*
+ ** push functions (C -> stack)
+Only in work/lua-5.4.0/src: luafiles.txt
+diff -u work/lua-5.4.0/src/Makefile work-orig/lua-5.4.0-work1/src/Makefile
+--- work/lua-5.4.0/src/Makefile	2018-03-19 23:22:55.923029900 -0700
++++ work-orig/lua-5.4.0-work1/src/Makefile	2018-03-12 11:06:03.000000000 -0700
+@@ -1,208 +1,198 @@
+-# Makefile for building Lua # See ../doc/readme.html for installation and customization instructions.
+-
+-# == CHANGE THE SETTINGS BELOW TO SUIT YOUR ENVIRONMENT =======================
+-
+-# Your platform. See PLATS for possible values.
+-PLAT= windows
+-
+-#CC= cl.exe
+-CFLAGS= -O2 -DLUA_COMPAT_5_3 $(SYSCFLAGS) $(MYCFLAGS)
+-LDFLAGS= $(SYSLDFLAGS) $(MYLDFLAGS)
+-LIBS= -lm $(SYSLIBS) $(MYLIBS)
+-
+-AR= ar rcu
+-RANLIB= ranlib
+-RM= del /F
+-
+-SYSCFLAGS=
+-SYSLDFLAGS=
+-SYSLIBS=
+-
+-MYCFLAGS=
+-MYLDFLAGS=
+-MYLIBS=
+-MYOBJS=
+-
+-# == END OF USER SETTINGS -- NO NEED TO CHANGE ANYTHING BELOW THIS LINE =======
+-
+-PLATS= windows #aix bsd c89 freebsd generic linux macosx mingw posix solaris
+-
+-LUA_A=	liblua.lib
+-CORE_O=	lapi.obj lcode.obj lctype.obj ldebug.obj ldo.obj ldump.obj lfunc.obj lgc.obj llex.obj lmem.obj lobject.obj lopcodes.obj lparser.obj lstate.obj lstring.obj ltable.obj ltm.obj lundump.obj lvm.obj lzio.obj
+-LIB_O=	lauxlib.obj lbaselib.obj lcorolib.obj ldblib.obj liolib.obj lmathlib.obj loadlib.obj loslib.obj lstrlib.obj ltablib.obj lutf8lib.obj linit.obj
+-BASE_O= $(CORE_O) $(LIB_O) $(MYOBJS)
+-
+-LUA_T=	lua.exe
+-LUA_O=	lua.obj
+-LUA_SO=	liblua.dll
+-
+-LUAC_T=	luac.exe
+-LUAC_O=	luac.obj
+-
+-ALL_O= $(BASE_O) $(LUA_O) $(LUAC_O)
+-#~ ALL_T= $(LUA_A) $(LUA_T) $(LUAC_T) $(LUA_SO)
+-ALL_T= $(LUA_T) $(LUAC_T) $(LUA_SO)
+-ALL_A= $(LUA_A)
+-
+-# Targets start here.
+-default: $(PLAT)
+-
+-all:	$(ALL_T)
+-
+-obj:	$(ALL_O)
+-
+-lib:	$(ALL_A)
+-
+-$(LUA_SO):	$(CORE_O) $(LIB_O)
+-	@echo LUA_SO
+-	$(CC) $@ $(CFLAGS) $(LDFLAGS) $(MYLDFLAGS) -shared -Wl  -out:$?
+-
+-$(LUA_A): $(BASE_O)
+-	echo LUA_A
+-	$(CC) $@ $(BASE_O) -out:$(LUA_A)
+-#	$(RANLIB) $@
+-
+-$(LUA_T): $(LUA_O) $(LUA_A)
+-	echo LUA_T
+-	$(CC) $@ $(LDFLAGS) $(LUA_O) $(LUA_A) $(LIBS) -out:$(LUA_T)
+-
+-$(LUAC_T): $(LUAC_O) $(LUA_A)
+-	$(CC) $@ $(LDFLAGS) $(LUAC_O) $(LUA_A) $(LIBS)
+-
+-clean:
+-	$(RM) $(ALL_T) $(ALL_O)
+-
+-depend:
+-	@$(CC) $(CFLAGS) -MM l*.c
+-
+-echo:
+-	@echo "PLAT= $(PLAT)"
+-	@echo "CC= $(CC)"
+-	@echo "CFLAGS= $(CFLAGS)"
+-	@echo "LDFLAGS= $(SYSLDFLAGS)"
+-	@echo "LIBS= $(LIBS)"
+-	@echo "AR= $(AR)"
+-	@echo "RANLIB= $(RANLIB)"
+-	@echo "RM= $(RM)"
+-
+-# Convenience targets for popular platforms
+-ALL= all
+-
+-windows:
+-	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_BUILD_AS_DLL" SYSLIBS="-Wl,-E"
+-
+-none:
+-	@echo "Please do 'make PLATFORM' where PLATFORM is one of these:"
+-	@echo "   $(PLATS)"
+-
+-aix:
+-	$(MAKE) $(ALL) CC="xlc" CFLAGS="-O2 -DLUA_USE_POSIX -DLUA_USE_DLOPEN" SYSLIBS="-ldl" SYSLDFLAGS="-brtl -bexpall"
+-
+-bsd:
+-	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_POSIX -DLUA_USE_DLOPEN" SYSLIBS="-Wl,-E"
+-
+-c89:
+-	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_C89" CC="gcc -std=c89"
+-	@echo ''
+-	@echo '*** C89 does not guarantee 64-bit integers for Lua.'
+-	@echo ''
+-
+-
+-freebsd:
+-	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_LINUX" SYSLIBS="-Wl,-E"
+-
+-generic: $(ALL)
+-
+-linux:	linux-noreadline
+-
+-linux-noreadline:
+-	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_LINUX" SYSLIBS="-Wl,-E -ldl"
+-
+-linux-readline:
+-	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_LINUX -DLUA_USE_READLINE" SYSLIBS="-Wl,-E -ldl -lreadline"
+-
+-macosx:
+-	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_MACOSX -DLUA_USE_READLINE" SYSLIBS="-lreadline"
+-
+-mingw:
+-	$(MAKE) "LUA_A=lua53.dll" "LUA_T=lua.exe" \
+-	"AR=$(CC) -shared -o" "RANLIB=strip --strip-unneeded" \
+-	"SYSCFLAGS=-DLUA_BUILD_AS_DLL" "SYSLIBS=" "SYSLDFLAGS=-s" lua.exe
+-	$(MAKE) "LUAC_T=luac.exe" luac.exe
+-
+-posix:
+-	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_POSIX"
+-
+-solaris:
+-	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_POSIX -DLUA_USE_DLOPEN -D_REENTRANT" SYSLIBS="-ldl"
+-
+-# list targets that do not create files (but not all makes understand .PHONY)
+-.PHONY: all $(PLATS) default o a clean depend echo none
+-
+-# DO NOT DELETE
+-
+-lapi.obj: lapi.c lprefix.h lua.h luaconf.h lapi.h llimits.h lstate.h \
+- lobject.h ltm.h lzio.h lmem.h ldebug.h ldo.h lfunc.h lgc.h lstring.h \
+- ltable.h lundump.h lvm.h
+-lauxlib.obj: lauxlib.c lprefix.h lua.h luaconf.h lauxlib.h
+-lbaselib.obj: lbaselib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
+-lcode.obj: lcode.c lprefix.h lua.h luaconf.h lcode.h llex.h lobject.h \
+- llimits.h lzio.h lmem.h lopcodes.h lparser.h ldebug.h lstate.h ltm.h \
+- ldo.h lgc.h lstring.h ltable.h lvm.h
+-lcorolib.obj: lcorolib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
+-lctype.obj: lctype.c lprefix.h lctype.h lua.h luaconf.h llimits.h
+-ldblib.obj: ldblib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
+-ldebug.obj: ldebug.c lprefix.h lua.h luaconf.h lapi.h llimits.h lstate.h \
+- lobject.h ltm.h lzio.h lmem.h lcode.h llex.h lopcodes.h lparser.h \
+- ldebug.h ldo.h lfunc.h lstring.h lgc.h ltable.h lvm.h
+-ldo.obj: ldo.c lprefix.h lua.h luaconf.h lapi.h llimits.h lstate.h \
+- lobject.h ltm.h lzio.h lmem.h ldebug.h ldo.h lfunc.h lgc.h lopcodes.h \
+- lparser.h lstring.h ltable.h lundump.h lvm.h
+-ldump.obj: ldump.c lprefix.h lua.h luaconf.h lobject.h llimits.h lstate.h \
+- ltm.h lzio.h lmem.h lundump.h
+-lfunc.obj: lfunc.c lprefix.h lua.h luaconf.h lfunc.h lobject.h llimits.h \
+- lgc.h lstate.h ltm.h lzio.h lmem.h
+-lgc.obj: lgc.c lprefix.h lua.h luaconf.h ldebug.h lstate.h lobject.h \
+- llimits.h ltm.h lzio.h lmem.h ldo.h lfunc.h lgc.h lstring.h ltable.h
+-linit.obj: linit.c lprefix.h lua.h luaconf.h lualib.h lauxlib.h
+-liolib.obj: liolib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
+-llex.obj: llex.c lprefix.h lua.h luaconf.h lctype.h llimits.h ldebug.h \
+- lstate.h lobject.h ltm.h lzio.h lmem.h ldo.h lgc.h llex.h lparser.h \
+- lstring.h ltable.h
+-lmathlib.obj: lmathlib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
+-lmem.obj: lmem.c lprefix.h lua.h luaconf.h ldebug.h lstate.h lobject.h \
+- llimits.h ltm.h lzio.h lmem.h ldo.h lgc.h
+-loadlib.obj: loadlib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
+-lobject.obj: lobject.c lprefix.h lua.h luaconf.h lctype.h llimits.h \
+- ldebug.h lstate.h lobject.h ltm.h lzio.h lmem.h ldo.h lstring.h lgc.h \
+- lvm.h
+-lopcodes.obj: lopcodes.c lprefix.h lopcodes.h llimits.h lua.h luaconf.h
+-loslib.obj: loslib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
+-lparser.obj: lparser.c lprefix.h lua.h luaconf.h lcode.h llex.h lobject.h \
+- llimits.h lzio.h lmem.h lopcodes.h lparser.h ldebug.h lstate.h ltm.h \
+- ldo.h lfunc.h lstring.h lgc.h ltable.h
+-lstate.obj: lstate.c lprefix.h lua.h luaconf.h lapi.h llimits.h lstate.h \
+- lobject.h ltm.h lzio.h lmem.h ldebug.h ldo.h lfunc.h lgc.h llex.h \
+- lstring.h ltable.h
+-lstring.obj: lstring.c lprefix.h lua.h luaconf.h ldebug.h lstate.h \
+- lobject.h llimits.h ltm.h lzio.h lmem.h ldo.h lstring.h lgc.h
+-lstrlib.obj: lstrlib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
+-ltable.obj: ltable.c lprefix.h lua.h luaconf.h ldebug.h lstate.h lobject.h \
+- llimits.h ltm.h lzio.h lmem.h ldo.h lgc.h lstring.h ltable.h lvm.h
+-ltablib.obj: ltablib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
+-ltm.obj: ltm.c lprefix.h lua.h luaconf.h ldebug.h lstate.h lobject.h \
+- llimits.h ltm.h lzio.h lmem.h ldo.h lgc.h lstring.h ltable.h lvm.h
+-lua.obj: lua.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
+-luac.obj: luac.c lprefix.h lua.h luaconf.h lauxlib.h lobject.h llimits.h \
+- lstate.h ltm.h lzio.h lmem.h lundump.h ldebug.h lopcodes.h
+-lundump.obj: lundump.c lprefix.h lua.h luaconf.h ldebug.h lstate.h \
+- lobject.h llimits.h ltm.h lzio.h lmem.h ldo.h lfunc.h lstring.h lgc.h \
+- lundump.h
+-lutf8lib.obj: lutf8lib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
+-lvm.obj: lvm.c lprefix.h lua.h luaconf.h ldebug.h lstate.h lobject.h \
+- llimits.h ltm.h lzio.h lmem.h ldo.h lfunc.h lgc.h lopcodes.h lstring.h \
+- ltable.h lvm.h ljumptab.h
+-lzio.obj: lzio.c lprefix.h lua.h luaconf.h llimits.h lmem.h lstate.h \
+- lobject.h ltm.h lzio.h
+-
+-# (end of Makefile)
++# Makefile for building Lua
++# See ../doc/readme.html for installation and customization instructions.
++
++# == CHANGE THE SETTINGS BELOW TO SUIT YOUR ENVIRONMENT =======================
++
++# Your platform. See PLATS for possible values.
++PLAT= none
++
++CC= gcc -std=gnu99
++CFLAGS= -O2 -Wall -Wextra -DLUA_COMPAT_5_3 $(SYSCFLAGS) $(MYCFLAGS)
++LDFLAGS= $(SYSLDFLAGS) $(MYLDFLAGS)
++LIBS= -lm $(SYSLIBS) $(MYLIBS)
++
++AR= ar rcu
++RANLIB= ranlib
++RM= rm -f
++
++SYSCFLAGS=
++SYSLDFLAGS=
++SYSLIBS=
++
++MYCFLAGS=
++MYLDFLAGS=
++MYLIBS=
++MYOBJS=
++
++# == END OF USER SETTINGS -- NO NEED TO CHANGE ANYTHING BELOW THIS LINE =======
++
++PLATS= aix bsd c89 freebsd generic linux macosx mingw posix solaris
++
++LUA_A=	liblua.a
++CORE_O=	lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o lundump.o lvm.o lzio.o
++LIB_O=	lauxlib.o lbaselib.o lcorolib.o ldblib.o liolib.o lmathlib.o loadlib.o loslib.o lstrlib.o ltablib.o lutf8lib.o linit.o
++BASE_O= $(CORE_O) $(LIB_O) $(MYOBJS)
++
++LUA_T=	lua
++LUA_O=	lua.o
++
++LUAC_T=	luac
++LUAC_O=	luac.o
++
++ALL_O= $(BASE_O) $(LUA_O) $(LUAC_O)
++ALL_T= $(LUA_A) $(LUA_T) $(LUAC_T)
++ALL_A= $(LUA_A)
++
++# Targets start here.
++default: $(PLAT)
++
++all:	$(ALL_T)
++
++o:	$(ALL_O)
++
++a:	$(ALL_A)
++
++$(LUA_A): $(BASE_O)
++	$(AR) $@ $(BASE_O)
++	$(RANLIB) $@
++
++$(LUA_T): $(LUA_O) $(LUA_A)
++	$(CC) -o $@ $(LDFLAGS) $(LUA_O) $(LUA_A) $(LIBS)
++
++$(LUAC_T): $(LUAC_O) $(LUA_A)
++	$(CC) -o $@ $(LDFLAGS) $(LUAC_O) $(LUA_A) $(LIBS)
++
++clean:
++	$(RM) $(ALL_T) $(ALL_O)
++
++depend:
++	@$(CC) $(CFLAGS) -MM l*.c
++
++echo:
++	@echo "PLAT= $(PLAT)"
++	@echo "CC= $(CC)"
++	@echo "CFLAGS= $(CFLAGS)"
++	@echo "LDFLAGS= $(SYSLDFLAGS)"
++	@echo "LIBS= $(LIBS)"
++	@echo "AR= $(AR)"
++	@echo "RANLIB= $(RANLIB)"
++	@echo "RM= $(RM)"
++
++# Convenience targets for popular platforms
++ALL= all
++
++none:
++	@echo "Please do 'make PLATFORM' where PLATFORM is one of these:"
++	@echo "   $(PLATS)"
++
++aix:
++	$(MAKE) $(ALL) CC="xlc" CFLAGS="-O2 -DLUA_USE_POSIX -DLUA_USE_DLOPEN" SYSLIBS="-ldl" SYSLDFLAGS="-brtl -bexpall"
++
++bsd:
++	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_POSIX -DLUA_USE_DLOPEN" SYSLIBS="-Wl,-E"
++
++c89:
++	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_C89" CC="gcc -std=c89"
++	@echo ''
++	@echo '*** C89 does not guarantee 64-bit integers for Lua.'
++	@echo ''
++
++
++freebsd:
++	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_LINUX -DLUA_USE_READLINE" SYSLIBS="-Wl,-E -lreadline"
++
++generic: $(ALL)
++
++linux:	linux-noreadline
++
++linux-noreadline:
++	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_LINUX" SYSLIBS="-Wl,-E -ldl"
++
++linux-readline:
++	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_LINUX -DLUA_USE_READLINE" SYSLIBS="-Wl,-E -ldl -lreadline"
++
++macosx:
++	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_MACOSX -DLUA_USE_READLINE" SYSLIBS="-lreadline"
++
++mingw:
++	$(MAKE) "LUA_A=lua53.dll" "LUA_T=lua.exe" \
++	"AR=$(CC) -shared -o" "RANLIB=strip --strip-unneeded" \
++	"SYSCFLAGS=-DLUA_BUILD_AS_DLL" "SYSLIBS=" "SYSLDFLAGS=-s" lua.exe
++	$(MAKE) "LUAC_T=luac.exe" luac.exe
++
++posix:
++	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_POSIX"
++
++solaris:
++	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_POSIX -DLUA_USE_DLOPEN -D_REENTRANT" SYSLIBS="-ldl"
++
++# list targets that do not create files (but not all makes understand .PHONY)
++.PHONY: all $(PLATS) default o a clean depend echo none
++
++# DO NOT DELETE
++
++lapi.o: lapi.c lprefix.h lua.h luaconf.h lapi.h llimits.h lstate.h \
++ lobject.h ltm.h lzio.h lmem.h ldebug.h ldo.h lfunc.h lgc.h lstring.h \
++ ltable.h lundump.h lvm.h
++lauxlib.o: lauxlib.c lprefix.h lua.h luaconf.h lauxlib.h
++lbaselib.o: lbaselib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
++lcode.o: lcode.c lprefix.h lua.h luaconf.h lcode.h llex.h lobject.h \
++ llimits.h lzio.h lmem.h lopcodes.h lparser.h ldebug.h lstate.h ltm.h \
++ ldo.h lgc.h lstring.h ltable.h lvm.h
++lcorolib.o: lcorolib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
++lctype.o: lctype.c lprefix.h lctype.h lua.h luaconf.h llimits.h
++ldblib.o: ldblib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
++ldebug.o: ldebug.c lprefix.h lua.h luaconf.h lapi.h llimits.h lstate.h \
++ lobject.h ltm.h lzio.h lmem.h lcode.h llex.h lopcodes.h lparser.h \
++ ldebug.h ldo.h lfunc.h lstring.h lgc.h ltable.h lvm.h
++ldo.o: ldo.c lprefix.h lua.h luaconf.h lapi.h llimits.h lstate.h \
++ lobject.h ltm.h lzio.h lmem.h ldebug.h ldo.h lfunc.h lgc.h lopcodes.h \
++ lparser.h lstring.h ltable.h lundump.h lvm.h
++ldump.o: ldump.c lprefix.h lua.h luaconf.h lobject.h llimits.h lstate.h \
++ ltm.h lzio.h lmem.h lundump.h
++lfunc.o: lfunc.c lprefix.h lua.h luaconf.h lfunc.h lobject.h llimits.h \
++ lgc.h lstate.h ltm.h lzio.h lmem.h
++lgc.o: lgc.c lprefix.h lua.h luaconf.h ldebug.h lstate.h lobject.h \
++ llimits.h ltm.h lzio.h lmem.h ldo.h lfunc.h lgc.h lstring.h ltable.h
++linit.o: linit.c lprefix.h lua.h luaconf.h lualib.h lauxlib.h
++liolib.o: liolib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
++llex.o: llex.c lprefix.h lua.h luaconf.h lctype.h llimits.h ldebug.h \
++ lstate.h lobject.h ltm.h lzio.h lmem.h ldo.h lgc.h llex.h lparser.h \
++ lstring.h ltable.h
++lmathlib.o: lmathlib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
++lmem.o: lmem.c lprefix.h lua.h luaconf.h ldebug.h lstate.h lobject.h \
++ llimits.h ltm.h lzio.h lmem.h ldo.h lgc.h
++loadlib.o: loadlib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
++lobject.o: lobject.c lprefix.h lua.h luaconf.h lctype.h llimits.h \
++ ldebug.h lstate.h lobject.h ltm.h lzio.h lmem.h ldo.h lstring.h lgc.h \
++ lvm.h
++lopcodes.o: lopcodes.c lprefix.h lopcodes.h llimits.h lua.h luaconf.h
++loslib.o: loslib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
++lparser.o: lparser.c lprefix.h lua.h luaconf.h lcode.h llex.h lobject.h \
++ llimits.h lzio.h lmem.h lopcodes.h lparser.h ldebug.h lstate.h ltm.h \
++ ldo.h lfunc.h lstring.h lgc.h ltable.h
++lstate.o: lstate.c lprefix.h lua.h luaconf.h lapi.h llimits.h lstate.h \
++ lobject.h ltm.h lzio.h lmem.h ldebug.h ldo.h lfunc.h lgc.h llex.h \
++ lstring.h ltable.h
++lstring.o: lstring.c lprefix.h lua.h luaconf.h ldebug.h lstate.h \
++ lobject.h llimits.h ltm.h lzio.h lmem.h ldo.h lstring.h lgc.h
++lstrlib.o: lstrlib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
++ltable.o: ltable.c lprefix.h lua.h luaconf.h ldebug.h lstate.h lobject.h \
++ llimits.h ltm.h lzio.h lmem.h ldo.h lgc.h lstring.h ltable.h lvm.h
++ltablib.o: ltablib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
++ltm.o: ltm.c lprefix.h lua.h luaconf.h ldebug.h lstate.h lobject.h \
++ llimits.h ltm.h lzio.h lmem.h ldo.h lgc.h lstring.h ltable.h lvm.h
++lua.o: lua.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
++luac.o: luac.c lprefix.h lua.h luaconf.h lauxlib.h lobject.h llimits.h \
++ lstate.h ltm.h lzio.h lmem.h lundump.h ldebug.h lopcodes.h
++lundump.o: lundump.c lprefix.h lua.h luaconf.h ldebug.h lstate.h \
++ lobject.h llimits.h ltm.h lzio.h lmem.h ldo.h lfunc.h lstring.h lgc.h \
++ lundump.h
++lutf8lib.o: lutf8lib.c lprefix.h lua.h luaconf.h lauxlib.h lualib.h
++lvm.o: lvm.c lprefix.h lua.h luaconf.h ldebug.h lstate.h lobject.h \
++ llimits.h ltm.h lzio.h lmem.h ldo.h lfunc.h lgc.h lopcodes.h lstring.h \
++ ltable.h lvm.h ljumptab.h
++lzio.o: lzio.c lprefix.h lua.h luaconf.h llimits.h lmem.h lstate.h \
++ lobject.h ltm.h lzio.h
++
++# (end of Makefile)
+Only in work/lua-5.4.0/src: Makefile-works1

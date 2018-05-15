@@ -168,13 +168,16 @@
       <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\bin\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\bin\$(TargetFileName)
-copy $(SolutionDir)\bin\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\bin\$(TargetName).lib
-cd "$(SolutionDir)..\..\work\lua-5.4.0\src\"
-for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\include\%%f"
+      <Command>copy $(SolutionDir)bin\5.4\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\Lua\bin\$(TargetFileName)
+copy $(SolutionDir)bin\5.4\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\Lua\bin\$(TargetName).lib
 
-</Command>
+cd "$(SolutionDir)..\..\work\lua-5.4.0\src\"
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\Lua\include\%%f"</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -188,13 +191,16 @@ for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(Solut
       <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\bin\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\bin\$(TargetFileName)
-copy $(SolutionDir)\bin\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\bin\$(TargetName).lib
-cd "$(SolutionDir)..\..\work\lua-5.4.0\src\"
-for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\include\%%f"
+      <Command>copy $(SolutionDir)bin\5.4\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\Lua\bin\$(TargetFileName)
+copy $(SolutionDir)bin\5.4\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\Lua\bin\$(TargetName).lib
 
-</Command>
+cd "$(SolutionDir)..\..\work\lua-5.4.0\src\"
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\Lua\include\%%f"</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -214,13 +220,16 @@ for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(Solut
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\bin\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\bin\$(TargetFileName)
-copy $(SolutionDir)\bin\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\bin\$(TargetName).lib
-cd "$(SolutionDir)..\..\work\lua-5.4.0\src\"
-for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\include\%%f"
+      <Command>copy $(SolutionDir)bin\5.4\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\Lua\bin\$(TargetFileName)
+copy $(SolutionDir)bin\5.4\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\Lua\bin\$(TargetName).lib
 
-</Command>
+cd "$(SolutionDir)..\..\work\lua-5.4.0\src\"
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\Lua\include\%%f"</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -242,13 +251,16 @@ for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(Solut
       </ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\bin\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\bin\$(TargetFileName)
-copy $(SolutionDir)\bin\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\bin\$(TargetName).lib
-cd "$(SolutionDir)..\..\work\lua-5.4.0\src\"
-for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\include\%%f"
+      <Command>copy $(SolutionDir)bin\5.4\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\Lua\bin\$(TargetFileName)
+copy $(SolutionDir)bin\5.4\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\Lua\bin\$(TargetName).lib
 
-</Command>
+cd "$(SolutionDir)..\..\work\lua-5.4.0\src\"
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\Lua\include\%%f"</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

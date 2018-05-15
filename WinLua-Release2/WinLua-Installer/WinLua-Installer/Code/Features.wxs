@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Fragment>
+    <?include $(var.SolutionDir)\Include.wxi ?>
+    
     <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="ProgramFilesFolder">
+      <Directory Id="$(var.PlatformProgramFilesFolder)">
         <Directory Id="CompanyFolder" Name="WinLua">
           <Directory Id="JAMPLUS_INSTALLLOCATION" Name="JamPlus">
             <Merge Id="JamPlusMM" SourceFile="$(var.JamPlusMM.TargetPath)" DiskId="1" Language="1033" />

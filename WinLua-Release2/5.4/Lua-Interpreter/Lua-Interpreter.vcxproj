@@ -105,7 +105,7 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;LUA_NILINTABLE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\bin\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\bin\$(TargetFileName)</Command>
+      <Command>copy $(SolutionDir)\bin\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\Lua\bin\$(TargetFileName)</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -124,7 +124,7 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;LUA_NILINTABLE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\bin\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\bin\$(TargetFileName)</Command>
+      <Command>copy $(SolutionDir)\bin\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\Lua\bin\$(TargetFileName)</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -149,7 +149,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\bin\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\bin\$(TargetFileName)</Command>
+      <Command>copy $(SolutionDir)\bin\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\Lua\bin\$(TargetFileName)</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -174,7 +174,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\bin\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\bin\$(TargetFileName)</Command>
+      <Command>copy $(SolutionDir)\bin\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\Lua\bin\$(TargetFileName)</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>

@@ -76,7 +76,7 @@ static int LoadLua(const char* file, int argc, char **argv)
   }
   else
   {
-    printf("The LoadLibrary(L\"mydllpro\") dll handle is not valid, error: %d.\n", GetLastError());
+    printf("The LoadLibrary failed to load %s. Error: %d.\n", file, GetLastError());
   }
   // If unable to call the DLL function, use an alternative.
   if (!fRunTimeLinkSuccess)
@@ -126,7 +126,7 @@ int main (int argc, char **argv) {
   if(find51opt(argc, argv))
 	strncpy(filename, LUA51, sizeof(filename));
 
-  LoadLua(&filename, argc, argv);
+  LoadLua(filename, argc, argv);
   char line[1024];
 
   scanf("%[^\n]", line);

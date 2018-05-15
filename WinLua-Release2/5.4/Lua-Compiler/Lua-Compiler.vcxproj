@@ -100,7 +100,7 @@
       <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <PostBuildEvent>
-      <Command>xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\luac.exe $(SolutionDir)\deploy\bin\</Command>
+      <Command>xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\luac.exe $(SolutionDir)\deploy\Lua\bin\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -114,7 +114,7 @@
       <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <PostBuildEvent>
-      <Command>xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\luac.exe $(SolutionDir)\deploy\bin\</Command>
+      <Command>xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\luac.exe $(SolutionDir)\deploy\Lua\bin\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -134,7 +134,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\luac.exe $(SolutionDir)\deploy\bin\</Command>
+      <Command>xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\luac.exe $(SolutionDir)\deploy\Lua\bin\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -154,7 +154,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\luac.exe $(SolutionDir)\deploy\bin\</Command>
+      <Command>xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\luac.exe $(SolutionDir)\deploy\Lua\bin\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

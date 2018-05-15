@@ -1,88 +1,99 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(var.SolutionDir)\Include.wxi ?>
   <?define ComponentRules="OneToOne"?>
   <!-- SourceDir instructs IsWiX the location of the directory that contains files for this merge module -->
-  <?define SourceDir="..\..\5.4\Deploy"?>
+  <?define SourceDir="..\..\5.4\Deploy\$(var.Platform)"?>
   <Module Id="WinLua" Language="1033" Version="5.4.0.1">
     <Package Id="87538283-837e-4822-accd-bb86fd9a8c42" Manufacturer="WinLua" InstallerVersion="301" Keywords="Lua" Description="WinLua is a binary distribution of the Lua, luafilesystem, and sol2." />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="MergeRedirectFolder">
         <Directory Id="owd00BD073775AEE2E88B74CCEE86DD7715" Name="bin">
-          <Component Id="owcE80EC0E47787CC07D24A7408250ED2B6" Guid="09630029-6323-3fff-4c20-3ae58043e5e1">
+          <Component Win64="$(var.Win64)" Id="owcE80EC0E47787CC07D24A7408250ED2B6" Guid="09630029-6323-3fff-4c20-3ae58043e5e1">
             <File Id="owfE80EC0E47787CC07D24A7408250ED2B6" Source="$(var.SourceDir)\Lua\bin\lfs.dll" KeyPath="yes" />
           </Component>
-          <Component Id="owcB65A1BF0973EB59A0068F6C5DA503717" Guid="0d254086-3212-c9e3-e532-e6fef7b84aa2">
+          <Component Win64="$(var.Win64)" Id="owcB65A1BF0973EB59A0068F6C5DA503717" Guid="0d254086-3212-c9e3-e532-e6fef7b84aa2">
             <File Id="owfB65A1BF0973EB59A0068F6C5DA503717" Source="$(var.SourceDir)\Lua\bin\lfs.lib" KeyPath="yes" />
           </Component>
-          <Component Id="owc2AEA4E75727E1005932EADD776538C2A" Guid="ebd1c801-1fe0-a24c-e706-65e0a2ac8f74">
-            <File Id="owf2AEA4E75727E1005932EADD776538C2A" Source="$(var.SourceDir)\Lua\bin\lua.exe" KeyPath="yes" />
+          <Component Win64="$(var.Win64)" Id="owc2AEA4E75727E1005932EADD776538C2A" Guid="ebd1c801-1fe0-a24c-e706-65e0a2ac8f74">
+            <File Id="owf2AEA4E75727E1005932EADD776538C2A" Source="$(var.SourceDir)\Lua\bin\lua.exe" KeyPath="yes">
+              <Shortcut Id="scBE87F9AE76F6BF2449AEE0259D5445BB" Name="Lua Interpreter" Directory="scd5FC3529A76E03F423A02AF8A109BC6C7" />
+              <Shortcut Id="scB6BB3AF17C52652880BC448856DE5A79" Name="LuaPrgMen" Directory="scdC6281A678886E0381809F3F89C5DACBD" Arguments="-51" />
+              <Shortcut Id="sc046FE53AB4AF8E589873B620E7C57255" Name="Lua 5.1 Interpreter" Directory="scd5FC3529A76E03F423A02AF8A109BC6C7" Arguments="-51" />
+            </File>
           </Component>
-          <Component Id="owc87F5236CFA55B1784AB133C1A856143D" Guid="7de850c4-42fe-04e6-acc3-25a6d0d9d824">
+          <Component Win64="$(var.Win64)" Id="owc87F5236CFA55B1784AB133C1A856143D" Guid="7de850c4-42fe-04e6-acc3-25a6d0d9d824">
             <File Id="owf87F5236CFA55B1784AB133C1A856143D" Source="$(var.SourceDir)\Lua\bin\lua54.dll" KeyPath="yes" />
           </Component>
-          <Component Id="owc3240D155CF91D340A40BFBAE3B3478B3" Guid="31154821-3de5-1da8-346a-ea29850e0a3c">
+          <Component Win64="$(var.Win64)" Id="owc3240D155CF91D340A40BFBAE3B3478B3" Guid="31154821-3de5-1da8-346a-ea29850e0a3c">
             <File Id="owf3240D155CF91D340A40BFBAE3B3478B3" Source="$(var.SourceDir)\Lua\bin\lua54.lib" KeyPath="yes" />
           </Component>
-          <Component Id="owc9F701B58CBEF23512225C4451BC0A9AE" Guid="527b51ef-2d3c-8859-a0d7-71e151a2b838">
+          <Component Win64="$(var.Win64)" Id="owc9F701B58CBEF23512225C4451BC0A9AE" Guid="527b51ef-2d3c-8859-a0d7-71e151a2b838">
             <File Id="owf9F701B58CBEF23512225C4451BC0A9AE" Source="$(var.SourceDir)\Lua\bin\luac.exe" KeyPath="yes" />
           </Component>
           <Directory Id="owd16D38F1974289B5677ADA59842AA452F" Name="5.1">
-            <Component Id="owcDA4E3951795AD3A78F0ABCFB41709DCE" Guid="dbca947d-6e73-88af-0d29-6b7b6aca57a5">
+            <Component Win64="$(var.Win64)" Id="owcDA4E3951795AD3A78F0ABCFB41709DCE" Guid="dbca947d-6e73-88af-0d29-6b7b6aca57a5">
               <File Id="owfDA4E3951795AD3A78F0ABCFB41709DCE" Source="$(var.SourceDir)\Lua\bin\5.1\lfs.dll" KeyPath="yes" />
             </Component>
-            <Component Id="owcD9450C6F2FB3CE6082BD8AE186F67BCF" Guid="39f5458c-28f0-4de8-32fc-138a49ab5f7d">
+            <Component Win64="$(var.Win64)" Id="owcD9450C6F2FB3CE6082BD8AE186F67BCF" Guid="39f5458c-28f0-4de8-32fc-138a49ab5f7d">
               <File Id="owfD9450C6F2FB3CE6082BD8AE186F67BCF" Source="$(var.SourceDir)\Lua\bin\5.1\lfs.lib" KeyPath="yes" />
             </Component>
-            <Component Id="owcC0B9132ED6FE38094EE26971884F281C" Guid="0363fa7a-cfe3-6099-f0dc-bdc46982a930">
+            <Component Win64="$(var.Win64)" Id="owcC0B9132ED6FE38094EE26971884F281C" Guid="0363fa7a-cfe3-6099-f0dc-bdc46982a930">
               <File Id="owfC0B9132ED6FE38094EE26971884F281C" Source="$(var.SourceDir)\Lua\bin\5.1\lua51.dll" KeyPath="yes" />
             </Component>
-            <Component Id="owcCFF535DB0459FA0BE52A982CD4EBDBCB" Guid="073215d1-c52b-e959-6a22-2f9ce103fd06">
+            <Component Win64="$(var.Win64)" Id="owcCFF535DB0459FA0BE52A982CD4EBDBCB" Guid="073215d1-c52b-e959-6a22-2f9ce103fd06">
               <File Id="owfCFF535DB0459FA0BE52A982CD4EBDBCB" Source="$(var.SourceDir)\Lua\bin\5.1\lua51.lib" KeyPath="yes" />
             </Component>
           </Directory>
         </Directory>
         <Directory Id="owd703030468B2651C909C217A57695C42D" Name="include">
-          <Component Id="owcE558F34C37B84795220686D7CDD169D6" Guid="b5f95017-e55e-46ed-e0eb-2226c2dfe4e7">
+          <Component Win64="$(var.Win64)" Id="owcE558F34C37B84795220686D7CDD169D6" Guid="b5f95017-e55e-46ed-e0eb-2226c2dfe4e7">
             <File Id="owfE558F34C37B84795220686D7CDD169D6" Source="$(var.SourceDir)\Lua\include\lauxlib.h" KeyPath="yes" />
           </Component>
-          <Component Id="owc6FA75681BAD0DB2BDB7BB5ECE981254D" Guid="26ac4b92-39f9-8d37-c24b-640c77d1bf7f">
+          <Component Win64="$(var.Win64)" Id="owc6FA75681BAD0DB2BDB7BB5ECE981254D" Guid="26ac4b92-39f9-8d37-c24b-640c77d1bf7f">
             <File Id="owf6FA75681BAD0DB2BDB7BB5ECE981254D" Source="$(var.SourceDir)\Lua\include\lua.h" KeyPath="yes" />
           </Component>
-          <Component Id="owc9E96584D297CFB4AC06A24B6ECC0C4A2" Guid="7d8f2520-0657-4f9f-5c3c-9534fdec311e">
+          <Component Win64="$(var.Win64)" Id="owc9E96584D297CFB4AC06A24B6ECC0C4A2" Guid="7d8f2520-0657-4f9f-5c3c-9534fdec311e">
             <File Id="owf9E96584D297CFB4AC06A24B6ECC0C4A2" Source="$(var.SourceDir)\Lua\include\lua.hpp" KeyPath="yes" />
           </Component>
-          <Component Id="owc0FB86D6DA1D842589391EC5B32513EDB" Guid="95b9f587-c253-595c-f0d9-7bbef5f5bc5f">
+          <Component Win64="$(var.Win64)" Id="owc0FB86D6DA1D842589391EC5B32513EDB" Guid="95b9f587-c253-595c-f0d9-7bbef5f5bc5f">
             <File Id="owf0FB86D6DA1D842589391EC5B32513EDB" Source="$(var.SourceDir)\Lua\include\luaconf.h" KeyPath="yes" />
           </Component>
-          <Component Id="owc752E9A871A319367E4A368D0760DD1BF" Guid="ff94f8bc-c7af-2e20-97cb-83aa2f8bb027">
+          <Component Win64="$(var.Win64)" Id="owc752E9A871A319367E4A368D0760DD1BF" Guid="ff94f8bc-c7af-2e20-97cb-83aa2f8bb027">
             <File Id="owf752E9A871A319367E4A368D0760DD1BF" Source="$(var.SourceDir)\Lua\include\lualib.h" KeyPath="yes" />
           </Component>
-          <Component Id="owcDF6B35B3F2E6B91CE871EC82E65D6923" Guid="b5edd914-889d-f061-ab57-d1d6c3e734cc">
+          <Component Win64="$(var.Win64)" Id="owcDF6B35B3F2E6B91CE871EC82E65D6923" Guid="b5edd914-889d-f061-ab57-d1d6c3e734cc">
             <File Id="owfDF6B35B3F2E6B91CE871EC82E65D6923" Source="$(var.SourceDir)\Lua\include\sol.hpp" KeyPath="yes" />
           </Component>
           <Directory Id="owd038FC3596B9C39D0BEC374670126FC4B" Name="5.1">
-            <Component Id="owc4907AE9F3ADEDEDD5FA760D36FC4C8F6" Guid="20e7f50b-0761-ee52-745f-1474fd418814">
+            <Component Win64="$(var.Win64)" Id="owc4907AE9F3ADEDEDD5FA760D36FC4C8F6" Guid="20e7f50b-0761-ee52-745f-1474fd418814">
               <File Id="owf4907AE9F3ADEDEDD5FA760D36FC4C8F6" Source="$(var.SourceDir)\Lua\include\5.1\lauxlib.h" KeyPath="yes" />
             </Component>
-            <Component Id="owcEAFF4BCB7CB6DF7E5ACE2F9E818E17E6" Guid="f5a12a1f-e2d2-710d-b329-e54a4c545ed4">
+            <Component Win64="$(var.Win64)" Id="owcEAFF4BCB7CB6DF7E5ACE2F9E818E17E6" Guid="f5a12a1f-e2d2-710d-b329-e54a4c545ed4">
               <File Id="owfEAFF4BCB7CB6DF7E5ACE2F9E818E17E6" Source="$(var.SourceDir)\Lua\include\5.1\lua.h" KeyPath="yes" />
             </Component>
-            <Component Id="owc8EA21C5E1B74883F14D996AB0D0376B8" Guid="f39355f2-5bd3-51d0-5473-239bc78684eb">
+            <Component Win64="$(var.Win64)" Id="owc8EA21C5E1B74883F14D996AB0D0376B8" Guid="f39355f2-5bd3-51d0-5473-239bc78684eb">
               <File Id="owf8EA21C5E1B74883F14D996AB0D0376B8" Source="$(var.SourceDir)\Lua\include\5.1\lua.hpp" KeyPath="yes" />
             </Component>
-            <Component Id="owc23BDBD3C8B925EFC0F1AA99D7718F2A8" Guid="c8beb0ea-2f2f-e810-b4d0-11d0cae184a4">
+            <Component Win64="$(var.Win64)" Id="owc23BDBD3C8B925EFC0F1AA99D7718F2A8" Guid="c8beb0ea-2f2f-e810-b4d0-11d0cae184a4">
               <File Id="owf23BDBD3C8B925EFC0F1AA99D7718F2A8" Source="$(var.SourceDir)\Lua\include\5.1\luaconf.h" KeyPath="yes" />
             </Component>
-            <Component Id="owc0DF29C426607BE3650D1FD9766FA997D" Guid="9e9b13f6-385e-3efb-2acc-28db49149c74">
+            <Component Win64="$(var.Win64)" Id="owc0DF29C426607BE3650D1FD9766FA997D" Guid="9e9b13f6-385e-3efb-2acc-28db49149c74">
               <File Id="owf0DF29C426607BE3650D1FD9766FA997D" Source="$(var.SourceDir)\Lua\include\5.1\lualib.h" KeyPath="yes" />
             </Component>
           </Directory>
         </Directory>
         <Directory Id="owd2A5197CE7430BBCE8EECA5162CBB6379" Name="static">
-          <Component Id="owc0844ADC9CE4E3A57F1503D0A6E0D189D" Guid="23915573-b93e-e19d-d3b7-223113180c2d">
+          <Component Win64="$(var.Win64)" Id="owc0844ADC9CE4E3A57F1503D0A6E0D189D" Guid="23915573-b93e-e19d-d3b7-223113180c2d">
             <File Id="owf0844ADC9CE4E3A57F1503D0A6E0D189D" Source="$(var.SourceDir)\Lua\static\lua54.lib" KeyPath="yes" />
           </Component>
         </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="scdC6281A678886E0381809F3F89C5DACBD" Name="WinLua" />
+      </Directory>
+      <Directory Id="StartMenuFolder">
+        <Directory Id="scd5FC3529A76E03F423A02AF8A109BC6C7" Name="WinLua" />
       </Directory>
     </Directory>
     <ComponentGroupRef Id="Custom" />

@@ -106,8 +106,8 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <PostBuildEvent>
-      <Command>xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.dll $(SolutionDir)\deploy\bin\5.1\
-xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.lib $(SolutionDir)\deploy\bin\5.1\</Command>
+      <Command>xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.dll $(SolutionDir)\deploy\Lua\bin\5.1\
+xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.lib $(SolutionDir)\deploy\Lua\bin\5.1\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -119,8 +119,8 @@ xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.lib $(Soluti
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <PostBuildEvent>
-      <Command>xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.dll $(SolutionDir)\deploy\bin\5.1\
-xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.lib $(SolutionDir)\deploy\bin\5.1\</Command>
+      <Command>xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.dll $(SolutionDir)\deploy\Lua\bin\5.1\
+xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.lib $(SolutionDir)\deploy\Lua\bin\5.1\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -138,8 +138,8 @@ xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.lib $(Soluti
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.dll $(SolutionDir)\deploy\bin\5.1\
-xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.lib $(SolutionDir)\deploy\bin\5.1\</Command>
+      <Command>xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.dll $(SolutionDir)\deploy\Lua\bin\5.1\
+xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.lib $(SolutionDir)\deploy\Lua\bin\5.1\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -157,8 +157,8 @@ xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.lib $(Soluti
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.dll $(SolutionDir)\deploy\bin\5.1\
-xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.lib $(SolutionDir)\deploy\bin\5.1\</Command>
+      <Command>xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.dll $(SolutionDir)\deploy\Lua\bin\5.1\
+xcopy /IERY $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\lfs.lib $(SolutionDir)\deploy\Lua\bin\5.1\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

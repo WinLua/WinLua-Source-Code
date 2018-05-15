@@ -217,11 +217,8 @@ LUA_API void  (lua_arith) (lua_State *L, int op);
 LUA_API int   (lua_rawequal) (lua_State *L, int idx1, int idx2);
 LUA_API int   (lua_compare) (lua_State *L, int idx1, int idx2, int op);
 
-/*WinLua 'special sauce'.*/
+/*2018-05-10 - WinLua modification*/
 LUA_API int (mainL) (int argc, char **argv);
-LUA_API void l_message (const char *pname, const char *msg);
-LUA_API int dostring (lua_State *L, const char *s, const char *name);
-LUA_API void createargtable (lua_State *L, char **argv, int argc, int script);
 
 /*
 ** push functions (C -> stack)
