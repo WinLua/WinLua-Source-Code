@@ -5,12 +5,12 @@
     
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="$(var.PlatformProgramFilesFolder)">
+        <Directory Id="LIBRESSL_INSTALLLOCATION" Name="LibreSSL">
+          <Merge Id="LibreSSL_MM" SourceFile="$(var.LibreSSL_MM.TargetPath)" DiskId="1" Language="1033" />
+        </Directory>
         <Directory Id="CompanyFolder" Name="WinLua">
           <Directory Id="JAMPLUS_INSTALLLOCATION" Name="JamPlus">
             <Merge Id="JamPlusMM" SourceFile="$(var.JamPlusMM.TargetPath)" DiskId="1" Language="1033" />
-          </Directory>
-          <Directory Id="LIBRESSL_INSTALLLOCATION" Name="LibreSSL">
-            <Merge Id="LibreSSL_MM" SourceFile="$(var.LibreSSL_MM.TargetPath)" DiskId="1" Language="1033" />
           </Directory>
           <Directory Id="LUA_INSTALLLOCATION" Name="Lua">
             <Merge Id="WinLuaMM" SourceFile="$(var.WinLuaMM.TargetPath)" DiskId="1" Language="1033" />

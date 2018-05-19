@@ -166,13 +166,14 @@
       <CompileAs>CompileAsC</CompileAs>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <CallingConvention>Cdecl</CallingConvention>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)bin\5.4\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\Lua\bin\$(TargetFileName)
-copy $(SolutionDir)bin\5.4\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\Lua\bin\$(TargetName).lib
+      <Command>copy /Y $(SolutionDir)bin\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\$(TargetFileName)
+copy /Y $(SolutionDir)bin\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\$(TargetName).lib
 
 cd "$(SolutionDir)..\..\work\lua-5.4.0\src\"
-for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\Lua\include\%%f"</Command>
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy /Y %%f "$(SolutionDir)\deploy\$(PlatformShortName)\Lua\include\%%f"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -189,13 +190,14 @@ for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(Solut
       <CompileAs>CompileAsC</CompileAs>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <CallingConvention>Cdecl</CallingConvention>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)bin\5.4\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\Lua\bin\$(TargetFileName)
-copy $(SolutionDir)bin\5.4\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\Lua\bin\$(TargetName).lib
+      <Command>copy /Y $(SolutionDir)bin\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\$(TargetFileName)
+copy /Y $(SolutionDir)bin\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\$(TargetName).lib
 
 cd "$(SolutionDir)..\..\work\lua-5.4.0\src\"
-for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\Lua\include\%%f"</Command>
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy /Y %%f "$(SolutionDir)\deploy\$(PlatformShortName)\Lua\include\%%f"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -220,11 +222,11 @@ for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(Solut
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)bin\5.4\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\Lua\bin\$(TargetFileName)
-copy $(SolutionDir)bin\5.4\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\Lua\bin\$(TargetName).lib
+      <Command>copy /Y $(SolutionDir)bin\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\$(TargetFileName)
+copy /Y $(SolutionDir)bin\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\$(TargetName).lib
 
 cd "$(SolutionDir)..\..\work\lua-5.4.0\src\"
-for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\Lua\include\%%f"</Command>
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy /Y %%f "$(SolutionDir)\deploy\$(PlatformShortName)\Lua\include\%%f"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -251,11 +253,11 @@ for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(Solut
       </ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)bin\5.4\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\Lua\bin\$(TargetFileName)
-copy $(SolutionDir)bin\5.4\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\Lua\bin\$(TargetName).lib
+      <Command>copy /Y $(SolutionDir)bin\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\$(TargetFileName)
+copy /Y $(SolutionDir)bin\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\$(TargetName).lib
 
 cd "$(SolutionDir)..\..\work\lua-5.4.0\src\"
-for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\Lua\include\%%f"</Command>
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy /Y %%f "$(SolutionDir)\deploy\$(PlatformShortName)\Lua\include\%%f"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>

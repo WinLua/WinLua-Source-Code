@@ -102,11 +102,11 @@
       <PreprocessorDefinitions>LUA_BUILD_AS_DLL;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\Lua\bin\5.1\$(TargetFileName)
-copy $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\Lua\bin\5.1\$(TargetName).lib
+      <Command>copy ^/Y $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\5.1\$(TargetFileName)
+copy ^/Y $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\5.1\$(TargetName).lib
 
 cd "$(SolutionDir)..\..\work\lua-5.1.5\src\"
-for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\Lua\include\5.1\%%f"</Command>
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy ^/Y %%f "$(SolutionDir)\deploy\$(PlatformShortName)\Lua\include\5.1\%%f"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -118,11 +118,11 @@ for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(Solut
       <PreprocessorDefinitions>LUA_BUILD_AS_DLL;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\Lua\bin\5.1\$(TargetFileName)
-copy $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\Lua\bin\5.1\$(TargetName).lib
+      <Command>copy ^/Y $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\5.1\$(TargetFileName)
+copy ^/Y $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\5.1\$(TargetName).lib
 
 cd "$(SolutionDir)..\..\work\lua-5.1.5\src\"
-for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\Lua\include\5.1\%%f"</Command>
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy ^/Y %%f "$(SolutionDir)\deploy\$(PlatformShortName)\Lua\include\5.1\%%f"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -140,11 +140,11 @@ for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(Solut
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\Lua\bin\5.1\$(TargetFileName)
-copy $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\Lua\bin\5.1\$(TargetName).lib
+      <Command>copy ^/Y $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\5.1\$(TargetFileName)
+copy ^/Y $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\5.1\$(TargetName).lib
 
 cd "$(SolutionDir)..\..\work\lua-5.1.5\src\"
-for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\Lua\include\5.1\%%f"</Command>
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy ^/Y %%f "$(SolutionDir)\deploy\$(PlatformShortName)\Lua\include\5.1\%%f"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -162,11 +162,11 @@ for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(Solut
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\Lua\bin\5.1\$(TargetFileName)
-copy $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\Lua\bin\5.1\$(TargetName).lib
+      <Command>copy ^/Y $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetFileName) $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\5.1\$(TargetFileName)
+copy ^/Y $(SolutionDir)\bin\5.1\$(Platform)\$(Configuration)\$(TargetName).lib $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\5.1\$(TargetName).lib
 
 cd "$(SolutionDir)..\..\work\lua-5.1.5\src\"
-for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy %%f "$(SolutionDir)\deploy\Lua\include\5.1\%%f"</Command>
+for %%f in (lua.h, luaconf.h, lualib.h, lauxlib.h, lua.hpp) do copy ^/Y %%f "$(SolutionDir)\deploy\$(PlatformShortName)\Lua\include\5.1\%%f"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

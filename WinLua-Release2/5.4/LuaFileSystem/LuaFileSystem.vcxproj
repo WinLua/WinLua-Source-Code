@@ -109,8 +109,8 @@
       <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <PostBuildEvent>
-      <Command>xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.dll $(SolutionDir)\deploy\Lua\bin\
-xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.lib $(SolutionDir)\deploy\Lua\bin\</Command>
+      <Command>xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.dll $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\
+xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.lib $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -125,8 +125,8 @@ xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.lib $(SolutionDi
       <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <PostBuildEvent>
-      <Command>xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.dll $(SolutionDir)\deploy\Lua\bin\
-xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.lib $(SolutionDir)\deploy\Lua\bin\</Command>
+      <Command>xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.dll $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\
+xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.lib $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -147,8 +147,8 @@ xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.lib $(SolutionDi
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.dll $(SolutionDir)\deploy\Lua\bin\
-xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.lib $(SolutionDir)\deploy\Lua\bin\</Command>
+      <Command>xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.dll $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\
+xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.lib $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -169,15 +169,10 @@ xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.lib $(SolutionDi
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.dll $(SolutionDir)\deploy\Lua\bin\
-xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.lib $(SolutionDir)\deploy\Lua\bin\</Command>
+      <Command>xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.dll $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\
+xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.lib $(SolutionDir)\deploy\$(PlatformShortName)\Lua\bin\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Lua-Library\Lua-Library.vcxproj">
-      <Project>{24d061da-9753-4b62-bf91-393e3330580d}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\work\luafilesystem\src\lfs.h" />
     <ClInclude Include="resource.h" />
@@ -187,6 +182,11 @@ xcopy /IERY $(SolutionDir)\bin\$(Platform)\$(Configuration)\lfs.lib $(SolutionDi
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\work\luafilesystem\src\lfs.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lua-Library\Lua-Library.vcxproj">
+      <Project>{24d061da-9753-4b62-bf91-393e3330580d}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

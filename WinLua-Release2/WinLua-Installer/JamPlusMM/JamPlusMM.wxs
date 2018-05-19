@@ -1,14 +1,384 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?include $(var.SolutionDir)\Include.wxi ?>
-  
   <?define ComponentRules="OneToOne"?>
   <!-- SourceDir instructs IsWiX the location of the directory that contains files for this merge module -->
+  <!--<?define SourceDir="..\..\5.4\Deploy\x86\JamPlus\bin"?>-->
   <?define SourceDir="..\..\5.4\Deploy\$(var.Platform)\JamPlus\bin"?>
-  <Module Id="JamPlusMM" Language="1033" Version="1.0.0.0">
-    <Package Id="1801c348-2c0c-4cf9-8f8e-378c2a40a408" Manufacturer="JamPlusMM" InstallerVersion="200"  />
-    <Directory Id="TARGETDIR" Name="SourceDir" >
+  <Module Id="JamPlusMM" Language="1033" Version="0.3.0.0">
+    <Package Id="1801c348-2c0c-4cf9-8f8e-378c2a40a408" Manufacturer="JamPlusMM" InstallerVersion="200" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="MergeRedirectFolder">
+        <Component Win64="$(var.Win64)" Id="owcDA7D2F9170EBC82CAC3E9C6C4E6DA6FC" Guid="f83fe244-24e1-e989-16c6-1443cd6967f5">
+          <File Id="owfDA7D2F9170EBC82CAC3E9C6C4E6DA6FC" Source="$(var.SourceDir)\folderstojamfile.bat" KeyPath="yes" />
+        </Component>
+        <Component Win64="$(var.Win64)" Id="owcE7CE7BD64DBF56584DBC33095E8410DF" Guid="2ff7dd07-9008-f0ac-70c7-57e57e2f1a1c">
+          <File Id="owfE7CE7BD64DBF56584DBC33095E8410DF" Source="$(var.SourceDir)\generate.bat" KeyPath="yes" />
+        </Component>
+        <Component Win64="$(var.Win64)" Id="owc3A790BC75553E2259AD5181A2EDE7907" Guid="7114ee82-882e-b836-31cd-c59ac4f98932">
+          <File Id="owf3A790BC75553E2259AD5181A2EDE7907" Source="$(var.SourceDir)\jam.exe" KeyPath="yes" />
+        </Component>
+        <Component Win64="$(var.Win64)" Id="owcF7606BB40F4FD89EF9E3A11A4051D121" Guid="9ac89f30-e304-7f0d-7a02-602d9d9c93f6">
+          <File Id="owfF7606BB40F4FD89EF9E3A11A4051D121" Source="$(var.SourceDir)\jam.pdb" KeyPath="yes" />
+        </Component>
+        <Component Win64="$(var.Win64)" Id="owc4C95C141BF75C35412A3F77D244E9512" Guid="f20ea021-ba70-7692-8d89-c1afbc406c5f">
+          <File Id="owf4C95C141BF75C35412A3F77D244E9512" Source="$(var.SourceDir)\Jambase.jam" KeyPath="yes" />
+        </Component>
+        <Component Win64="$(var.Win64)" Id="owc3CB02D3FA29A44F7693902DCFB3209E7" Guid="3dfd1c4a-5135-eee9-9aee-60d8de618e58">
+          <File Id="owf3CB02D3FA29A44F7693902DCFB3209E7" Source="$(var.SourceDir)\JamPlus.ico" KeyPath="yes" />
+        </Component>
+        <Component Win64="$(var.Win64)" Id="owcE6015FE977687628CF2F05D87AF71E24" Guid="714b6d97-534d-06d1-5cb4-9c664d9e18c2">
+          <File Id="owfE6015FE977687628CF2F05D87AF71E24" Source="$(var.SourceDir)\vcprojtojamfile.bat" KeyPath="yes" />
+        </Component>
+        <Component Win64="$(var.Win64)" Id="owc15B996E2206464420ACAA636E5EFA7B7" Guid="66bc90fd-e174-6ff4-a1f3-d8e127c1101a">
+          <File Id="owf15B996E2206464420ACAA636E5EFA7B7" Source="$(var.SourceDir)\vcxprojtojamfile.bat" KeyPath="yes" />
+        </Component>
+        <Component Win64="$(var.Win64)" Id="owcE675EEBD579A3184D1A13D0E0E5C4078" Guid="0e476782-7843-59f4-71fc-35b0649a6454">
+          <File Id="owfE675EEBD579A3184D1A13D0E0E5C4078" Source="$(var.SourceDir)\webserver.bat" KeyPath="yes" />
+        </Component>
+        <Component Win64="$(var.Win64)" Id="owcC5B879B15EDD0B4E7C2B26CD7050E0FA" Guid="b296c9b1-fa52-19cc-cb66-9d0c6dfebe51">
+          <File Id="owfC5B879B15EDD0B4E7C2B26CD7050E0FA" Source="$(var.SourceDir)\workspace.bat" KeyPath="yes" />
+        </Component>
+        <Directory Id="owdA0B1970AF2FACEEA095FFFF8F651612F" Name="docs">
+          <Component Win64="$(var.Win64)" Id="owc5E7896FBBADB1C3733D55B7783FE42B1" Guid="f39e19dd-9176-25bd-e972-0acfd5f31654">
+            <File Id="owf5E7896FBBADB1C3733D55B7783FE42B1" Source="$(var.SourceDir)\docs\arrowdown.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcDEA0BAE9FC97000C94D666BA147C1489" Guid="3a313343-514e-ab85-3f99-f4dff7d0e290">
+            <File Id="owfDEA0BAE9FC97000C94D666BA147C1489" Source="$(var.SourceDir)\docs\arrowright.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc51302C3F8C5AA1C86E53EFA7758485CB" Guid="0163e559-8bd0-e7ec-3591-fb97d1825324">
+            <File Id="owf51302C3F8C5AA1C86E53EFA7758485CB" Source="$(var.SourceDir)\docs\bc_s.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc1A5F8FD1771E0766AE0D4767B913A8D2" Guid="13cc46ca-4611-ed86-3270-b88852e8b06f">
+            <File Id="owf1A5F8FD1771E0766AE0D4767B913A8D2" Source="$(var.SourceDir)\docs\bdwn.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc864266D66E88674E109684970396DA91" Guid="57751902-a589-36cb-a02c-6ddeade5a681">
+            <File Id="owf864266D66E88674E109684970396DA91" Source="$(var.SourceDir)\docs\bugs.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcFFF90C1201002AAA33FB4A902E16B779" Guid="6753f2fd-f4f9-1d17-fc3c-f587680a3de5">
+            <File Id="owfFFF90C1201002AAA33FB4A902E16B779" Source="$(var.SourceDir)\docs\building.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcD9B3B505342F4BF274FEA45197E3BFC5" Guid="47890f36-248b-08c0-b55c-bd73b0e4c1f3">
+            <File Id="owfD9B3B505342F4BF274FEA45197E3BFC5" Source="$(var.SourceDir)\docs\builtin_rules.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc49A73B8D43066C829BA26601D67CFC8F" Guid="38ba1a6e-34c8-4074-4c55-fb27d81e2867">
+            <File Id="owf49A73B8D43066C829BA26601D67CFC8F" Source="$(var.SourceDir)\docs\builtin_variables.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcED12DDB9AEA075F81602A342F5F2B8D2" Guid="5bc58644-aa9e-e464-40e1-62a1a539ac97">
+            <File Id="owfED12DDB9AEA075F81602A342F5F2B8D2" Source="$(var.SourceDir)\docs\changelog.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcD2210027DF4455961C618F5A6824E4F2" Guid="2e0caaad-fb2e-7406-73c6-b43bfe64768b">
+            <File Id="owfD2210027DF4455961C618F5A6824E4F2" Source="$(var.SourceDir)\docs\checksum_builds.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc847D4463E7535C7AF5637710F30364B2" Guid="1d570aa8-aca9-ab64-bbc4-47a74eb20266">
+            <File Id="owf847D4463E7535C7AF5637710F30364B2" Source="$(var.SourceDir)\docs\closed.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc54B776396B79F0FCA46A915F96E9DBA2" Guid="eacb711b-4b0c-4097-0e4e-82702f8dde8b">
+            <File Id="owf54B776396B79F0FCA46A915F96E9DBA2" Source="$(var.SourceDir)\docs\dependency_cache.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcF48C1A8F2082793230BBD3C3A03AC231" Guid="145b0dca-dc3a-3596-ece0-3a9fc11234fc">
+            <File Id="owfF48C1A8F2082793230BBD3C3A03AC231" Source="$(var.SourceDir)\docs\doc.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcC11D79964B2382AA4C99805B84367F93" Guid="9cf69dc0-492b-f52b-78bd-39431c7fce0c">
+            <File Id="owfC11D79964B2382AA4C99805B84367F93" Source="$(var.SourceDir)\docs\doxygen.css" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcEDAD026B04EE69EC5AEBEF029D8CBCBD" Guid="e066c032-5298-30f1-7fc2-ebf26e40a024">
+            <File Id="owfEDAD026B04EE69EC5AEBEF029D8CBCBD" Source="$(var.SourceDir)\docs\doxygen.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc994A90FBD4AF3E0032BF03809C985365" Guid="1de208c7-0363-c4e5-72c8-69e36f8b7000">
+            <File Id="owf994A90FBD4AF3E0032BF03809C985365" Source="$(var.SourceDir)\docs\dynsections.js" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcA216C21419BB81476FB6E88FB89C57D9" Guid="852fdc46-40b6-0b92-1c22-e04b3b006c5d">
+            <File Id="owfA216C21419BB81476FB6E88FB89C57D9" Source="$(var.SourceDir)\docs\examples.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcF03769A60F831C5E04DC85767F07454F" Guid="6c22a539-db96-209e-4a77-6ff2ade261f9">
+            <File Id="owfF03769A60F831C5E04DC85767F07454F" Source="$(var.SourceDir)\docs\file_cache.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc2C3565B57BE5F85FC52BE897FE3BD5B6" Guid="c3642b8f-1762-7a7b-3f99-73da7cf7f053">
+            <File Id="owf2C3565B57BE5F85FC52BE897FE3BD5B6" Source="$(var.SourceDir)\docs\folderclosed.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcC63EAB16DD02E4738DAC1E3330AA7849" Guid="2cdbb9b3-4ec6-0e5f-fa07-5d43ea57b5d6">
+            <File Id="owfC63EAB16DD02E4738DAC1E3330AA7849" Source="$(var.SourceDir)\docs\folderopen.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc80B70F65AA816EE75545CC3CD9787051" Guid="5f6acb22-3eca-cebc-f7f9-cf62b294de10">
+            <File Id="owf80B70F65AA816EE75545CC3CD9787051" Source="$(var.SourceDir)\docs\improvements.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc5820F15901E66570C9467952671D331B" Guid="0887e5b2-1a86-6e67-1c91-27d035c4f0f2">
+            <File Id="owf5820F15901E66570C9467952671D331B" Source="$(var.SourceDir)\docs\index.html" KeyPath="yes">
+              <Shortcut Id="sc658EBC12F71620AA414567E7C6D1AEE6" Name="JamPlus Documentation" Directory="scdB89794C04258EF18E71D3AAC6A60C302" />
+            </File>
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc6E92861F6D2F28B0C36C9C8279521E8D" Guid="9fb3086f-4e87-64fc-43c3-b056363b8482">
+            <File Id="owf6E92861F6D2F28B0C36C9C8279521E8D" Source="$(var.SourceDir)\docs\jam_language.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcB40CAE546B38CEC63FFE7581F6F3A6A3" Guid="c701b224-cf7c-5fe0-ed90-fbf295291c9a">
+            <File Id="owfB40CAE546B38CEC63FFE7581F6F3A6A3" Source="$(var.SourceDir)\docs\jambase_rules.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcC68C0CB2F1BE1F55D98BE5EF747B6433" Guid="88743a09-05c5-7062-800c-07843cfc2583">
+            <File Id="owfC68C0CB2F1BE1F55D98BE5EF747B6433" Source="$(var.SourceDir)\docs\jamtoworkspace.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcD61C38E23563DD9934D5DD1CB084919C" Guid="554f2f17-d376-9c4b-c71d-4e56ccc34d08">
+            <File Id="owfD61C38E23563DD9934D5DD1CB084919C" Source="$(var.SourceDir)\docs\jquery.js" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcE4C6AF16EBEB9694E3E871B996D1A952" Guid="17f1b402-0fc1-e025-04fc-03efda4e2905">
+            <File Id="owfE4C6AF16EBEB9694E3E871B996D1A952" Source="$(var.SourceDir)\docs\language_variables.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc47DDA7459D4180DC6F5520615961B1CC" Guid="f5dcb166-5d8a-1417-c204-ae42a23929eb">
+            <File Id="owf47DDA7459D4180DC6F5520615961B1CC" Source="$(var.SourceDir)\docs\lua_support.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcEAF5765CE1A11B91155B290E530B9360" Guid="3645aa46-1cb8-e327-1dd4-230d36131d83">
+            <File Id="owfEAF5765CE1A11B91155B290E530B9360" Source="$(var.SourceDir)\docs\module_android.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc370B46433E975AEF14833E6D1F52A5F4" Guid="10c055eb-38f6-a0bb-1478-b2423d61b54f">
+            <File Id="owf370B46433E975AEF14833E6D1F52A5F4" Source="$(var.SourceDir)\docs\module_c.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcA3A6F04BA948805965A03CCF54AB77D7" Guid="99f0bcf5-0605-ce46-823a-c3369b74c83f">
+            <File Id="owfA3A6F04BA948805965A03CCF54AB77D7" Source="$(var.SourceDir)\docs\module_c_directx.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc4A6699F938D1AE192CD0CA05073B5F24" Guid="36afacb6-ad24-488d-e6e6-1d977861e7f9">
+            <File Id="owf4A6699F938D1AE192CD0CA05073B5F24" Source="$(var.SourceDir)\docs\module_c_dotnet.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc18EB4695EA49DF134AAE3B1662F8DEFA" Guid="fc14f63b-8acd-82df-ffe3-a4d1a5e8fac6">
+            <File Id="owf18EB4695EA49DF134AAE3B1662F8DEFA" Source="$(var.SourceDir)\docs\module_c_mfc.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcFA43A7A2D560F1A48A93AACBF229DB4F" Guid="77cea3e2-fd64-ba9a-c848-42e1d4e26171">
+            <File Id="owfFA43A7A2D560F1A48A93AACBF229DB4F" Source="$(var.SourceDir)\docs\module_c_midl.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc69628306671E6637C518BB619AED585A" Guid="23350465-e8c2-ac60-ae91-bcff6e120e9b">
+            <File Id="owf69628306671E6637C518BB619AED585A" Source="$(var.SourceDir)\docs\module_c_multiple_toolchain_support.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcEEE8541A6CC0A1B241F791318F91E1CC" Guid="82390694-e021-66b4-fe27-ec7000e92ce2">
+            <File Id="owfEEE8541A6CC0A1B241F791318F91E1CC" Source="$(var.SourceDir)\docs\module_c_win32resource.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc3B0C9FC961C32FDB025F415B8EA666CB" Guid="2bf057c7-c9c9-8a1f-188c-7500b026a8ed">
+            <File Id="owf3B0C9FC961C32FDB025F415B8EA666CB" Source="$(var.SourceDir)\docs\module_c_wxwidgets.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc1794ACEB293925CE596BCF86AC5E55AD" Guid="f9fec158-c394-8320-da56-1442f4ba63de">
+            <File Id="owf1794ACEB293925CE596BCF86AC5E55AD" Source="$(var.SourceDir)\docs\module_copydirectory.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcF708AD99DD856D93A0FE72FFB4E23508" Guid="9c9554b3-9a6b-a253-481a-2a2fe0da565d">
+            <File Id="owfF708AD99DD856D93A0FE72FFB4E23508" Source="$(var.SourceDir)\docs\module_copyfile.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcF48898E1A9C290C85CE48215E52022C7" Guid="2b307b29-62fc-236a-52f8-a071a0db038d">
+            <File Id="owfF48898E1A9C290C85CE48215E52022C7" Source="$(var.SourceDir)\docs\module_csharp.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcC27AAA8749099BE1B7BB71B2C20D731C" Guid="381675d4-bed8-8976-aa2a-c7363a024ab6">
+            <File Id="owfC27AAA8749099BE1B7BB71B2C20D731C" Source="$(var.SourceDir)\docs\module_hardsoftlink.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc746F2EFE3717EA4158463E3E0F26A9AF" Guid="3b791a10-8af4-4b2e-a1a3-3ddba6f11bf8">
+            <File Id="owf746F2EFE3717EA4158463E3E0F26A9AF" Source="$(var.SourceDir)\docs\module_ios.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcB073A2C4038EBB9B8F061C0A75CED839" Guid="72ddea75-aa7c-dead-7314-0b248b9156de">
+            <File Id="owfB073A2C4038EBB9B8F061C0A75CED839" Source="$(var.SourceDir)\docs\modules.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc8D8BE6D50563D96F2A9474B54E1D53B8" Guid="d88b11c0-3e95-550e-1e0d-ffee50fe7dd9">
+            <File Id="owf8D8BE6D50563D96F2A9474B54E1D53B8" Source="$(var.SourceDir)\docs\multiple_passes.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc4D1DE131B30BC55A2883E2049A88163F" Guid="5f49fafa-f3e3-d36e-b391-1d8dc9644b82">
+            <File Id="owf4D1DE131B30BC55A2883E2049A88163F" Source="$(var.SourceDir)\docs\nav_f.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcA8D4E153D019AEF43F9BE0DCED5B9F97" Guid="134b2889-8864-227d-ac04-106e1d2a9dd5">
+            <File Id="owfA8D4E153D019AEF43F9BE0DCED5B9F97" Source="$(var.SourceDir)\docs\nav_g.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc66F478A61C879796EE504E2F0F00DEB3" Guid="edb36749-7faf-dfeb-3c17-479d90cc71a8">
+            <File Id="owf66F478A61C879796EE504E2F0F00DEB3" Source="$(var.SourceDir)\docs\nav_h.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc689512372CD2A3E160C5FE7CDDFF2115" Guid="3eb39d0e-f5e7-86da-c367-2337da1165a3">
+            <File Id="owf689512372CD2A3E160C5FE7CDDFF2115" Source="$(var.SourceDir)\docs\open.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc0ADCF63462C4155EA39A9535FF64E7E6" Guid="5caccdac-30ab-aa2b-5794-6d61e139c509">
+            <File Id="owf0ADCF63462C4155EA39A9535FF64E7E6" Source="$(var.SourceDir)\docs\pages.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcE208675E434540D0B5FA7E26B9E3AB08" Guid="d6121528-c272-45e9-37dc-49751c97f694">
+            <File Id="owfE208675E434540D0B5FA7E26B9E3AB08" Source="$(var.SourceDir)\docs\quick_start.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc5C7713AC332305B6677F2F904CA5812D" Guid="75868f40-f9d6-978c-e81e-9111c8590194">
+            <File Id="owf5C7713AC332305B6677F2F904CA5812D" Source="$(var.SourceDir)\docs\scripts.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcA203225C46FC12668B68AE017D4BD320" Guid="59dc8d5c-377e-1866-7881-696f4a25e965">
+            <File Id="owfA203225C46FC12668B68AE017D4BD320" Source="$(var.SourceDir)\docs\splitbar.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc10087C369A041B9B0C0A7E95B1C2D83C" Guid="2b07ec3a-466a-3268-b706-bdb44bda786c">
+            <File Id="owf10087C369A041B9B0C0A7E95B1C2D83C" Source="$(var.SourceDir)\docs\sync_off.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcD3F27889D5ACDA6F232589C6B7D4F2CC" Guid="96878619-14de-a881-a8a5-857f5671ad7f">
+            <File Id="owfD3F27889D5ACDA6F232589C6B7D4F2CC" Source="$(var.SourceDir)\docs\sync_on.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcF13AA1AAE855C886E0C968BCA3440237" Guid="6fac89ff-039c-3253-3b1f-7b91486e30db">
+            <File Id="owfF13AA1AAE855C886E0C968BCA3440237" Source="$(var.SourceDir)\docs\tab_a.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc755AB3A69F69B5ECA9472BA793E32DFD" Guid="a5a70484-0fa5-3cc2-9fdb-16b9a08770a6">
+            <File Id="owf755AB3A69F69B5ECA9472BA793E32DFD" Source="$(var.SourceDir)\docs\tab_b.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc68F150C4DE97686214A1637222791E39" Guid="b254545e-91aa-3b22-9370-baa9fb644dc2">
+            <File Id="owf68F150C4DE97686214A1637222791E39" Source="$(var.SourceDir)\docs\tab_h.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc754F96524B721195A9313ADAE26534BE" Guid="1b7f2989-8c22-8cfe-abd3-eb1acedaf42c">
+            <File Id="owf754F96524B721195A9313ADAE26534BE" Source="$(var.SourceDir)\docs\tab_s.png" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc5EE499D52DA32EC530ED1BD336AC174C" Guid="bc231965-64d9-ea72-19dd-4bb36d07e523">
+            <File Id="owf5EE499D52DA32EC530ED1BD336AC174C" Source="$(var.SourceDir)\docs\tabs.css" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc23FC25722EB125548DEFA4425F791249" Guid="9ab2880f-d815-8719-71b7-e2390d5aedcb">
+            <File Id="owf23FC25722EB125548DEFA4425F791249" Source="$(var.SourceDir)\docs\todo.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc132CCB11405B058AB27E0DF755B44862" Guid="e6a08163-702f-6f37-8ec1-5b869075df46">
+            <File Id="owf132CCB11405B058AB27E0DF755B44862" Source="$(var.SourceDir)\docs\usage.html" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc016D9419CE34606C094C0C11C5CD9BED" Guid="cbd3f811-0174-483d-a3cf-db7aed4b06ec">
+            <File Id="owf016D9419CE34606C094C0C11C5CD9BED" Source="$(var.SourceDir)\docs\warnings_and_errors.html" KeyPath="yes" />
+          </Component>
+        </Directory>
+        <Directory Id="owdB23A9AC519608CF1F72F0099142DB82C" Name="lua">
+          <Component Win64="$(var.Win64)" Id="owcCF0AD3A8E6DEC8F4345D8F154D1B763E" Guid="1ae174e0-b157-e24a-5d62-8a3435638b0f">
+            <File Id="owfCF0AD3A8E6DEC8F4345D8F154D1B763E" Source="$(var.SourceDir)\lua\lua.exe" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc5D49125DF5172D0D9092791A3A95BF96" Guid="813e0e63-fd9d-6f3b-304c-9b339cfb4a73">
+            <File Id="owf5D49125DF5172D0D9092791A3A95BF96" Source="$(var.SourceDir)\lua\lua53.dll" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcBA12365FF8569AAA8F97A368061CA0D6" Guid="6353ac51-5e5c-2f90-25c8-fa1f0cfed111">
+            <File Id="owfBA12365FF8569AAA8F97A368061CA0D6" Source="$(var.SourceDir)\lua\lua-tilde.dll" KeyPath="yes" />
+          </Component>
+          <Directory Id="owdB149D4828F2549F1657FDD54E6B69858" Name="lua">
+            <Component Win64="$(var.Win64)" Id="owc8F93B96BB30FE82DA1078ED535A0CE23" Guid="aa566e55-7ea0-1429-fc85-484647a240e2">
+              <File Id="owf8F93B96BB30FE82DA1078ED535A0CE23" Source="$(var.SourceDir)\lua\lua\copas.lua" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owcA9B90AD5D0DAD3894623859D550B32C2" Guid="f7f1b232-a8c1-713f-9925-83f57b5931e2">
+              <File Id="owfA9B90AD5D0DAD3894623859D550B32C2" Source="$(var.SourceDir)\lua\lua\coxpcall.lua" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc96FD12509D04D3E039501801D3FE4899" Guid="73e07bbe-2ce3-4ce0-6655-6a7b4da1fc6f">
+              <File Id="owf96FD12509D04D3E039501801D3FE4899" Source="$(var.SourceDir)\lua\lua\expand.lua" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc0D99E2CB21100918881C03F5AA916F9A" Guid="72d842f4-cefc-956a-1bc3-8c89030ecfc4">
+              <File Id="owf0D99E2CB21100918881C03F5AA916F9A" Source="$(var.SourceDir)\lua\lua\getopt.lua" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owcA9943ABDC9D55864D45D206DD921DEFE" Guid="9a7491c9-d22e-c159-42f3-e30a5d74ccc9">
+              <File Id="owfA9943ABDC9D55864D45D206DD921DEFE" Source="$(var.SourceDir)\lua\lua\lanes.lua" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc85227C60629AA78041FFE82A4B116E80" Guid="2dfd77c5-b5fc-150a-9f38-81d3d26b5eef">
+              <File Id="owf85227C60629AA78041FFE82A4B116E80" Source="$(var.SourceDir)\lua\lua\ospath.lua" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc9BA3CC7C47C045CEEACE8DFCE61C16CA" Guid="cef3122a-4b09-c2fd-2ffc-1018340a9816">
+              <File Id="owf9BA3CC7C47C045CEEACE8DFCE61C16CA" Source="$(var.SourceDir)\lua\lua\osprocess.lua" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc6CC13F05FAA33894968ACF940F68F039" Guid="6c343831-74bc-e407-0a76-e9a738abb186">
+              <File Id="owf6CC13F05FAA33894968ACF940F68F039" Source="$(var.SourceDir)\lua\lua\plist.lua" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc1B18646866956A448FDE4204A1B055E4" Guid="98262f9c-cf42-49fc-8aeb-536878f41413">
+              <File Id="owf1B18646866956A448FDE4204A1B055E4" Source="$(var.SourceDir)\lua\lua\socket.lua" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc3163C909C0C9DEC4994DE859DC387D78" Guid="a0a0e134-82be-bd21-d9cd-c993f3749696">
+              <File Id="owf3163C909C0C9DEC4994DE859DC387D78" Source="$(var.SourceDir)\lua\lua\ssl.lua" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owcCAA9EA4B55FA2CB85AB081FD621E7FD1" Guid="3d3eccec-7eb0-3ef1-ab6b-a1b6e1ab6bce">
+              <File Id="owfCAA9EA4B55FA2CB85AB081FD621E7FD1" Source="$(var.SourceDir)\lua\lua\xavante.lua" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owcA6B0FCA20B965F46C422A202830745A6" Guid="328665db-10df-e51f-e37d-3f83e80028fe">
+              <File Id="owfA6B0FCA20B965F46C422A202830745A6" Source="$(var.SourceDir)\lua\lua\xmlize.lua" KeyPath="yes" />
+            </Component>
+            <Directory Id="owd12F3B93739C19292590B3125016154D7" Name="lxp">
+              <Component Win64="$(var.Win64)" Id="owcD0C0C3C1D0E8F52E9995817ECEA24F19" Guid="bda84e8a-49f8-40fc-65c6-642938d2bfb2">
+                <File Id="owfD0C0C3C1D0E8F52E9995817ECEA24F19" Source="$(var.SourceDir)\lua\lua\lxp\lom.lua" KeyPath="yes" />
+              </Component>
+            </Directory>
+            <Directory Id="owdADE9028ADE067A54AF9D6173F53ECD31" Name="socket">
+              <Component Win64="$(var.Win64)" Id="owcF42FC559D9295530071AC105583422F2" Guid="80247634-c083-357b-ef87-f39fd08a095b">
+                <File Id="owfF42FC559D9295530071AC105583422F2" Source="$(var.SourceDir)\lua\lua\socket\http.lua" KeyPath="yes" />
+              </Component>
+              <Component Win64="$(var.Win64)" Id="owc4FABA6A17F046C832B1C9FAA21B133D2" Guid="912bd955-4699-c4a4-c589-2d9e7d234243">
+                <File Id="owf4FABA6A17F046C832B1C9FAA21B133D2" Source="$(var.SourceDir)\lua\lua\socket\url.lua" KeyPath="yes" />
+              </Component>
+            </Directory>
+            <Directory Id="owdFF5415A5BE214F6912BC55FAEBE037DB" Name="ssl">
+              <Component Win64="$(var.Win64)" Id="owc0C335576A1EC360529E4E5AACE7C2517" Guid="57cdd9b1-6ed0-63fd-1179-71f2e6699fe7">
+                <File Id="owf0C335576A1EC360529E4E5AACE7C2517" Source="$(var.SourceDir)\lua\lua\ssl\https.lua" KeyPath="yes" />
+              </Component>
+              <Component Win64="$(var.Win64)" Id="owc10D88C7D7540E45AF0206A2A4C72F266" Guid="ee8a5f2f-c975-c217-dad7-4d80fd1a801c">
+                <File Id="owf10D88C7D7540E45AF0206A2A4C72F266" Source="$(var.SourceDir)\lua\lua\ssl\options.lua" KeyPath="yes" />
+              </Component>
+            </Directory>
+            <Directory Id="owd909F7B7A10CB3D7539732D3993E4ABD8" Name="xavante">
+              <Component Win64="$(var.Win64)" Id="owcCE2DE207BCEE66C76ACB6FFA95953D78" Guid="fe12b737-16b7-9e51-37a4-85cd99a39496">
+                <File Id="owfCE2DE207BCEE66C76ACB6FFA95953D78" Source="$(var.SourceDir)\lua\lua\xavante\encoding.lua" KeyPath="yes" />
+              </Component>
+              <Component Win64="$(var.Win64)" Id="owc507B8DDF51B1201B106B1758C6E04C35" Guid="acab9357-ac58-75b5-17ec-816abf2e3a42">
+                <File Id="owf507B8DDF51B1201B106B1758C6E04C35" Source="$(var.SourceDir)\lua\lua\xavante\filehandler.lua" KeyPath="yes" />
+              </Component>
+              <Component Win64="$(var.Win64)" Id="owc6F0B8D14E92E8CA7292C313BF202A189" Guid="fb95776c-d8fa-a5dc-fb2d-0186ea6d73ee">
+                <File Id="owf6F0B8D14E92E8CA7292C313BF202A189" Source="$(var.SourceDir)\lua\lua\xavante\httpd.lua" KeyPath="yes" />
+              </Component>
+              <Component Win64="$(var.Win64)" Id="owcFAC05D43C78B6634C47FD2290E51460D" Guid="557dc158-9d98-2b2f-d21e-075b5688bd1d">
+                <File Id="owfFAC05D43C78B6634C47FD2290E51460D" Source="$(var.SourceDir)\lua\lua\xavante\mime.lua" KeyPath="yes" />
+              </Component>
+              <Component Win64="$(var.Win64)" Id="owc589E59E8ED43682ECA636D926148A229" Guid="25d01285-8b0d-bfeb-6858-53f6690d2b6d">
+                <File Id="owf589E59E8ED43682ECA636D926148A229" Source="$(var.SourceDir)\lua\lua\xavante\patternhandler.lua" KeyPath="yes" />
+              </Component>
+              <Component Win64="$(var.Win64)" Id="owc0FDF8CFF1991F446B0C7C2C99D8767D4" Guid="8194aa29-0c45-94b2-3424-2fd698f8da2c">
+                <File Id="owf0FDF8CFF1991F446B0C7C2C99D8767D4" Source="$(var.SourceDir)\lua\lua\xavante\redirecthandler.lua" KeyPath="yes" />
+              </Component>
+              <Component Win64="$(var.Win64)" Id="owc6B599D7DC6F1AD0FA3114038A36CCC57" Guid="102497b4-b6f3-1866-536c-12e94e97c4e3">
+                <File Id="owf6B599D7DC6F1AD0FA3114038A36CCC57" Source="$(var.SourceDir)\lua\lua\xavante\urlhandler.lua" KeyPath="yes" />
+              </Component>
+              <Component Win64="$(var.Win64)" Id="owc0ED74E0A1F2496FB702BD02B544318DA" Guid="e6ce7f1d-72d6-6499-4e05-690a44508431">
+                <File Id="owf0ED74E0A1F2496FB702BD02B544318DA" Source="$(var.SourceDir)\lua\lua\xavante\vhostshandler.lua" KeyPath="yes" />
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="owdE2505FF270ABE24275EC9D9224A2C8EE" Name="modules">
+            <Component Win64="$(var.Win64)" Id="owc4989A39E230F6E03177B6820DC795A62" Guid="bc735831-f8b5-4d2c-e877-a57bd70eacda">
+              <File Id="owf4989A39E230F6E03177B6820DC795A62" Source="$(var.SourceDir)\lua\modules\cjson.dll" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owcDF81A3D60063ED45602014FBC847AC24" Guid="66271b9b-d6bb-7fa4-8d0f-42590e779245">
+              <File Id="owfDF81A3D60063ED45602014FBC847AC24" Source="$(var.SourceDir)\lua\modules\ffi.dll" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc54E5F0843D19E6FC4772AF8BDAC8613B" Guid="a7b52c3c-6be3-3535-4291-a0bfb87bd2fb">
+              <File Id="owf54E5F0843D19E6FC4772AF8BDAC8613B" Source="$(var.SourceDir)\lua\modules\filefind.dll" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc3C60C0004D52772CBB641A41FFCFC4B6" Guid="6d1e6501-ad1f-a2a3-780a-f8db534229f1">
+              <File Id="owf3C60C0004D52772CBB641A41FFCFC4B6" Source="$(var.SourceDir)\lua\modules\lfs.dll" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc1B0990A49AE591ED6879C48660031C8F" Guid="55f928e2-0ae2-fd7a-bb22-04c19411e1e5">
+              <File Id="owf1B0990A49AE591ED6879C48660031C8F" Source="$(var.SourceDir)\lua\modules\lxp.dll" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc1583E466F971A061E6D4E06A123C3CEC" Guid="ba828c0c-a136-a84d-31e8-766486d7e88f">
+              <File Id="owf1583E466F971A061E6D4E06A123C3CEC" Source="$(var.SourceDir)\lua\modules\md5.dll" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc24885C1ACB3CF86D572D57E15605509F" Guid="cdd1ad6a-e6f9-fb98-4a49-140a176d5569">
+              <File Id="owf24885C1ACB3CF86D572D57E15605509F" Source="$(var.SourceDir)\lua\modules\ospath.dll" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc26C38A1EB25C18232473F89E40834E1D" Guid="4598b702-9449-596d-dbdb-aadc88afcfbb">
+              <File Id="owf26C38A1EB25C18232473F89E40834E1D" Source="$(var.SourceDir)\lua\modules\osprocess.dll" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc8003A5239A3F49F248BE0B1EB110E363" Guid="72b25f52-9397-cae3-76f0-117b8827c99d">
+              <File Id="owf8003A5239A3F49F248BE0B1EB110E363" Source="$(var.SourceDir)\lua\modules\prettydump.dll" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc08A6807F5C2224F91D9F0B325E51019E" Guid="52d62bf8-407e-9554-c07d-0a2cda709279">
+              <File Id="owf08A6807F5C2224F91D9F0B325E51019E" Source="$(var.SourceDir)\lua\modules\ssl.dll" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owcB24442A4C91A14ACF20F71464CF54D16" Guid="07978ec4-5ce3-42f1-c1c4-00291d736214">
+              <File Id="owfB24442A4C91A14ACF20F71464CF54D16" Source="$(var.SourceDir)\lua\modules\struct.dll" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc895921A57175DF4E3433797EA66D0A11" Guid="c8851d1c-f13d-2180-54ac-e757577c2bb7">
+              <File Id="owf895921A57175DF4E3433797EA66D0A11" Source="$(var.SourceDir)\lua\modules\uuid.dll" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owc5190C9A3EC4ACD3AC52E816723C956F1" Guid="714bcc41-03ff-b515-39ef-86fb9e5a49aa">
+              <File Id="owf5190C9A3EC4ACD3AC52E816723C956F1" Source="$(var.SourceDir)\lua\modules\ziparchive.dll" KeyPath="yes" />
+            </Component>
+            <Component Win64="$(var.Win64)" Id="owcBFD2324717A6F7EF17EA09C171DB0909" Guid="92e677f0-f600-8d45-cf14-79c8adc81b97">
+              <File Id="owfBFD2324717A6F7EF17EA09C171DB0909" Source="$(var.SourceDir)\lua\modules\zlib.dll" KeyPath="yes" />
+            </Component>
+            <Directory Id="owd649AA41DF29ADE0D3A4EE1768BCD38C4" Name="lanes">
+              <Component Win64="$(var.Win64)" Id="owc40A6A4B5569397447391D7369E415A9D" Guid="e8152ebd-457c-b42d-3b30-03fd0bc8eb87">
+                <File Id="owf40A6A4B5569397447391D7369E415A9D" Source="$(var.SourceDir)\lua\modules\lanes\core.dll" KeyPath="yes" />
+              </Component>
+            </Directory>
+            <Directory Id="owd91A1C82591E8182B45E7DAF168B7CC94" Name="socket">
+              <Component Win64="$(var.Win64)" Id="owcAC07F8A5F46188847487594EB245417A" Guid="ac4a5f41-5131-739b-70b7-b52d53f4d5e2">
+                <File Id="owfAC07F8A5F46188847487594EB245417A" Source="$(var.SourceDir)\lua\modules\socket\core.dll" KeyPath="yes" />
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
         <Directory Id="owd352E67DA0D97B90AC66013E6D9D04E00" Name="modules">
           <Component Win64="$(var.Win64)" Id="owc70B178CA015176545F0521D75938CD2B" Guid="161fd010-701c-740b-3332-1654b42f25a9">
             <File Id="owf70B178CA015176545F0521D75938CD2B" Source="$(var.SourceDir)\modules\c.jam" KeyPath="yes" />
@@ -373,6 +743,21 @@
           </Directory>
         </Directory>
         <Directory Id="owdEB1C046AADEC717CD4724652CA37E0DA" Name="scripts">
+          <Component Win64="$(var.Win64)" Id="owcA44BDE0CD70D9C919347DC0F8D67A0DC" Guid="f1598560-df00-e18e-9225-a5ad6822c5fc">
+            <File Id="owfA44BDE0CD70D9C919347DC0F8D67A0DC" Source="$(var.SourceDir)\folderstojamfile.bat" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc50D3BAF384DBB0A23AA96B649AA9E1DF" Guid="8e37ec7e-935b-f437-29ae-d098ed937a15">
+            <File Id="owf50D3BAF384DBB0A23AA96B649AA9E1DF" Source="$(var.SourceDir)\generate.bat" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc7E18335A2AE8083A8DD2C6BBD6059D3E" Guid="f706d6ec-5d95-3c86-d0a5-6476f4902322">
+            <File Id="owf7E18335A2AE8083A8DD2C6BBD6059D3E" Source="$(var.SourceDir)\jam.exe" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc19CCF2C81A72B3DB2E1AD6A602376AFB" Guid="9618be95-a543-4ecd-54a6-1d731580eaae">
+            <File Id="owf19CCF2C81A72B3DB2E1AD6A602376AFB" Source="$(var.SourceDir)\jam.pdb" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc1097DCAE0244F3BBDD9BE02C54EE14FB" Guid="c7346c3f-5237-bce3-c40f-876c85e7706c">
+            <File Id="owf1097DCAE0244F3BBDD9BE02C54EE14FB" Source="$(var.SourceDir)\JamPlus.ico" KeyPath="yes" />
+          </Component>
           <Component Win64="$(var.Win64)" Id="owcBB9F0DCA6B3724498D21D4C97D112AB2" Guid="1af015ee-afc1-72d7-d365-d65f68f95d87">
             <File Id="owfBB9F0DCA6B3724498D21D4C97D112AB2" Source="$(var.SourceDir)\scripts\DumpJamTargetInfo.jam" KeyPath="yes" />
           </Component>
@@ -399,6 +784,18 @@
           </Component>
           <Component Win64="$(var.Win64)" Id="owcA0E934D076FF54B887B798909C7600DB" Guid="a92f4036-fa21-3acf-2307-84ad624900fc">
             <File Id="owfA0E934D076FF54B887B798909C7600DB" Source="$(var.SourceDir)\scripts\WriteJamfileHelper.lua" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owc142B27F8C725395CEFC94CFD9AC12682" Guid="76baa955-1e54-b1d2-d430-05880e14d8c4">
+            <File Id="owf142B27F8C725395CEFC94CFD9AC12682" Source="$(var.SourceDir)\vcprojtojamfile.bat" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcD81042960AF4B297192C27AE8CB1BB3A" Guid="314afdf1-0816-958e-5624-6a723da087c7">
+            <File Id="owfD81042960AF4B297192C27AE8CB1BB3A" Source="$(var.SourceDir)\vcxprojtojamfile.bat" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcF771184F89301FB27CA6FCA1217A6E2C" Guid="96e387ec-e308-9bbb-761b-96913c83b195">
+            <File Id="owfF771184F89301FB27CA6FCA1217A6E2C" Source="$(var.SourceDir)\webserver.bat" KeyPath="yes" />
+          </Component>
+          <Component Win64="$(var.Win64)" Id="owcE12C431D5197E00C0D43E5379509947A" Guid="226cf7a7-0988-274b-817f-8b9197dff4e0">
+            <File Id="owfE12C431D5197E00C0D43E5379509947A" Source="$(var.SourceDir)\workspace.bat" KeyPath="yes" />
           </Component>
           <Directory Id="owdD0E7521D189DEBAAC35B4EAF3A81FB48" Name="ide">
             <Component Win64="$(var.Win64)" Id="owc0A89DC125A1C4C8CF25DEB2C59BB219A" Guid="953cb7bf-b3a9-7442-98b3-b45ceda785fd">
@@ -485,183 +882,152 @@
               </Component>
             </Directory>
           </Directory>
-        </Directory>
-        <Directory Id="owdB6749CF6EA11423B63012B62CF4EB312" Name="win32">
-          <Component Win64="$(var.Win64)" Id="owc1097DCAE0244F3BBDD9BE02C54EE14FB" Guid="c7346c3f-5237-bce3-c40f-876c85e7706c">
-            <File Id="owf1097DCAE0244F3BBDD9BE02C54EE14FB" Source="$(var.SourceDir)\JamPlus.ico" KeyPath="yes" />
-          </Component>
-          <Component Win64="$(var.Win64)" Id="owcA44BDE0CD70D9C919347DC0F8D67A0DC" Guid="f1598560-df00-e18e-9225-a5ad6822c5fc">
-            <File Id="owfA44BDE0CD70D9C919347DC0F8D67A0DC" Source="$(var.SourceDir)\win32\folderstojamfile.bat" KeyPath="yes" />
-          </Component>
-          <Component Win64="$(var.Win64)" Id="owc50D3BAF384DBB0A23AA96B649AA9E1DF" Guid="8e37ec7e-935b-f437-29ae-d098ed937a15">
-            <File Id="owf50D3BAF384DBB0A23AA96B649AA9E1DF" Source="$(var.SourceDir)\win32\generate.bat" KeyPath="yes" />
-          </Component>
-          <Component Win64="$(var.Win64)" Id="owc7E18335A2AE8083A8DD2C6BBD6059D3E" Guid="f706d6ec-5d95-3c86-d0a5-6476f4902322">
-            <File Id="owf7E18335A2AE8083A8DD2C6BBD6059D3E" Source="$(var.SourceDir)\win32\jam.exe" KeyPath="yes">
-              <Shortcut Id="sc4083C93A9CCD20E82BF22BD37B2B8B31" Name="JamBaby !" Directory="scdB89794C04258EF18E71D3AAC6A60C302" />
-            </File>
-          </Component>
-          <Component Win64="$(var.Win64)" Id="owc19CCF2C81A72B3DB2E1AD6A602376AFB" Guid="9618be95-a543-4ecd-54a6-1d731580eaae">
-            <File Id="owf19CCF2C81A72B3DB2E1AD6A602376AFB" Source="$(var.SourceDir)\win32\jam.pdb" KeyPath="yes" />
-          </Component>
-          <Component Win64="$(var.Win64)" Id="owc142B27F8C725395CEFC94CFD9AC12682" Guid="76baa955-1e54-b1d2-d430-05880e14d8c4">
-            <File Id="owf142B27F8C725395CEFC94CFD9AC12682" Source="$(var.SourceDir)\win32\vcprojtojamfile.bat" KeyPath="yes" />
-          </Component>
-          <Component Win64="$(var.Win64)" Id="owcD81042960AF4B297192C27AE8CB1BB3A" Guid="314afdf1-0816-958e-5624-6a723da087c7">
-            <File Id="owfD81042960AF4B297192C27AE8CB1BB3A" Source="$(var.SourceDir)\win32\vcxprojtojamfile.bat" KeyPath="yes" />
-          </Component>
-          <Component Win64="$(var.Win64)" Id="owcF771184F89301FB27CA6FCA1217A6E2C" Guid="96e387ec-e308-9bbb-761b-96913c83b195">
-            <File Id="owfF771184F89301FB27CA6FCA1217A6E2C" Source="$(var.SourceDir)\win32\webserver.bat" KeyPath="yes" />
-          </Component>
-          <Component Win64="$(var.Win64)" Id="owcE12C431D5197E00C0D43E5379509947A" Guid="226cf7a7-0988-274b-817f-8b9197dff4e0">
-            <File Id="owfE12C431D5197E00C0D43E5379509947A" Source="$(var.SourceDir)\win32\workspace.bat" KeyPath="yes" />
-          </Component>
           <Directory Id="owd75EC25CEE408D8DBAD992A569A8BC84F" Name="lua">
             <Component Win64="$(var.Win64)" Id="owcFC692B4C8554759E4368D3C8D160E67D" Guid="f01d7648-9aee-ff6d-45eb-ff89aa22caa0">
-              <File Id="owfFC692B4C8554759E4368D3C8D160E67D" Source="$(var.SourceDir)\win32\lua\lua.exe" KeyPath="yes" />
+              <File Id="owfFC692B4C8554759E4368D3C8D160E67D" Source="$(var.SourceDir)\lua\lua.exe" KeyPath="yes" />
             </Component>
             <Component Win64="$(var.Win64)" Id="owc0B33658A223CC805F7AD5EFDE983AA92" Guid="a47fe489-f234-af0b-b9a3-17ee6a8525e0">
-              <File Id="owf0B33658A223CC805F7AD5EFDE983AA92" Source="$(var.SourceDir)\win32\lua\lua53.dll" KeyPath="yes" />
+              <File Id="owf0B33658A223CC805F7AD5EFDE983AA92" Source="$(var.SourceDir)\lua\lua53.dll" KeyPath="yes" />
             </Component>
             <Component Win64="$(var.Win64)" Id="owcF3969306C6B22B85F36E1F4EAAF8D86D" Guid="880f8f68-cc40-48d6-bb72-3cf3a0d042c4">
-              <File Id="owfF3969306C6B22B85F36E1F4EAAF8D86D" Source="$(var.SourceDir)\win32\lua\lua-tilde.dll" KeyPath="yes" />
+              <File Id="owfF3969306C6B22B85F36E1F4EAAF8D86D" Source="$(var.SourceDir)\lua\lua-tilde.dll" KeyPath="yes" />
             </Component>
             <Directory Id="owdC5C8E69194CE4F91DD6BCE5759C94E8E" Name="lua">
               <Component Win64="$(var.Win64)" Id="owc205C4BED83415D39E9A2FF2F4E27E049" Guid="c7fdfe9b-a521-492c-8512-f5d4e20f5008">
-                <File Id="owf205C4BED83415D39E9A2FF2F4E27E049" Source="$(var.SourceDir)\win32\lua\lua\copas.lua" KeyPath="yes" />
+                <File Id="owf205C4BED83415D39E9A2FF2F4E27E049" Source="$(var.SourceDir)\lua\lua\copas.lua" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owc8BCE00A3A298E854EAF737F84BEE919D" Guid="75755577-58bc-928a-9da6-cfddc08794f4">
-                <File Id="owf8BCE00A3A298E854EAF737F84BEE919D" Source="$(var.SourceDir)\win32\lua\lua\coxpcall.lua" KeyPath="yes" />
+                <File Id="owf8BCE00A3A298E854EAF737F84BEE919D" Source="$(var.SourceDir)\lua\lua\coxpcall.lua" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owc9E5890A5EC305B593F2A328177E99146" Guid="b7e0fec1-d913-af99-811e-412ff8b89a3e">
-                <File Id="owf9E5890A5EC305B593F2A328177E99146" Source="$(var.SourceDir)\win32\lua\lua\expand.lua" KeyPath="yes" />
+                <File Id="owf9E5890A5EC305B593F2A328177E99146" Source="$(var.SourceDir)\lua\lua\expand.lua" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owcAC2FA0EF4EE2F54DD24BBA84CA2364FF" Guid="9ecb35cc-d534-33ca-5c68-d897e2ea0b7f">
-                <File Id="owfAC2FA0EF4EE2F54DD24BBA84CA2364FF" Source="$(var.SourceDir)\win32\lua\lua\getopt.lua" KeyPath="yes" />
+                <File Id="owfAC2FA0EF4EE2F54DD24BBA84CA2364FF" Source="$(var.SourceDir)\lua\lua\getopt.lua" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owc801EE73F4AF17495D28A46C7ED8E137B" Guid="911f08a4-6273-a0ed-04ed-69cb5d4eab1c">
-                <File Id="owf801EE73F4AF17495D28A46C7ED8E137B" Source="$(var.SourceDir)\win32\lua\lua\lanes.lua" KeyPath="yes" />
+                <File Id="owf801EE73F4AF17495D28A46C7ED8E137B" Source="$(var.SourceDir)\lua\lua\lanes.lua" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owcDDF15CB5E424395EA166D72680381248" Guid="d0a96680-0e12-7f8c-bf64-f5bc63003b4a">
-                <File Id="owfDDF15CB5E424395EA166D72680381248" Source="$(var.SourceDir)\win32\lua\lua\ospath.lua" KeyPath="yes" />
+                <File Id="owfDDF15CB5E424395EA166D72680381248" Source="$(var.SourceDir)\lua\lua\ospath.lua" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owcE8C28CB8FD7DA9574D21FE0325C971D2" Guid="6dcaa953-c69d-ecd5-2f7c-15b056d60ecf">
-                <File Id="owfE8C28CB8FD7DA9574D21FE0325C971D2" Source="$(var.SourceDir)\win32\lua\lua\osprocess.lua" KeyPath="yes" />
+                <File Id="owfE8C28CB8FD7DA9574D21FE0325C971D2" Source="$(var.SourceDir)\lua\lua\osprocess.lua" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owcB3349B4654285B3E2F653DF45C6AF4B0" Guid="f3d1d2dd-b82e-d144-222a-ee3f1abafb5a">
-                <File Id="owfB3349B4654285B3E2F653DF45C6AF4B0" Source="$(var.SourceDir)\win32\lua\lua\plist.lua" KeyPath="yes" />
+                <File Id="owfB3349B4654285B3E2F653DF45C6AF4B0" Source="$(var.SourceDir)\lua\lua\plist.lua" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owcEFFD9108A81EF93CD36AD1AC4CDF99BD" Guid="85097925-ca10-3627-90ab-3cbd01dc9a84">
-                <File Id="owfEFFD9108A81EF93CD36AD1AC4CDF99BD" Source="$(var.SourceDir)\win32\lua\lua\socket.lua" KeyPath="yes" />
+                <File Id="owfEFFD9108A81EF93CD36AD1AC4CDF99BD" Source="$(var.SourceDir)\lua\lua\socket.lua" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owcEEB4A78D4FB77EE0E5EA8706AFB3DB14" Guid="e3b8b0cf-3aba-3aff-0e8e-f57a8fa5148c">
-                <File Id="owfEEB4A78D4FB77EE0E5EA8706AFB3DB14" Source="$(var.SourceDir)\win32\lua\lua\ssl.lua" KeyPath="yes" />
+                <File Id="owfEEB4A78D4FB77EE0E5EA8706AFB3DB14" Source="$(var.SourceDir)\lua\lua\ssl.lua" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owc16E6D1E3840B16D222B70140C0A33BDC" Guid="34e2eb7a-b867-4ca3-3b05-f0428d767698">
-                <File Id="owf16E6D1E3840B16D222B70140C0A33BDC" Source="$(var.SourceDir)\win32\lua\lua\xavante.lua" KeyPath="yes" />
+                <File Id="owf16E6D1E3840B16D222B70140C0A33BDC" Source="$(var.SourceDir)\lua\lua\xavante.lua" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owcF7460D43E450AB0C063D6156FB5A1A68" Guid="3d966c48-559a-b77f-e178-ed7b491b4d41">
-                <File Id="owfF7460D43E450AB0C063D6156FB5A1A68" Source="$(var.SourceDir)\win32\lua\lua\xmlize.lua" KeyPath="yes" />
+                <File Id="owfF7460D43E450AB0C063D6156FB5A1A68" Source="$(var.SourceDir)\lua\lua\xmlize.lua" KeyPath="yes" />
               </Component>
               <Directory Id="owd9037EA0411C6AD840C96339B2DFC4D5C" Name="lxp">
                 <Component Win64="$(var.Win64)" Id="owcA862AFC5C0C39C930C18F42DDB8A3F25" Guid="17612dce-faa3-7790-9386-ceaf8f27e003">
-                  <File Id="owfA862AFC5C0C39C930C18F42DDB8A3F25" Source="$(var.SourceDir)\win32\lua\lua\lxp\lom.lua" KeyPath="yes" />
+                  <File Id="owfA862AFC5C0C39C930C18F42DDB8A3F25" Source="$(var.SourceDir)\lua\lua\lxp\lom.lua" KeyPath="yes" />
                 </Component>
               </Directory>
               <Directory Id="owdAE5895C3FFAC2B5B0CAB5ACF397AFAD5" Name="socket">
                 <Component Win64="$(var.Win64)" Id="owcB03519FF66136789896D1F4285006E43" Guid="a507ad21-b65a-1e18-45c9-13a2fe64fa3a">
-                  <File Id="owfB03519FF66136789896D1F4285006E43" Source="$(var.SourceDir)\win32\lua\lua\socket\http.lua" KeyPath="yes" />
+                  <File Id="owfB03519FF66136789896D1F4285006E43" Source="$(var.SourceDir)\lua\lua\socket\http.lua" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc9F0DACAE7096C671CBA4244357FA1197" Guid="93d1f01b-0fbb-d784-61d5-86922aa87999">
-                  <File Id="owf9F0DACAE7096C671CBA4244357FA1197" Source="$(var.SourceDir)\win32\lua\lua\socket\url.lua" KeyPath="yes" />
+                  <File Id="owf9F0DACAE7096C671CBA4244357FA1197" Source="$(var.SourceDir)\lua\lua\socket\url.lua" KeyPath="yes" />
                 </Component>
               </Directory>
               <Directory Id="owd49F8DC4BEAAB63FDB656A18455769A70" Name="ssl">
                 <Component Win64="$(var.Win64)" Id="owc45919576FCFCB4B997BA038E61012750" Guid="bff81203-ed13-f722-d249-fd56f00b4d24">
-                  <File Id="owf45919576FCFCB4B997BA038E61012750" Source="$(var.SourceDir)\win32\lua\lua\ssl\https.lua" KeyPath="yes" />
+                  <File Id="owf45919576FCFCB4B997BA038E61012750" Source="$(var.SourceDir)\lua\lua\ssl\https.lua" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcA5DB8FDDA687687328F27470B14C09EB" Guid="c32067c4-894e-3ace-2c56-5f90c15414cf">
-                  <File Id="owfA5DB8FDDA687687328F27470B14C09EB" Source="$(var.SourceDir)\win32\lua\lua\ssl\options.lua" KeyPath="yes" />
+                  <File Id="owfA5DB8FDDA687687328F27470B14C09EB" Source="$(var.SourceDir)\lua\lua\ssl\options.lua" KeyPath="yes" />
                 </Component>
               </Directory>
               <Directory Id="owd770588DFA7334CF65FCA3F102810FDC8" Name="xavante">
                 <Component Win64="$(var.Win64)" Id="owc65C17091BC76C6924EE40161149A4278" Guid="e885d239-4cdd-434c-1424-11599bf74baa">
-                  <File Id="owf65C17091BC76C6924EE40161149A4278" Source="$(var.SourceDir)\win32\lua\lua\xavante\encoding.lua" KeyPath="yes" />
+                  <File Id="owf65C17091BC76C6924EE40161149A4278" Source="$(var.SourceDir)\lua\lua\xavante\encoding.lua" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcB7CA2AC59646C4C8549F2967827E34E3" Guid="12c0f9c2-a7d3-e2c9-8f16-96c3a8aabeaa">
-                  <File Id="owfB7CA2AC59646C4C8549F2967827E34E3" Source="$(var.SourceDir)\win32\lua\lua\xavante\filehandler.lua" KeyPath="yes" />
+                  <File Id="owfB7CA2AC59646C4C8549F2967827E34E3" Source="$(var.SourceDir)\lua\lua\xavante\filehandler.lua" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc8427BD9B94897EF18A4E4CF75E9B4769" Guid="99877f7a-2d24-cac5-50f0-5164cda7f529">
-                  <File Id="owf8427BD9B94897EF18A4E4CF75E9B4769" Source="$(var.SourceDir)\win32\lua\lua\xavante\httpd.lua" KeyPath="yes" />
+                  <File Id="owf8427BD9B94897EF18A4E4CF75E9B4769" Source="$(var.SourceDir)\lua\lua\xavante\httpd.lua" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc6CA8F2303CF2D2FB2DAA750B7DBC4B07" Guid="744e0706-fa0f-37f6-e2ea-84d95472926a">
-                  <File Id="owf6CA8F2303CF2D2FB2DAA750B7DBC4B07" Source="$(var.SourceDir)\win32\lua\lua\xavante\mime.lua" KeyPath="yes" />
+                  <File Id="owf6CA8F2303CF2D2FB2DAA750B7DBC4B07" Source="$(var.SourceDir)\lua\lua\xavante\mime.lua" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc616E65E81FF97CEF8F198216537E0757" Guid="52e6eaf1-9aac-ee73-4b8b-fbb8482fd2dd">
-                  <File Id="owf616E65E81FF97CEF8F198216537E0757" Source="$(var.SourceDir)\win32\lua\lua\xavante\patternhandler.lua" KeyPath="yes" />
+                  <File Id="owf616E65E81FF97CEF8F198216537E0757" Source="$(var.SourceDir)\lua\lua\xavante\patternhandler.lua" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcFF0CD155E122A81399D0614F9971012E" Guid="cf676877-aae3-4d64-6e15-584dd04e1daf">
-                  <File Id="owfFF0CD155E122A81399D0614F9971012E" Source="$(var.SourceDir)\win32\lua\lua\xavante\redirecthandler.lua" KeyPath="yes" />
+                  <File Id="owfFF0CD155E122A81399D0614F9971012E" Source="$(var.SourceDir)\lua\lua\xavante\redirecthandler.lua" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcE268A120BCB2247295D21B66C06A4327" Guid="1ba97522-f2ec-30a3-b229-accc3d263685">
-                  <File Id="owfE268A120BCB2247295D21B66C06A4327" Source="$(var.SourceDir)\win32\lua\lua\xavante\urlhandler.lua" KeyPath="yes" />
+                  <File Id="owfE268A120BCB2247295D21B66C06A4327" Source="$(var.SourceDir)\lua\lua\xavante\urlhandler.lua" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc57EF64F922AA90A1F423A809582B8FFA" Guid="9f05c61c-8b80-47d1-f747-12a1b0ae9bfa">
-                  <File Id="owf57EF64F922AA90A1F423A809582B8FFA" Source="$(var.SourceDir)\win32\lua\lua\xavante\vhostshandler.lua" KeyPath="yes" />
+                  <File Id="owf57EF64F922AA90A1F423A809582B8FFA" Source="$(var.SourceDir)\lua\lua\xavante\vhostshandler.lua" KeyPath="yes" />
                 </Component>
               </Directory>
             </Directory>
             <Directory Id="owd4C58924350232A367CA936C28334686A" Name="modules">
               <Component Win64="$(var.Win64)" Id="owcA700BBC593EFB8EF5112E12D9C5204C4" Guid="f0706089-e110-f935-6d06-0f069a9f404c">
-                <File Id="owfA700BBC593EFB8EF5112E12D9C5204C4" Source="$(var.SourceDir)\win32\lua\modules\cjson.dll" KeyPath="yes" />
+                <File Id="owfA700BBC593EFB8EF5112E12D9C5204C4" Source="$(var.SourceDir)\lua\modules\cjson.dll" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owc7A0CA19E0C3E9E1A9B7821C3CC3AA188" Guid="46c6cac2-2bda-1c32-b886-d1c8e1c32e36">
-                <File Id="owf7A0CA19E0C3E9E1A9B7821C3CC3AA188" Source="$(var.SourceDir)\win32\lua\modules\ffi.dll" KeyPath="yes" />
+                <File Id="owf7A0CA19E0C3E9E1A9B7821C3CC3AA188" Source="$(var.SourceDir)\lua\modules\ffi.dll" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owc85187E3AD79E3987E810C5E9AA5808FF" Guid="b4bbae38-734c-0570-d24d-441092dc03df">
-                <File Id="owf85187E3AD79E3987E810C5E9AA5808FF" Source="$(var.SourceDir)\win32\lua\modules\filefind.dll" KeyPath="yes" />
+                <File Id="owf85187E3AD79E3987E810C5E9AA5808FF" Source="$(var.SourceDir)\lua\modules\filefind.dll" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owcA61A42DFFAFF3630E83B826600D72B71" Guid="3dd8f439-2889-50d7-4ac0-0a87271ada85">
-                <File Id="owfA61A42DFFAFF3630E83B826600D72B71" Source="$(var.SourceDir)\win32\lua\modules\lfs.dll" KeyPath="yes" />
+                <File Id="owfA61A42DFFAFF3630E83B826600D72B71" Source="$(var.SourceDir)\lua\modules\lfs.dll" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owcB134F679E4580DFD33CC0CA1A21DE9B6" Guid="7f9d60cc-60e3-f91c-cd41-4f69e2be45cb">
-                <File Id="owfB134F679E4580DFD33CC0CA1A21DE9B6" Source="$(var.SourceDir)\win32\lua\modules\lxp.dll" KeyPath="yes" />
+                <File Id="owfB134F679E4580DFD33CC0CA1A21DE9B6" Source="$(var.SourceDir)\lua\modules\lxp.dll" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owcC27F905B445201A9EEB59998F9515BCD" Guid="fe50da3d-69c8-8181-7471-f9f75794c6de">
-                <File Id="owfC27F905B445201A9EEB59998F9515BCD" Source="$(var.SourceDir)\win32\lua\modules\md5.dll" KeyPath="yes" />
+                <File Id="owfC27F905B445201A9EEB59998F9515BCD" Source="$(var.SourceDir)\lua\modules\md5.dll" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owc0D5AA93B5C3026B22A6D378B38475FF6" Guid="395bf64a-1661-8c14-e82b-082f04ce74ec">
-                <File Id="owf0D5AA93B5C3026B22A6D378B38475FF6" Source="$(var.SourceDir)\win32\lua\modules\ospath.dll" KeyPath="yes" />
+                <File Id="owf0D5AA93B5C3026B22A6D378B38475FF6" Source="$(var.SourceDir)\lua\modules\ospath.dll" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owc0770C8F22D7B8BB7DC51CF147330E457" Guid="88e0fa4a-8f2f-c06a-cb78-cd37b446a2a1">
-                <File Id="owf0770C8F22D7B8BB7DC51CF147330E457" Source="$(var.SourceDir)\win32\lua\modules\osprocess.dll" KeyPath="yes" />
+                <File Id="owf0770C8F22D7B8BB7DC51CF147330E457" Source="$(var.SourceDir)\lua\modules\osprocess.dll" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owc54D44F866D2E10FF52E1E3A8D1E7C097" Guid="cebedcff-c1c8-5df1-622f-8cd920540c31">
-                <File Id="owf54D44F866D2E10FF52E1E3A8D1E7C097" Source="$(var.SourceDir)\win32\lua\modules\prettydump.dll" KeyPath="yes" />
+                <File Id="owf54D44F866D2E10FF52E1E3A8D1E7C097" Source="$(var.SourceDir)\lua\modules\prettydump.dll" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owcB5084518F640CDEC985C3159D6F33BBA" Guid="9a2761b5-7523-2b34-7b80-5b9bcc6f32ab">
-                <File Id="owfB5084518F640CDEC985C3159D6F33BBA" Source="$(var.SourceDir)\win32\lua\modules\ssl.dll" KeyPath="yes" />
+                <File Id="owfB5084518F640CDEC985C3159D6F33BBA" Source="$(var.SourceDir)\lua\modules\ssl.dll" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owc0D8F180AFD7551F6D1BFBAD7E8E19F5B" Guid="936a0e05-28cf-8b05-5264-8491f96e5b72">
-                <File Id="owf0D8F180AFD7551F6D1BFBAD7E8E19F5B" Source="$(var.SourceDir)\win32\lua\modules\struct.dll" KeyPath="yes" />
+                <File Id="owf0D8F180AFD7551F6D1BFBAD7E8E19F5B" Source="$(var.SourceDir)\lua\modules\struct.dll" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owc741F91AF2F5AA6EF7EBF6185C7A04FEF" Guid="a64bf64c-e015-a57c-8f19-4d51493165d2">
-                <File Id="owf741F91AF2F5AA6EF7EBF6185C7A04FEF" Source="$(var.SourceDir)\win32\lua\modules\uuid.dll" KeyPath="yes" />
+                <File Id="owf741F91AF2F5AA6EF7EBF6185C7A04FEF" Source="$(var.SourceDir)\lua\modules\uuid.dll" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owc50F51A8C1B99E43232DF30A5ACB9BEF9" Guid="1956cbf3-f0ea-4b9b-bed0-33412c821181">
-                <File Id="owf50F51A8C1B99E43232DF30A5ACB9BEF9" Source="$(var.SourceDir)\win32\lua\modules\ziparchive.dll" KeyPath="yes" />
+                <File Id="owf50F51A8C1B99E43232DF30A5ACB9BEF9" Source="$(var.SourceDir)\lua\modules\ziparchive.dll" KeyPath="yes" />
               </Component>
               <Component Win64="$(var.Win64)" Id="owc9187662C1A8C4396E7C3293BBD5257E1" Guid="035d1edf-033f-f957-9f36-8b3a1e16ffbc">
-                <File Id="owf9187662C1A8C4396E7C3293BBD5257E1" Source="$(var.SourceDir)\win32\lua\modules\zlib.dll" KeyPath="yes" />
+                <File Id="owf9187662C1A8C4396E7C3293BBD5257E1" Source="$(var.SourceDir)\lua\modules\zlib.dll" KeyPath="yes" />
               </Component>
               <Directory Id="owdCC63B80BA5CCDED7CEF03A8DF2C208FD" Name="lanes">
                 <Component Win64="$(var.Win64)" Id="owc155F604DB9E29C2AB3206EE4529A9343" Guid="7559d0c8-5698-adb8-44a5-9230fb47e409">
-                  <File Id="owf155F604DB9E29C2AB3206EE4529A9343" Source="$(var.SourceDir)\win32\lua\modules\lanes\core.dll" KeyPath="yes" />
+                  <File Id="owf155F604DB9E29C2AB3206EE4529A9343" Source="$(var.SourceDir)\lua\modules\lanes\core.dll" KeyPath="yes" />
                 </Component>
               </Directory>
               <Directory Id="owdC2DCD6AB764EEF5A03533C32CE088356" Name="socket">
                 <Component Win64="$(var.Win64)" Id="owcAB7D4458EC53B8548F2B97BD1452D21D" Guid="a0a086ac-d3d7-dc86-1beb-a4148425132d">
-                  <File Id="owfAB7D4458EC53B8548F2B97BD1452D21D" Source="$(var.SourceDir)\win32\lua\modules\socket\core.dll" KeyPath="yes" />
+                  <File Id="owfAB7D4458EC53B8548F2B97BD1452D21D" Source="$(var.SourceDir)\lua\modules\socket\core.dll" KeyPath="yes" />
                 </Component>
               </Directory>
             </Directory>

@@ -3,12 +3,13 @@
   <?include $(var.SolutionDir)\Include.wxi ?>
   <?define ComponentRules="OneToOne"?>
   <!-- SourceDir instructs IsWiX the location of the directory that contains files for this merge module -->
+  <!--<?define SourceDir="..\..\5.4\Deploy\x86"?>-->
   <?define SourceDir="..\..\5.4\Deploy\$(var.Platform)"?>
-  <Module Id="WinLua" Language="1033" Version="5.4.0.1">
+  <Module Id="WinLua" Language="1033" Version="5.4.0.0">
     <Package Id="87538283-837e-4822-accd-bb86fd9a8c42" Manufacturer="WinLua" InstallerVersion="301" Keywords="Lua" Description="WinLua is a binary distribution of the Lua, luafilesystem, and sol2." />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="MergeRedirectFolder">
-        <Directory Id="owd00BD073775AEE2E88B74CCEE86DD7715" Name="bin">
+        <Directory Id="luabindir" Name="bin">
           <Component Win64="$(var.Win64)" Id="owcE80EC0E47787CC07D24A7408250ED2B6" Guid="09630029-6323-3fff-4c20-3ae58043e5e1">
             <File Id="owfE80EC0E47787CC07D24A7408250ED2B6" Source="$(var.SourceDir)\Lua\bin\lfs.dll" KeyPath="yes" />
           </Component>
@@ -17,9 +18,9 @@
           </Component>
           <Component Win64="$(var.Win64)" Id="owc2AEA4E75727E1005932EADD776538C2A" Guid="ebd1c801-1fe0-a24c-e706-65e0a2ac8f74">
             <File Id="owf2AEA4E75727E1005932EADD776538C2A" Source="$(var.SourceDir)\Lua\bin\lua.exe" KeyPath="yes">
-              <Shortcut Id="scBE87F9AE76F6BF2449AEE0259D5445BB" Name="Lua Interpreter" Directory="scd5FC3529A76E03F423A02AF8A109BC6C7" />
+              <Shortcut Id="scBE87F9AE76F6BF2449AEE0259D5445BB" Name="Lua Interpreter" Directory="scdC6281A678886E0381809F3F89C5DACBD" />
               <Shortcut Id="scB6BB3AF17C52652880BC448856DE5A79" Name="LuaPrgMen" Directory="scdC6281A678886E0381809F3F89C5DACBD" Arguments="-51" />
-              <Shortcut Id="sc046FE53AB4AF8E589873B620E7C57255" Name="Lua 5.1 Interpreter" Directory="scd5FC3529A76E03F423A02AF8A109BC6C7" Arguments="-51" />
+              <Shortcut Id="sc046FE53AB4AF8E589873B620E7C57255" Name="Lua 5.1 Interpreter" Directory="scdC6281A678886E0381809F3F89C5DACBD" Arguments="-51" />
             </File>
           </Component>
           <Component Win64="$(var.Win64)" Id="owc87F5236CFA55B1784AB133C1A856143D" Guid="7de850c4-42fe-04e6-acc3-25a6d0d9d824">
@@ -31,7 +32,7 @@
           <Component Win64="$(var.Win64)" Id="owc9F701B58CBEF23512225C4451BC0A9AE" Guid="527b51ef-2d3c-8859-a0d7-71e151a2b838">
             <File Id="owf9F701B58CBEF23512225C4451BC0A9AE" Source="$(var.SourceDir)\Lua\bin\luac.exe" KeyPath="yes" />
           </Component>
-          <Directory Id="owd16D38F1974289B5677ADA59842AA452F" Name="5.1">
+          <Directory Id="lua51bindir" Name="5.1">
             <Component Win64="$(var.Win64)" Id="owcDA4E3951795AD3A78F0ABCFB41709DCE" Guid="dbca947d-6e73-88af-0d29-6b7b6aca57a5">
               <File Id="owfDA4E3951795AD3A78F0ABCFB41709DCE" Source="$(var.SourceDir)\Lua\bin\5.1\lfs.dll" KeyPath="yes" />
             </Component>
@@ -81,6 +82,9 @@
             <Component Win64="$(var.Win64)" Id="owc0DF29C426607BE3650D1FD9766FA997D" Guid="9e9b13f6-385e-3efb-2acc-28db49149c74">
               <File Id="owf0DF29C426607BE3650D1FD9766FA997D" Source="$(var.SourceDir)\Lua\include\5.1\lualib.h" KeyPath="yes" />
             </Component>
+            <Component Id="owc113A5CBFE2613EBD819C4F22E4FBF522" Guid="e97d9fc3-a369-f45f-4a22-368d4201a90b">
+              <File Id="owf113A5CBFE2613EBD819C4F22E4FBF522" Source="$(var.SourceDir)\Lua\include\sol.hpp" KeyPath="yes" />
+            </Component>
           </Directory>
         </Directory>
         <Directory Id="owd2A5197CE7430BBCE8EECA5162CBB6379" Name="static">
@@ -91,9 +95,6 @@
       </Directory>
       <Directory Id="ProgramMenuFolder">
         <Directory Id="scdC6281A678886E0381809F3F89C5DACBD" Name="WinLua" />
-      </Directory>
-      <Directory Id="StartMenuFolder">
-        <Directory Id="scd5FC3529A76E03F423A02AF8A109BC6C7" Name="WinLua" />
       </Directory>
     </Directory>
     <ComponentGroupRef Id="Custom" />

@@ -132,25 +132,25 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\static\</OutDir>
     <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>lua54</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\static\</OutDir>
     <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>lua54</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\static\</OutDir>
     <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>lua54</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\static\</OutDir>
     <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>lua54</TargetName>
     <TargetExt>.lib</TargetExt>
@@ -166,7 +166,7 @@
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)bin\$(Platform)\$(Configuration)\lua54.lib $(SolutionDir)deploy\Lua\static\lua54.lib</Command>
+      <Command>copy /Y $(SolutionDir)bin\$(Platform)\$(Configuration)\lua54.lib $(SolutionDir)deploy\$(PlatformShortName)\Lua\static\lua54.lib</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -180,7 +180,7 @@
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)bin\$(Platform)\$(Configuration)\lua54.lib $(SolutionDir)deploy\Lua\static\lua54.lib</Command>
+      <Command>copy /Y $(SolutionDir)bin\$(Platform)\$(Configuration)\lua54.lib $(SolutionDir)deploy\$(PlatformShortName)\Lua\static\lua54.lib</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -200,7 +200,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)bin\$(Platform)\$(Configuration)\lua54.lib $(SolutionDir)deploy\Lua\static\lua54.lib</Command>
+      <Command>copy /Y $(SolutionDir)bin\$(Platform)\$(Configuration)\lua54.lib $(SolutionDir)deploy\$(PlatformShortName)\Lua\static\lua54.lib</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -220,7 +220,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)bin\$(Platform)\$(Configuration)\lua54.lib $(SolutionDir)deploy\Lua\static\lua54.lib</Command>
+      <Command>copy /Y $(SolutionDir)bin\$(Platform)\$(Configuration)\lua54.lib $(SolutionDir)deploy\$(PlatformShortName)\Lua\static\lua54.lib</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
