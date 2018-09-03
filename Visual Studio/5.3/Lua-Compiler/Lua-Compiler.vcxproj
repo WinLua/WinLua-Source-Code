@@ -151,8 +151,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\work\lua-5.3.4\src\lua.h" />
-    <ClInclude Include="..\..\..\work\lua-5.3.4\src\luaconf.h" />
+    <ClInclude Include="..\..\..\work\lua-5.3.5\src\lua.h" />
+    <ClInclude Include="..\..\..\work\lua-5.3.5\src\luaconf.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -162,7 +162,7 @@
     <Image Include="..\Icon\LuaC_Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\work\lua-5.3.4\src\luac.c" />
+    <ClCompile Include="..\..\..\work\lua-5.3.5\src\luac.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

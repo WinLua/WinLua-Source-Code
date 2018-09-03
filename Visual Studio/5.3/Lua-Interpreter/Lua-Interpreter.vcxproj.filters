@@ -18,10 +18,13 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\work\lua-5.3.4\src\lua.h">
+    <ClInclude Include="..\..\..\work\lua-5.3.5\src\lua.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\work\lua-5.3.4\src\luaconf.h">
+    <ClInclude Include="..\..\..\work\lua-5.3.5\src\luaconf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\work\lua-5.3.5\src\lauxlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -36,7 +39,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\work\lua-5.3.4\src\lua.c">
+    <ClCompile Include="..\..\..\work\lua-5.3.5\src\lua.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
