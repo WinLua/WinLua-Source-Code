@@ -90,8 +90,8 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
-    <ProjectReference Include="..\WinLua-InstallerMM\WinLuaMM.wixproj">
-      <Name>WinLuaMM</Name>
+    <ProjectReference Include="..\WinLua-InstallerMM\WinLua54MM.wixproj">
+      <Name>WinLua54MM</Name>
       <Project>{2d1a7c33-deda-4b58-bfd3-60d427997f4c}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>

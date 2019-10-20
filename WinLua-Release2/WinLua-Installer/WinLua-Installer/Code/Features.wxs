@@ -12,13 +12,21 @@
           <Directory Id="JAMPLUS_INSTALLLOCATION" Name="JamPlus">
             <Merge Id="JamPlusMM" SourceFile="$(var.JamPlusMM.TargetPath)" DiskId="1" Language="1033" />
           </Directory>
-          <Directory Id="LUA_INSTALLLOCATION" Name="Lua">
+          <!--<Directory Id="LUA_INSTALLLOCATION" Name="Lua54">
             <Merge Id="WinLuaMM" SourceFile="$(var.WinLuaMM.TargetPath)" DiskId="1" Language="1033" />
+          </Directory>-->
+          <Directory Id="LUA_INSTALLLOCATION" Name="Lua53">
+            <Merge Id="WinLuaMM" SourceFile="$(var.WinLua53MM)" DiskId="1" Language="1033" />
           </Directory>
         </Directory>
       </Directory>
     </Directory>
-    <Feature Id="WinLua" Title="WinLua 5.4" Description="Base installation of Lua Interpreter, DLLs, LuaFileSystem and Sol2" Level="1" AllowAdvertise="no" ConfigurableDirectory="LUA_INSTALLLOCATION">
+    <!--<Feature Id="WinLua" Title="WinLua 5.4" Description="Base installation of Lua Interpreter, DLLs, LuaFileSystem and Sol2" Level="1" AllowAdvertise="no" ConfigurableDirectory="LUA_INSTALLLOCATION">
+      <MergeRef Id="WinLuaMM" />
+      --><!-- Uncomment the below line to pull in IIS Metadata.  Otherwise delete if not needed --><!--
+      --><!--<ComponentGroupRef Id="webSite" />--><!--
+    </Feature>-->
+    <Feature Id="WinLua" Title="WinLua 5.3" Description="Base installation of Lua Interpreter, DLLs, LuaFileSystem and Sol2" Level="1" AllowAdvertise="no" ConfigurableDirectory="LUA_INSTALLLOCATION">
       <MergeRef Id="WinLuaMM" />
       <!-- Uncomment the below line to pull in IIS Metadata.  Otherwise delete if not needed -->
       <!--<ComponentGroupRef Id="webSite" />-->

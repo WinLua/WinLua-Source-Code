@@ -9,11 +9,13 @@
   is a seamless uninstall/reinstall.
   -->
   <!--<Product Id="*" Name="WinLua" Language="1033" Version="$(var.MSIProductVersion)" Manufacturer="WinLua" UpgradeCode="5849f6bd-16b5-4b7a-9053-1c95ab8b60bf">-->
-  <Product Id="C12E9534-6ACB-4E08-8D9A-FC74F2B74319" Name="WinLua" 
+  <?include $(var.SolutionDir)\Include.wxi ?>
+  
+  <Product Id="C12E9534-6ACB-4E08-8D9A-FC74F2B74319" Name="WinLua $(var.PlatName) Bit" 
       Language="1033" 
-      Version="2.0.0.1" 
+      Version="2.18.05.3" 
       Manufacturer="WinLua Project" 
-      UpgradeCode="5849f6bd-16b5-4b7a-9053-1c95ab8b60bf">
+    UpgradeCode="5849f6bd-16b5-4b7a-9053-1c95ab8b60bf">
     <Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" Description="WinLua Installer package" Manufacturer="WinLua" />
     <MediaTemplate EmbedCab="yes" />
     <!-- Major Upgrade Rule to disallow downgrades -->

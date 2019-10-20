@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "WinLuaMM", "WinLua-InstallerMM\WinLuaMM.wixproj", "{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}"
-EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "WinLua-Installer", "WinLua-Installer\WinLua-Installer.wixproj", "{5CF5315F-84E4-482D-AFDD-E2338CEFFDBF}"
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "LibreSSL_MM", "LibreSSL_MM\LibreSSL_MM.wixproj", "{DC5A5E78-2903-42CC-997B-E7FEE8EF63B4}"
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "JamPlusMM", "JamPlusMM\JamPlusMM.wixproj", "{9C7158C0-4771-40C1-8C60-51F233128201}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "WinLua53MM", "WinLua53MM\WinLua53MM.wixproj", "{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}.Debug|x64.ActiveCfg = Debug|x64
-		{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}.Debug|x64.Build.0 = Debug|x64
-		{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}.Debug|x86.ActiveCfg = Debug|x86
-		{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}.Debug|x86.Build.0 = Debug|x86
-		{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}.Release|x64.ActiveCfg = Release|x64
-		{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}.Release|x64.Build.0 = Release|x64
-		{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}.Release|x86.ActiveCfg = Release|x86
-		{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}.Release|x86.Build.0 = Release|x86
 		{5CF5315F-84E4-482D-AFDD-E2338CEFFDBF}.Debug|x64.ActiveCfg = Debug|x64
 		{5CF5315F-84E4-482D-AFDD-E2338CEFFDBF}.Debug|x64.Build.0 = Debug|x64
 		{5CF5315F-84E4-482D-AFDD-E2338CEFFDBF}.Debug|x86.ActiveCfg = Debug|x86
@@ -51,6 +43,14 @@ Global
 		{9C7158C0-4771-40C1-8C60-51F233128201}.Release|x64.Build.0 = Release|x64
 		{9C7158C0-4771-40C1-8C60-51F233128201}.Release|x86.ActiveCfg = Release|x86
 		{9C7158C0-4771-40C1-8C60-51F233128201}.Release|x86.Build.0 = Release|x86
+		{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}.Debug|x64.ActiveCfg = Debug|x64
+		{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}.Debug|x64.Build.0 = Debug|x64
+		{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}.Debug|x86.ActiveCfg = Debug|x86
+		{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}.Debug|x86.Build.0 = Debug|x86
+		{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}.Release|x64.ActiveCfg = Release|x64
+		{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}.Release|x64.Build.0 = Release|x64
+		{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}.Release|x86.ActiveCfg = Release|x86
+		{2D1A7C33-DEDA-4B58-BFD3-60D427997F4C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

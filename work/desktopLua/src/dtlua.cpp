@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <iostream>
 
 #include "lua.h"
 #include "lualib.h"
@@ -16,11 +17,15 @@
 #include "sol.hpp"
 
 #define FIVE_ONE "-51"
-#define SIXTY_FOUR_BIT "-64"
+#define FIVE_TWO "-51"
+#define FIVE_THREE "-51"
+#define FIVE_FOUR "-51"
+#define SIXTY_FOUR_BIT "-x64"
 
-static const char* LUA54 = "lua54.dll";
+static const char* LUA54 = "5.4\\lua54.dll";
+static const char* LUA53 = "5.3\\lua53.dll";
+static const char* LUA52 = "5.2\\lua52.dll";
 static const char* LUA51 = "5.1\\lua51.dll";
-
 
 bool debug = false;
 
@@ -35,8 +40,8 @@ typedef struct conf_t {
 } conf_t;
 
 struct Options {
-   bool lua51;
-   bool bits64;
+   int lua_version;
+   bool x64;
 }options;
  
 static int LoadLua(const char* file, int argc, char **argv)
@@ -107,12 +112,13 @@ for(i; i <=argc-1; i++){
         return newlen;
     if(strncmp(FIVE_ONE, argv[i], 3)==0)
     {
-      options.lua51 = true;//not currently used
+		printf("%s", "Got here!");
+      //options.lua51 = true;//not currently used
       newlen = rem(i, newlen, argv);
-	  return true;
+	  return newlen;
     }
   }
-  return false;
+  return argc;
 }
 
 int main (int argc, char **argv) {
@@ -122,13 +128,21 @@ int main (int argc, char **argv) {
   int script;
   
   strncpy(filename, LUA54, sizeof(filename));
-  
-  if(find51opt(argc, argv))
-	strncpy(filename, LUA51, sizeof(filename));
+  std::cout << "=== opening a state ===" << std::endl;
+  sol::state lua;
+  // open some common libraries
+  lua.open_libraries(sol::lib::base, sol::lib::package);
+  lua.script("print('bark bark bark!')");
+
+  std::cout << "That's all for our demonstration" << std::endl;
+  //find51opt(argc, argv);
+  /*if (options.lua51)
+  {
+	  printf("landed on go.");
+	  strncpy(filename, LUA51, sizeof(filename));
+  }
 
   LoadLua(filename, argc, argv);
-  char line[1024];
-
-  scanf("%[^\n]", line);
+  */
   return (status) ? EXIT_FAILURE : EXIT_SUCCESS;
 }
