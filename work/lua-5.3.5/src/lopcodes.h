@@ -230,13 +230,19 @@ OP_CLOSURE,/*	A Bx	R(A) := closure(KPROTO[Bx])			*/
 
 OP_VARARG,/*	A B	R(A), R(A+1), ..., R(A+B-2) = vararg		*/
 
-OP_EXTRAARG/*	Ax	extra (larger) argument for previous opcode	*/
+OP_EXTRAARG,/*	Ax	extra (larger) argument for previous opcode	*/
+
+ /* LUA_HALT { */
+OP_HALT/*	A Bx    halt and resume using breakpoint Bx			*/
+/* LUA_HALT } */
+
 } OpCode;
 
 
-#define NUM_OPCODES	(cast(int, OP_EXTRAARG) + 1)
-
-
+/* LUA_HALT { */
+/*#define NUM_OPCODES	(cast(int, OP_VARARG) + 1)*/
+#define NUM_OPCODES	(cast(int, OP_HALT) + 1)
+/* LUA_HALT } */
 
 /*===========================================================================
   Notes:

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <!-- 
+  MSIProductVersion is defined in WinLua_Installer.wixproj as 0.0.1 for local desktop builds.  
+  You should pass in the MSBuild Property 'MSIProductVersion' to override it during an automated build.
+  See http://msdn.microsoft.com/en-us/library/windows/desktop/aa370859%28v=vs.85%29.aspx for information on allowable values.
+  
+  The Product@Id attribute (ProductCode Property) will be a random GUID for each build.  This is to support "Major Upgrades" where each install 
+  is a seamless uninstall/reinstall.
+  -->
+  <!--<Product Id="*" Name="WinLua" Language="1033" Version="$(var.MSIProductVersion)" Manufacturer="WinLua" UpgradeCode="5849f6bd-16b5-4b7a-9053-1c95ab8b60bf">-->
+  <?include $(var.SolutionDir)\Include.wxi ?>
+  
+  <Product Id="C12E9534-6ACB-4E08-8D9A-FC74F2B74319" Name="WinLua $(var.PlatName) Bit" 
+      Language="1033" 
+      Version="3.19.01.0" 
+      Manufacturer="WinLua Project" 
+    UpgradeCode="5849f6bd-16b5-4b7a-9053-1c95ab8b60bf">
+    <Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" Description="WinLua Installer package" Manufacturer="WinLua" />
+    <MediaTemplate EmbedCab="yes" />
+    <!-- Major Upgrade Rule to disallow downgrades -->
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <!--Common Launch Condition-->
+    <!-- Examples at http://wixtoolset.org/documentation/manual/v3/customactions/wixnetfxextension.html -->
+    <!--<PropertyRef Id="NETFRAMEWORK40FULL" />
+    <Condition Message="[ProductName] requires .NET Framework 4.0.">Installed OR NETFRAMEWORK40FULL</Condition>-->
+    <!-- Include User Interface Experience -->
+    <Icon Id="Icon.ico" SourceFile="Resources\Icon.ico" />
+    <Property Id="ARPPRODUCTICON" Value="Icon.ico"></Property>
+    
+    <UIRef Id="UI" />
+    <!-- Include Features and Directories Fragment -->
+    <DirectoryRef Id="LUA_INSTALLLOCATION" />
+    <DirectoryRef Id="LUAROCKS_INSTALLLOCATION" />
+    <DirectoryRef Id="LIBRESSL_INSTALLLOCATION" />
+    <DirectoryRef Id="JAMPLUS_INSTALLLOCATION" />
+   
+    <InstallExecuteSequence>
+      <Custom Action='Configure.LuaRocks' After='InstallFinalize'/>
+    </InstallExecuteSequence>
+  </Product>
+    
+</Wix>

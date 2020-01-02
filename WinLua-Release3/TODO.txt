@@ -1,0 +1,19 @@
+TODO:
+
+- Fix Github Pages
+	- change intro 
+	- Remove forks? (ask on website)
+	- Add IUP and IUP binary location
+	- Add LuaPlus info
+	- Add NLua info
+	- Add winluabuild info
+	- Add Chocolately Info
+- Rename and upload beta
+- Compile latest of Libressl -3.0.2 Dec 29 2019
+- Remove JamPlus?
+- Start building vanilla Lua with Jamplus
+
+- Add VS Code patch
+
+- Create LuaPlus installer
+

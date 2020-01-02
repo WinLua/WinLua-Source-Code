@@ -500,6 +500,10 @@ void luaD_call (lua_State *L, StkId func, int nResults) {
   L->nCcalls--;
 }
 
+/* LUA_HALT { */
+// note: duplicated in lvm.c due to dependency tangle (below requires lopcodes.h and lobject.h)
+#define GET_REAL_INSTR(i,p) (GET_OPCODE(i) == OP_HALT ? (p->halts[GETARG_Bx(i)].orig) : (i))
+/* LUA_HALT } */
 
 /*
 ** Similar to 'luaD_call', but does not allow yields during the call

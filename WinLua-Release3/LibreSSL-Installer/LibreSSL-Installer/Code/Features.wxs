@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define SourceDir="..\..\WinLua-Installer\LibreSSL_MM\bin\$(var.Platform)\$(var.Configuration)"?>
+  <Fragment>
+    <?include $(var.SolutionDir)Include.wxi ?>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="$(var.PlatformProgramFilesFolder)">
+        <Directory Id="INSTALLLOCATION" Name="LibreSSL">
+          <Merge Id="LibreSSL_MM" SourceFile="$(var.SourceDir)\LibreSSL_MM.msm" DiskId="1" Language="1033"/>
+        </Directory>
+      </Directory>
+    </Directory>
+    <Feature Id="LibreSSL_Installer" Title="LibreSSL-Portable" Description="LibreSSL Portable from OpenBSD" Level="1" AllowAdvertise="no" ConfigurableDirectory="INSTALLLOCATION" Absent="disallow">
+      <MergeRef Id="LibreSSL_MM"/>
+      <!-- Uncomment the below line to pull in IIS Metadata.  Otherwise delete if not needed -->
+      <!--<ComponentGroupRef Id="webSite" />-->
+    </Feature>
+  </Fragment>
+</Wix>

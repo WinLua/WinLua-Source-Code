@@ -751,12 +751,17 @@ void luaV_finishOp (lua_State *L) {
                          Protect(L->top = ci->top));  /* restore top */ \
            luai_threadyield(L); }
 
+/* LUA_HALT { */
+// note: duplicated in ldo.c due to dependency tangle (below requires lopcodes.h and lobject.h)
+#define GET_REAL_INSTR(i,p) (GET_OPCODE(i) == OP_HALT ? (p->halts[GETARG_Bx(i)].orig) : (i))
+/* LUA_HALT } */
 
 /* fetch an instruction and prepare its execution */
 #define vmfetch()	{ \
   i = *(ci->u.l.savedpc++); \
   if (L->hookmask & (LUA_MASKLINE | LUA_MASKCOUNT)) \
     Protect(luaG_traceexec(L)); \
+  resume: /* LUA_HALT */ \
   ra = RA(i); /* WARNING: any stack reallocation invalidates 'ra' */ \
   lua_assert(base == ci->u.l.base); \
   lua_assert(base <= L->top && L->top < L->stack + L->stacksize); \
@@ -1314,6 +1319,26 @@ void luaV_execute (lua_State *L) {
         lua_assert(0);
         vmbreak;
       }
+
+	  /* LUA_HALT { */
+	  vmcase(OP_HALT) {
+		  lua_Hook old = L->hook;
+		  Halt h = cl->p->halts[GETARG_Bx(i)];
+		  L->hookmask |= LUA_MASKHALT;
+		  L->hook = h.hook;
+		  Protect(luaG_traceexec(L));
+		  if (L->hookmask & LUA_MASKHALT)
+			  L->hookmask ^= LUA_MASKHALT;
+		  if (L->hook == h.hook)
+			  L->hook = old;
+		  if (L->status == LUA_YIELD) {  /* did hook yield? */
+			  L->ci->u.l.savedpc = ci->u.l.savedpc - 1;
+			  return;
+		  }
+		  i = h.orig;
+		  goto resume;
+	  }
+	/* LUA_HALT } */
     }
   }
 }
