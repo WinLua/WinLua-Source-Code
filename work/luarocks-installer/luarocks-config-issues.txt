@@ -1,0 +1,76 @@
+If there is no LUAROCKS_SYSCONFDIR then it defaults to c:\program files (x86)\Luarocks\
+If I specify LUAROCKS_SYSCONFDIR then I get a mangled path that includes the current directory.
+
+LUAROCKS_SYSCONFDIR
+"C:\Program Files (x86)\WinLua\LuaRocks\"
+
+
+C:\Program Files (x86)\WinLua\LuaRocks\bin> luarocks.exe
+Warning: Could not find a Lua 5.3 interpreter in your PATH. Modules may not install with the correct configurations. You may want to specify the path prefix to your build of Lua 5.3 using --lua-dir
+...
+
+Variables:
+   Variables from the "variables" table of the configuration file can be
+   overridden with VAR=VALUE assignments.
+
+Configuration:
+   Lua version: 5.3
+
+   Configuration files:
+      System  : C:\Program Files (x86)\WinLua\LuaRocks\bin/"C:/Program Files
+      (x86)/WinLua/LuaRocks/"/config-5.3.lua (not found)
+      User    : C:/Users/russh/AppData/Roaming/luarocks/config-5.3.lua (not
+      found)
+
+   Rocks trees in use:
+      C:\Users\russh\AppData\Roaming/luarocks ("user")
+      
+
+Also, note that luarocks can't find my lua interpreter, but it's definetly there in the path:
+
+C:\Users\russh> $env:path
+C:\tools\ruby193\bin;C:\Python36\Scripts\;C:\Python36\;C:\WINDOWS\system32;C:\WINDOWS;
+C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\PuTTY\;C:\Program Files\dotnet\;
+C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;
+C:\Program Files\CMake\bin;C:\Program Files (x86)\Geany\bin;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\
+;C:\Program Files\LLVM\bin;C:\Program Files\doxygen\bin;C:\D\dmd2\windows\bin;C:\D1\dmd\windows\bin;
+C:\Program Files\TortoiseSVN\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\dub;
+C:\Program Files\LibreSSL\bin\;C:\Program Files (x86)\LibreSSL\bin\;C:\Program Files (x86)\WinLua\JamPlus\win32\;
+C:\Program Files (x86)\WinLua\LuaRocks\bin\;C:\Program Files\MATLAB\MATLAB Runtime\v95\runtime\win64;
+C:\jdk-12.0.2\bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\WinLua\Lua\5.3\bin\;
+C:\Program Files\Conan\conan;C:\Users\russh\AppData\Local\Microsoft\WindowsApps;
+C:\Users\russh\bin;C:\tools\neovim\Neovim\bin;C:\Program Files (x86)\LinqPad5;
+
+C:\Users\russh> ls "C:\Program Files (x86)\WinLua\Lua\5.3\bin\"
+
+
+    Directory: C:\Program Files (x86)\WinLua\Lua\5.3\bin
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----         3/9/2019   7:25 PM          16384 lfs.dll
+-a----         3/9/2019   7:25 PM           1666 lfs.lib
+-a----         3/9/2019   7:25 PM          38400 lua.exe
+-a----         3/9/2019   7:25 PM         199168 lua53.dll
+-a----         3/9/2019   7:25 PM          29652 lua53.lib
+-a----         3/9/2019   7:25 PM         121344 luac.exe
+
+
+
+I let luarocks point to a config file (in the wrong place) but when I try to run anything I get this:
+
+C:\Users\russh\git\WinLua-VS2017\work\luarocks-installer [op_halt_patch +3 ~15 -0 !]> luarocks --tree system install lualogging
+Warning: Could not find a Lua 5.3 interpreter in your PATH. Modules may not install with the correct configurations. You may want to specify the path prefix to your build of Lua 5.3 using --lua-dir
+Warning: Failed searching manifest: Failed fetching manifest for https://luarocks.org - Failed downloading https://luarocks.org/manifest-5.3 - C:\Users\russh\AppData\Local/LuaRocks/Cache/https___luarocks.org/manifest-5.3
+Warning: Failed searching manifest: Failed fetching manifest for https://raw.githubusercontent.com/rocks-moonscript-org/moonrocks-mirror/master/ - Failed downloading https://raw.githubusercontent.com/rocks-moonscript-org/moonrocks-mirror/master/manifest-5.3 - C:\Users\russh\AppData\Local/LuaRocks/Cache/https___raw.githubusercontent.com_rocks-moonscript-org_moonrocks-mirror_master_/manifest-5.3
+Warning: falling back to curl - install luasec to get native HTTPS support
+Warning: Failed searching manifest: Failed fetching manifest for http://luafr.org/moonrocks/ - Failed downloading http://luafr.org/moonrocks/manifest-5.3 - C:\Users\russh\AppData\Local/LuaRocks/Cache/http___luafr.org_moonrocks_/manifest-5.3
+Warning: Failed searching manifest: Failed fetching manifest for http://luarocks.logiceditor.com/rocks - Failed downloading http://luarocks.logiceditor.com/rocks/manifest-5.3 - C:\Users\russh\AppData\Local/LuaRocks/Cache/http___luarocks.logiceditor.com_rocks/manifest-5.3
+lualogging not found for Lua 5.3.
+Checking if available for other Lua versions...
+Checking for Lua 5.1...
+Checking for Lua 5.2...
+Checking for Lua 5.4...
+
+Error: No results matching query were found for Lua 5.3.

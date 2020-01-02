@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define ComponentRules="OneToOne"?>
+  <?include $(var.SolutionDir)\Include.wxi ?>
+  <!-- SourceDir instructs IsWiX the location of the directory that contains files for this merge module -->
+  <?define SourceDir="..\..\Deploy\x86"?>
+  <!--<?define SourceDir="..\..\Deploy\$(var.Platform)"?>-->
+  <Module Id="LuaRocksMM" Language="1033" Version="3.2.1">
+    <Package Id="3ddf1f2b-8f02-4457-8d83-12b7df43e7e8" Manufacturer="LuaRocks.org" InstallerVersion="200" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="MergeRedirectFolder">
+        <Directory Id="luarocksbin" Name="bin">
+          <Component Id="owcEF9E42689CA04B2F2462C70E7A34A91A" Guid="bce7ce88-2dbf-72c1-8d6d-47521456a653">
+            <File Id="owfEF9E42689CA04B2F2462C70E7A34A91A" Source="$(var.SourceDir)\luarocks\luarocks.exe" KeyPath="yes" />
+          </Component>
+          <Component Id="owcB067DC11745CC73E900E958C7B73D8E9" Guid="355a2a71-20e3-baa1-26a9-2a94fe7f7d27">
+            <File Id="owfB067DC11745CC73E900E958C7B73D8E9" Source="$(var.SourceDir)\luarocks\luarocks-admin.exe" KeyPath="yes" />
+          </Component>
+          <Component Id="owcAE48D75E758E3EA75696F8CB7B24E942" Guid="31c4d0a6-fb7e-e4fc-a4c7-14d9677c229b">
+            <File Id="owfAE48D75E758E3EA75696F8CB7B24E942" Source="$(var.SourceDir)\winlua-luarocks\config-winlua-luarocks.bat" KeyPath="yes" />
+          </Component>
+        </Directory>
+        <Directory Id="owd2A8ED26A2AC05DCAED107202D9C7BF5F" Name="share">
+          <Component Id="owc90C32C084E2B29D4EF5CB22A5AB04249" Guid="2b116175-c7a3-dbef-99ce-ae3f701eb7b6">
+            <File Id="owf90C32C084E2B29D4EF5CB22A5AB04249" Source="$(var.SourceDir)\winlua-luarocks\create-config.lua" KeyPath="yes" />
+          </Component>
+          <Component Id="owc4285884F1CE8A4005857B9261FFEBC90" Guid="f2833162-d457-1934-5b2c-01e857ae0cf1">
+            <File Id="owf4285884F1CE8A4005857B9261FFEBC90" Source="$(var.SourceDir)\winlua-luarocks\pe-parser.lua" KeyPath="yes" />
+          </Component>
+          <Component Id="owc8DBFEE7B0CDD8F2D64F7E10BC4AB8307" Guid="9386ab2f-2f54-5f9a-659d-8a4b3fa389b2">
+            <File Id="owf8DBFEE7B0CDD8F2D64F7E10BC4AB8307" Source="$(var.SourceDir)\winlua-luarocks\vsvars.ps1" KeyPath="yes" />
+          </Component>
+        </Directory>
+      </Directory>
+    </Directory>
+    <ComponentGroupRef Id="Custom" />
+  </Module>
+</Wix>

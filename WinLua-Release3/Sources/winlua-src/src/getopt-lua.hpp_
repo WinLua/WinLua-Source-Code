@@ -1,0 +1,67 @@
+char * get_opts =  R"V0G0N(
+--START LUA
+local sep = '\\'
+local so_ext = '.dll'
+opts = {}
+
+opts.bits = 32
+other = {}
+argc = 0
+
+local function check_version(version)
+	--strip the dash and see if we can make a number
+	-- if the number is between 51 and 54 (inclusive) then return it
+	-- if the version is alread set, return an error
+	local ver = tonumber(version:sub(2))
+	local msg = nil
+	if ver then
+		if ver < 51 or ver > 54 then
+			msg = ver.." is not a valid version"
+			ver = nil
+		end
+	end 
+	if opts.version then
+		msg = "Cannot set "..ver.." Already set to"..opts.version
+		ver = nil
+	end
+	return ver, msg
+end
+
+local param = -1
+
+for i,v in pairs(args) do
+	local item = v:lower()
+	local ver = v:match("-5%d")
+	local subdir
+	
+	local err = nil
+	if i == 0 then
+		other[0] = v
+	elseif ver then
+		ver, err = check_version(ver)
+		if ver then 
+			opts.version = ver
+			opts.subdir = ver / 10
+			--~ opts.version_string = string.format("%.1f%slua%d%s",opts.version/10, sep, opts.version, so_ext)
+			opts.version_string = string.format("lua%d%s", opts.version, so_ext)
+		else
+			opts.err = err
+		end
+	elseif item == "-x64" then
+		opts.bits = 64
+	elseif v == "-f" or v == "--file" then
+		opts.config_file = args[i+1]
+		param = i
+	elseif param > -1 then
+		param = -1
+	else
+		other[#other + 1] = item
+	end
+end
+
+for i,v in pairs(other) do
+	argc = argc+1
+end
+
+-- END LUA
+)V0G0N";

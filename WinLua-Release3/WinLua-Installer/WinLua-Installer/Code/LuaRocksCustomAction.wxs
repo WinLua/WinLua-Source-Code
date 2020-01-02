@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <CustomAction Id='Configure.LuaRocks' BinaryKey='WinLua.Installer.CustomAction' DllEntry='ConfigureLuaRocks' Execute='immediate'
+              Return='check'/>
+
+    <Binary Id='WinLua.Installer.CustomAction' SourceFile='C:\Users\russh\Git\WinLua-Mk3\WinLua-Installer\Winlua.Installer.CustomAction\bin\Release\Winlua.Installer.CustomAction.CA.dll'/>
+	</Fragment>
+</Wix>

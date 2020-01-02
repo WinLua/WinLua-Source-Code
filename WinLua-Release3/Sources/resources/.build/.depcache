@@ -1,0 +1,5 @@
+@version 2-md5cl@
+@<win64/release:stdafx>stdafx.exe@ 0 0 ce930303d68a3ab7da959938df1ea081 0 0 !
+@<win64/release:stdafx>stdafx.obj@ 0 0 937560a4ef6f67de2033ae47b686f14b 0 0 !
+@c:/users/russh/git/winlua-mk3/sources/resources/stdafx.h@ 1551852216 0 00000000000000000000000000000000 0 1 @^[ 	]*##[ 	]*include[ 	]*[<"]([^">]*)[">].*$@ !
+@c:/users/russh/git/winlua-mk3/sources/resources/stdafx.cpp@ 1523077226 0 00000000000000000000000000000000 1 @stdafx.h@ 1 @^[ 	]*##[ 	]*include[ 	]*[<"]([^">]*)[">].*$@ !

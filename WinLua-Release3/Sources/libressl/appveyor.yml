@@ -1,0 +1,44 @@
+image:
+  - Visual Studio 2015
+  #- Visual Studio 2017
+
+environment:
+  PATH: C:\msys64\usr\bin;C:\msys64\mingw64\bin;C:\Windows\System32;C:\Windows;%PATH%
+
+  matrix:
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      GENERATOR: Visual Studio 14 2015 Win64
+      CONFIG: Release
+      SHARED_LIBS: ON
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      GENERATOR: Visual Studio 14 2015
+      CONFIG: Release
+      SHARED_LIBS: ON
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      GENERATOR: Visual Studio 14 2015 Win64
+      CONFIG: Release
+      SHARED_LIBS: OFF
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      GENERATOR: Visual Studio 14 2015
+      CONFIG: Release
+      SHARED_LIBS: OFF
+
+init:
+  # update mysy2
+  - C:\msys64\usr\bin\bash -lc "pacman --needed --noconfirm -Sy pacman-mirrors"
+  - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -Syu"
+  - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -S autoconf perl"
+  - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -S git"
+
+before_build:
+  - bash autogen.sh
+  - mkdir build
+  - cd build
+  - cmake .. -G "%GENERATOR%" -DBUILD_SHARED_LIBS=%SHARED_LIBS% -DCMAKE_INSTALL_PREFIX=../local
+
+build_script:
+  - cmake --build . --config %CONFIG%
+
+test_script:
+  # TODO: Determine how to run ssltest on AppVeyor
+  - ctest -C %CONFIG% --timeout 150 --output-on-failure -E ssltest

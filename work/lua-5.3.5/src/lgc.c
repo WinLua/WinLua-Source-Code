@@ -480,7 +480,7 @@ static int traverseproto (global_State *g, Proto *f) {
   int i;
   if (f->cache && iswhite(f->cache))
     f->cache = NULL;  /* allow cache to be collected */
-  markobjectN(g, f->source);
+	markobjectN(g, f->source);
   for (i = 0; i < f->sizek; i++)  /* mark literals */
     markvalue(g, &f->k[i]);
   for (i = 0; i < f->sizeupvalues; i++)  /* mark upvalue names */
@@ -490,6 +490,7 @@ static int traverseproto (global_State *g, Proto *f) {
   for (i = 0; i < f->sizelocvars; i++)  /* mark local-variable names */
     markobjectN(g, f->locvars[i].varname);
   return sizeof(Proto) + sizeof(Instruction) * f->sizecode +
+						 sizeof(Halt) * f->sizehalts + /* LUA_HALT */
                          sizeof(Proto *) * f->sizep +
                          sizeof(TValue) * f->sizek +
                          sizeof(int) * f->sizelineinfo +

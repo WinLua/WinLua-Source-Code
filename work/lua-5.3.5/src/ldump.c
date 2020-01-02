@@ -45,7 +45,7 @@ static void DumpBlock (const void *b, size_t size, DumpState *D) {
   }
 }
 
-
+#define DumpMem(b,n,size,D)	DumpBlock(b,(n)*(size),D)
 #define DumpVar(x,D)		DumpVector(&x,1,D)
 
 
@@ -91,6 +91,53 @@ static void DumpCode (const Proto *f, DumpState *D) {
   DumpInt(f->sizecode, D);
   DumpVector(f->code, f->sizecode, D);
 }
+
+
+/* LUA_HALT { */
+static int nexthalt(Halt *halts, int sizehalts, int offset) {
+	int i, ho, nho, nhi; // index, tmp offset, next halt offset, next halt index
+	nho = -1;
+	nhi = -1;
+	for (i = 0; nho != offset && i < sizehalts; i++) {
+		ho = halts[i].offset;
+		if (ho >= offset && (nho == -1 || ho < nho)) {
+			nho = ho;
+			nhi = i;
+		}
+	}
+
+	lua_assert(nho == -1 || nho >= offset);
+	return nhi; // returns the index of the halt (not the offset)
+}
+
+static void DumpCodePatchingHalts(const Proto* f, DumpState* D) {
+	int ci, hi, ho; // codeindex, haltindex, haltoffset
+	DumpInt(f->sizecode, D);
+
+	ci = 0;
+	while (ci < f->sizecode) {
+		// note that the halts array is not sorted, so this routine is n^2 with
+		// the number of breakpoints in the function, betting that will be small
+		// compared to the number of instructions. if the number of breakpoints
+		// were large, it might be worth the complexity to sort it
+		hi = nexthalt(f->halts, f->sizehalts, ci);
+		ho = f->halts[hi].offset;
+		if (ho > ci) {			
+			DumpMem(f->code + ci, ho - ci, sizeof(Instruction), D);
+			ci = ho;
+		}
+		if (ho == ci) {
+			DumpVar(f->halts[hi].orig, D);
+			ci++;
+		}
+		else {
+			lua_assert(hi == -1);
+			DumpMem(f->code + ci, f->sizecode - ci, sizeof(Instruction), D);
+			ci = f->sizecode;
+		}
+	}
+}
+/* LUA_HALT } */
 
 
 static void DumpFunction(const Proto *f, TString *psource, DumpState *D);
@@ -174,6 +221,15 @@ static void DumpFunction (const Proto *f, TString *psource, DumpState *D) {
   DumpByte(f->is_vararg, D);
   DumpByte(f->maxstacksize, D);
   DumpCode(f, D);
+  /* LUA_HALT { */
+  // DumpCode(f, D);
+  if (f->sizehalts == 0) {
+	  DumpCode(f, D);
+  }
+  else {
+	  DumpCodePatchingHalts(f, D);
+  }
+  /* LUA_HALT } */
   DumpConstants(f, D);
   DumpUpvalues(f, D);
   DumpProtos(f, D);

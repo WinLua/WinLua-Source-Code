@@ -361,6 +361,16 @@ typedef union UUdata {
 } UUdata;
 
 
+/* LUA_HALT { */
+typedef struct Halt {
+	Instruction orig;
+	int offset;
+	lua_Hook hook;
+	int lineNumber;
+} Halt;
+/* LUA_HALT } */
+
+
 /*
 **  Get the address of memory block inside 'Udata'.
 ** (Access to 'ttuv_' ensures that value is really a 'Udata'.)
@@ -426,6 +436,12 @@ typedef struct Proto {
   struct LClosure *cache;  /* last-created closure with this prototype */
   TString  *source;  /* used for debug information */
   GCObject *gclist;
+  /* LUA_HALT { */
+  Halt *halts;
+  int sizehalts;
+  struct Proto* list_prev;
+  struct Proto* list_next;
+  /* LUA_HALT } */
 } Proto;
 
 

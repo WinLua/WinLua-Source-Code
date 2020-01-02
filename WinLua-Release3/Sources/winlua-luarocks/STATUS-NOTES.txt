@@ -1,0 +1,10 @@
+Where do I put the config file? in programfiles or in program data? I think program data.
+Where to put rocks tree? I say program data too.
+Create LuaRocks in Program Data
+
+Program Data
+	WinLua
+		config file
+		rocks
+		
+			??Doesn't luarocks make them 10 deep too? Maybe this is a bad idea...

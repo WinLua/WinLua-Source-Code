@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <?include $(var.SolutionDir)\Include.wxi ?>    
+    <!-- Reference Custom Components Below -->
+    <ComponentGroup Id="Custom">
+      <Component Id="set_path"  Directory="MergeRedirectFolder" Guid="BA49EB55-4061-46F1-91DC-31313A7B8F77" Win64="$(var.Win64)" KeyPath="yes">
+        <CreateFolder/>
+        <Environment Id="PATH" Name="PATH" Value="[execdir]" Permanent="no" Part="last" Action="set" System="yes" />
+      </Component>
+    </ComponentGroup>
+
+    <!-- Author Custom Components Below -->
+    <DirectoryRef Id="MergeRedirectFolder">
+      
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>
