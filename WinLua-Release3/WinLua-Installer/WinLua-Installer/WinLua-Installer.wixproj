@@ -90,6 +90,14 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
+    <ProjectReference Include="..\llvm-mingwMM\llvm-mingwMM.wixproj">
+      <Name>llvm-mingwMM</Name>
+      <Project>{9f5f9113-4421-4d39-b06b-7fb3c021da30}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
     <ProjectReference Include="..\LuaRocksMM\LuaRocksMM.wixproj">
       <Name>LuaRocksMM</Name>
       <Project>{2575747f-b0bb-4d02-bda1-f3f5890e9566}</Project>

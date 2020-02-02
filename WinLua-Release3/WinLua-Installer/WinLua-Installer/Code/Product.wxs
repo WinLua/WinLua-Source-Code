@@ -34,6 +34,8 @@
     <DirectoryRef Id="LUAROCKS_INSTALLLOCATION" />
     <DirectoryRef Id="LIBRESSL_INSTALLLOCATION" />
     <DirectoryRef Id="JAMPLUS_INSTALLLOCATION" />
+    <DirectoryRef Id="LLVMMINGW_INSTALLLOCATION" />
+    
    
     <InstallExecuteSequence>
       <Custom Action='Configure.LuaRocks' After='InstallFinalize'/>

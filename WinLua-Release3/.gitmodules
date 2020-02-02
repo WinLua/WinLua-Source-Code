@@ -1,9 +1,9 @@
 [submodule "Sources/portable"]
 	path = Sources/libressl
 	url = https://github.com/libressl-portable/portable.git
-[submodule ".\\Sources\\luafilesystem\\"]
-	path = .\\Sources\\luafilesystem\\
+[submodule "Sources/luafilesystem"]
+	path = Sourcesluafilesystem
 	url = https://github.com/keplerproject/luafilesystem.git
-[submodule ".\\Sources\\libressl\\"]
-	path = .\\Sources\\libressl\\
+[submodule "Sources/libressl"]
+	path = Sources/libressl
 	url = https://github.com/libressl-portable/portable.git

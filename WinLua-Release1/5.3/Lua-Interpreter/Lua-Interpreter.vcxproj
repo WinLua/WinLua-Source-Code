@@ -163,6 +163,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Lua-Library\Lua-Library.vcxproj">
       <Project>{24d061da-9753-4b62-bf91-393e3330580d}</Project>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
