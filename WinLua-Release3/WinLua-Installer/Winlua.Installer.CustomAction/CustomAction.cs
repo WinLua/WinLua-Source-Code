@@ -13,43 +13,44 @@ namespace Winlua.Installer.CustomAction
         [CustomAction]
         public static ActionResult ConfigureLuaRocks(Session session)
         {
-            session.Log("Begin CustomAction1");
-            if(session.Features.Contains("LuaRocks"))
-            {
+            session.Log("***WinLua: Begin CustomAction1");
+            
                 Lua L = new Lua();
                 var g = L.CreateEnvironment();
                 dynamic d = g;
                 
-                session.Log("Found LuaRocks");
-                d.luaRocksRootPath = session.GetTargetPath("LUAROCKS_INSTALLLOCATION");                
-                session.Log("LuaRocks installed in " + d.luaRocksRootPath);
-                d.luaRootPath = session.GetTargetPath("LUA_INSTALLLOCATION");
-                session.Log("lua_exe installed in " + d.luaRootPath);
+                session.Log("WinLua: Found LuaRocks");
 
-                if (session.Features.Contains("LLVM_MingGW"))
+                d.luaRocksRootPath = session.CustomActionData["LuaRocksRootPath"];
+                session.Log("WinLua: LuaRocks installed in " + d.luaRocksRootPath);
+
+                d.luaRootPath = session.CustomActionData["LuaRootPath"];
+                session.Log("WinLua: lua_exe installed in " + d.luaRootPath);
+               
+                if (!string.IsNullOrEmpty(session.CustomActionData["ToolsPath"]))
                 {
-
-                    d.toolsPath = session.GetTargetPath("LLVMMINGW_INSTALLLOCATION");
+                    session.Log("WinLua: Installed LLVM (aparently)");
+                    d.toolsPath = session.CustomActionData["ToolsPath"];
                     WriteConfigFile(session, g);
+                    session.Log("WinLua: wrote config file for llvm");
                 }
                 else
                 {
+                    session.Log("WinLua: didn't find llvm use luarocks");
                     RunConfigScript(session, d.luaRootPath, d.luaRocksRootPath);
                 }
-
-            }
             return ActionResult.Success;
         }
          
         /// <summary>
         /// This function manually creates the LuaRocks config file
         /// </summary>
-        private static bool WriteConfigFile(Session session, LuaGlobal g)//string luaRootPath, string luaRocksPath, string toolsPath)
+        private static bool WriteConfigFile(Session session, LuaGlobal g)
         {
             bool result = false;
             ///Maybe we should re-write this as a script
             ///so it can be inbedded into a separate tool as well?
-
+            session.Log("WinLua: Begin Write");
             dynamic d = g;
             d.rocks_trees = new LuaTable();
             d.rocks_trees[1] = new LuaTable();
@@ -60,38 +61,52 @@ namespace Winlua.Installer.CustomAction
             d.rocks_trees[2].root = d.luaRootPath;
 
             d.variables = new LuaTable();
-            d.variables.CC = "i686-w64-mingw32-clang.exe";
-            d.variables.LD = "i686-w64-mingw32-clang.exe";
+            
             d.variables.LUA_LIBDIR = d.luaRootPath + "/bin";
             d.variables.LUA_INCDIR = d.luaRootPath + "/include";
             d.variables.LUALIB = "lua53.lib";
 
-            d.external_deps_dirs = new LuaTable();
-            d.external_deps_dirs[1] = d.toolsPath;
+            if(d.toolsPath != null)
+            {
+                session.Log("WinLua: Found Tools path");
+                d.variables.CC = "i686-w64-mingw32-clang.exe";
+                d.variables.LD = "i686-w64-mingw32-clang.exe";
 
-            //I got lazy at the end...
-            g.DoChunk(@"external_deps_patterns = {
+                d.external_deps_dirs = new LuaTable();
+                d.external_deps_dirs[1] = d.toolsPath;
+
+                //I got lazy at the end...
+                g.DoChunk(@"external_deps_patterns = {
                 bin = { '?.exe', '?.bat' },
                 lib = { 'lib?.a', 'lib?.dll.a', '?.dll.a', '?.lib', 'lib?.lib'},
                 include = { '?.h' }
                 }"
-                , "c1");
+                    , "c1");
+            }
 
-            ///2020-02-01: RH - NeoLua LuaTable.ToLson has a funny output: It dones't 
+            ///2020-02-01: RH - NeoLua LuaTable.ToLson doesn't 
             ///output the name of the table so I need to tack it on the front. Because the LuaRocks
             ///config file contains a loose set of tables I have to:
             ///1) prepend the table names and
             ///2) format the individual tables in the file. 
             string trees = "rocks_trees = " + LuaTable.ToLson(d.rocks_trees);
             string variables = "variables = " + LuaTable.ToLson(d.variables);
-            string ex_deps_dirs = "external_deps_dirs = " + LuaTable.ToLson(d.external_deps_dirs);
-            string ex_deps_patterns = "external_deps_patterns = " + LuaTable.ToLson(d.external_deps_patterns);
-            string verbose = "verbose = false-- set to 'true' to enable verbose output";
+            string ex_deps_dirs = "";
+            string ex_deps_patterns = "";
 
+            if (d.toolsPath != null)
+            {
+                session.Log("WinLua: Format external_*");
+                ex_deps_dirs = "external_deps_dirs = " + LuaTable.ToLson(d.external_deps_dirs);
+                 ex_deps_patterns = "external_deps_patterns = " + LuaTable.ToLson(d.external_deps_patterns);
+                
+            }
+            string verbose = "verbose = false-- set to 'true' to enable verbose output";
             //Ugly format string just appends each table on a new line.
             File.WriteAllText(d.luaRocksRootPath + "/config-5.3.lua", string.Format("{0}\r\n{1}\r\n{2}\r\n{3}\r\n{4}\r\n",
                 trees, variables, ex_deps_dirs, ex_deps_patterns, verbose));
 
+            session.Log("Done!");
             //TODO: SETX to set the LUAROCKS_SYSCONFDIR variable.
             return result;
 
@@ -114,6 +129,7 @@ namespace Winlua.Installer.CustomAction
                 session.Log("Working Directory" + startInfo.WorkingDirectory);
                 startInfo.Arguments = string.Format("create-config.lua /LUA \"{0}\" /P \"{1}\" /CONFIG \"{2}\"",
                     LuaPath + "5.3", LuaRocksPath + "\\bin", LuaRocksPath);
+                startInfo.Verb = "runas";
                 session.Log("Arguments ARE: " + startInfo.Arguments);
                 Process.Start(startInfo);
                 session.Log("Process started, cross yer fingers");

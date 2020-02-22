@@ -43,7 +43,6 @@
     <Folder Include="Code" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\LuaRocksCustomAction.wxs" />
     <Compile Include="Code\Product.wxs" />
     <Compile Include="Code\Features.wxs" />
     <Compile Include="Code\IISMeta.wxs" />

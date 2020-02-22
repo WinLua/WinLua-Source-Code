@@ -4,6 +4,6 @@
     <CustomAction Id='Configure.LuaRocks' BinaryKey='WinLua.Installer.CustomAction' DllEntry='ConfigureLuaRocks' Execute='immediate'
               Return='check'/>
 
-    <Binary Id='WinLua.Installer.CustomAction' SourceFile='C:\Users\russh\Git\WinLua-Mk3\WinLua-Installer\Winlua.Installer.CustomAction\bin\Release\Winlua.Installer.CustomAction.CA.dll'/>
+    <Binary Id='WinLua.Installer.CustomAction' SourceFile='..\Winlua.Installer.CustomAction\bin\Release\Winlua.Installer.CustomAction.CA.dll'/>
 	</Fragment>
 </Wix>

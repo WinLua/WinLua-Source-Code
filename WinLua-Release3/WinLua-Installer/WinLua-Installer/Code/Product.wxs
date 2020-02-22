@@ -13,13 +13,15 @@
   
   <Product Id="C12E9534-6ACB-4E08-8D9A-FC74F2B74319" Name="WinLua $(var.PlatName) Bit" 
       Language="1033" 
-      Version="3.19.01.0" 
+      Version="3.20.02.3"
       Manufacturer="WinLua Project" 
     UpgradeCode="5849f6bd-16b5-4b7a-9053-1c95ab8b60bf">
-    <Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" Description="WinLua Installer package" Manufacturer="WinLua" />
+    <Package InstallerVersion="301" Compressed="yes" InstallPrivileges="elevated" AdminImage="yes" InstallScope="perMachine" 
+             Description="WinLua Installer package" Manufacturer="WinLua" />
     <MediaTemplate EmbedCab="yes" />
     <!-- Major Upgrade Rule to disallow downgrades -->
-    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MajorUpgrade AllowDowngrades="yes" AllowSameVersionUpgrades="no" />
+    <Upgrade Id="5849f6bd-16b5-4b7a-9053-1c95ab8b60bf"></Upgrade>
     <!--Common Launch Condition-->
     <!-- Examples at http://wixtoolset.org/documentation/manual/v3/customactions/wixnetfxextension.html -->
     <!--<PropertyRef Id="NETFRAMEWORK40FULL" />
@@ -36,10 +38,36 @@
     <DirectoryRef Id="JAMPLUS_INSTALLLOCATION" />
     <DirectoryRef Id="LLVMMINGW_INSTALLLOCATION" />
     
-   
-    <InstallExecuteSequence>
-      <Custom Action='Configure.LuaRocks' After='InstallFinalize'/>
+    <!--<Property Id="LuaVersion2" Value="5.3" />-->
+
+
+    <SetProperty Id="LuaRocksConfigFileName" Value="config-$(var.LuaVersion).lua" Before="SetLuaRocksConfigPath" Sequence="execute" />
+    <SetProperty Id="LuaRocksRootPath" Value="[LUAROCKS_INSTALLLOCATION]" Before="SetLuaRocksConfigPath" Sequence="execute" />
+    <SetProperty Id="LuaRocksConfigPath" Value="[LuaRocksRootPath]\[LuaRocksConfigFileName]" Before="SetConfigure.LuaRocks" Sequence="execute" />
+    <SetProperty Id="LuaRootPath" Value="[LUA_INSTALLLOCATION]" Before="SetConfigure.LuaRocks" Sequence="execute" />
+    <SetProperty Id="ToolsPath" Value="[LLVMMINGW_INSTALLLOCATION]" Before="SetConfigure.LuaRocks" Sequence="execute">
+      <![CDATA[Installed OR (&LuaRocks=3) AND NOT(!LuaRocks=3)]]>
+    </SetProperty>
+    <SetProperty Id="Configure.LuaRocks" Value="LuaRocksConfigPath=[LuaRocksConfigPath];LuaRocksRootPath=[LuaRocksRootPath];LuaRootPath=[LuaRootPath];ToolsPath=[ToolsPath]" Before="Configure.LuaRocks" Sequence="execute" />
+    
+    <Binary Id='WinLua.Installer.CustomAction' SourceFile='..\Winlua.Installer.CustomAction\bin\Release\Winlua.Installer.CustomAction.CA.dll'/>
+    <!-- The deferred custom action -->
+    <CustomAction Id="Configure.LuaRocks" BinaryKey="WinLua.Installer.CustomAction" DllEntry="ConfigureLuaRocks" Execute="deferred" Return="check" />
+
+    <!--<![CDATA[Installed OR (&LuaRocks=3) AND NOT(!FeatureName=3)]]>-->
+    
+      <!-- Schedule the deferred custom action between InstallInitialize and InstallFinalize -->
+      <InstallExecuteSequence>
+        <Custom Action="Configure.LuaRocks" After="InstallFiles">
+          <![CDATA[Installed OR (&LuaRocks=3) AND NOT(!LuaRocks=3)]]>
+        </Custom>        
+      <!-- You may need a condition to make sure this does not run during uninstall -->
     </InstallExecuteSequence>
+
+    <!--<InstallExecuteSequence>
+      <Custom Action='Configure.LuaRocks' Before='CostInitialize'/>
+      --><!--<Custom Action='Configure.LuaRocks' After='InstallFinalize'/>--><!--
+    </InstallExecuteSequence>-->
   </Product>
     
 </Wix>

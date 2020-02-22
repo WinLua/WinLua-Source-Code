@@ -26,21 +26,18 @@
     </Directory>
     <Feature Id="WinLua" Title="WinLua 5.3" Description="Base installation of Lua Interpreter, DLLs, LuaFileSystem and Sol2" Level="1" AllowAdvertise="no" ConfigurableDirectory="LUA_INSTALLLOCATION">
       <MergeRef Id="WinLua53MM" />
-      <!-- Uncomment the below line to pull in IIS Metadata.  Otherwise delete if not needed -->
-      <!--<ComponentGroupRef Id="webSite" />-->
     </Feature>
-    <Feature Id="JamPlus" Description="JamPlus Build System. Allows you to build C/C++ and Lua from the command line. 100% cross platform." Title="JamPlus Build System" ConfigurableDirectory="JAMPLUS_INSTALLLOCATION" Level="1" AllowAdvertise="no">
-      <MergeRef Id="JamPlusMM" />
-    </Feature>
-    <Feature Id="LibreSSL" Description="OpenBSD fork of the OpenSSL Encryption Library" Title="LibreSSL" Level="1" AllowAdvertise="no" ConfigurableDirectory="LIBRESSL_INSTALLLOCATION">
-      <MergeRef Id="LibreSSL_MM" />
-    </Feature>
-    <Feature Id="LuaRocks" Description="Package Manager and build system for Lua." Title="LuaRocks" Level="1" AllowAdvertise="no" ConfigurableDirectory="LUAROCKS_INSTALLLOCATION">
+    <Feature Id="LuaRocks" Title="LuaRocks" Description="Package Manager and build system for Lua."  Level="1" AllowAdvertise="no" ConfigurableDirectory="LUAROCKS_INSTALLLOCATION">
       <MergeRef Id="LuaRocksMM" />
     </Feature>
-    <Feature Id="LLVM_MinGW" Description="LLVM-MinGW C Toolchain. No Visual Studio required to build C modules (LuaRocks etc)." Title="LLVM-MinGW" Level="1" AllowAdvertise="no" ConfigurableDirectory="LUAROCKS_INSTALLLOCATION">
+    <Feature Id="LLVM_MinGW" Title="LLVM-MinGW" Description="LLVM-MinGW C Toolchain. No Visual Studio required to build C modules (LuaRocks etc)."  Level="1" AllowAdvertise="no" ConfigurableDirectory="LLVMMINGW_INSTALLLOCATION">
       <MergeRef Id="llvm-mingwMM" />
-      
+    </Feature>
+    <Feature Id="JamPlus" Title="JamPlus Build System" Description="JamPlus Build System. Allows you to build C/C++ and Lua from the command line. 100% cross platform."  ConfigurableDirectory="JAMPLUS_INSTALLLOCATION" Level="1" AllowAdvertise="no">
+      <MergeRef Id="JamPlusMM" />
+    </Feature>
+    <Feature Id="LibreSSL" Title="LibreSSL" Description="OpenBSD fork of the OpenSSL Encryption Library"  Level="1" AllowAdvertise="no" ConfigurableDirectory="LIBRESSL_INSTALLLOCATION">
+      <MergeRef Id="LibreSSL_MM" />
     </Feature>
   </Fragment>
 </Wix>
