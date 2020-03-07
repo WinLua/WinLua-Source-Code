@@ -5,10 +5,9 @@
       
       <!-- See http://wix.sourceforge.net/manual-wix3/WixUI_index.htm for more information-->
       <UIRef Id="WixUI_FeatureTree"/>
-      
       <!--Uncomment to inject a custom dialog into the install wizard loop -->
-      <!--<UIRef Id="CustomDlg"/>-->
-      
-    </UI>
+      <!--<UIRef Id="WinLuaOptsDlg"/>-->
+
+      </UI>
    </Fragment>
 </Wix>

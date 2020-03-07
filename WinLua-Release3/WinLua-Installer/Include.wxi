@@ -10,7 +10,7 @@
   <?define LuaVersionCode="df60df95-efb5-43eb-946f-06f976c58311"?>
   <?define InstallerName = "WinLua Installer"?>
   <?define ProdName="Lua" ?>
-  <?define ProjectName="WinLua"?>
+  <!--<?define ProjectName="WinLua"?>-->
   <?define LuaFilesystemSources="..\Sources\luafilesystem\src"?>
   <?define LuaSources="..\Sources\lua-5.3.5\src"?>
   

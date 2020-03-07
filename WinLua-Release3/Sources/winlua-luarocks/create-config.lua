@@ -165,6 +165,7 @@ Compiler configuration:
 /MSVC          Use MS toolchain, without a setup command (tools must
                be in your path)
 /MW            Use mingw as build system (tools must be in your path)
+/WLC		   Use the LLVM-MinGW compiler
 
 Other options:
 /FORCECONFIG   Use a single config location. Do not use the
@@ -214,6 +215,8 @@ local function parse_options(args)
 			USE_MINGW = true
 		elseif name == "/MSVC" then
 			USE_MSVC_MANUAL = true
+		elseif name == "/WLC" then
+			USE_WLC = true
 		elseif name == "/LUA" then
 			vars.LUA_PREFIX = option.value
 		elseif name == "/LIB" then
@@ -685,6 +688,19 @@ local function restore_config_files()
   vars.CONFBACKUPDIR = nil
 end
 
+local function get_winlua_compiler()
+	--~ Detect the Winlua compiler
+	vars.WLC_CC = "wlc32.exe"
+    vars.MAKE = "mingw-make.exe"
+    vars.RC = "rc.exe"
+    vars.LD = "wlc32.exe"
+    vars.AR = "ar.exe"
+    vars.RANLIB = "ranlib.exe"
+    vars.EXT_DEP_DIRS = "C:/Program Files (x86)/WinLua/LLVM-MinGW/i686-w64-mingw32"
+	--~ and the build library.
+end
+
+
 -- Find GCC based toolchain
 local find_gcc_suite = function()
 
@@ -907,170 +923,57 @@ if USE_MINGW then
     if not found then
         die("Failed to find MinGW/gcc based toolchain, make sure it is in your path: " .. tostring(err))
     end
+elseif USE_WLC then
+	
+	vars.COMPILER_ENV_CMD = "?"
 else
     vars.COMPILER_ENV_CMD = (USE_MSVC_MANUAL and "") or get_msvc_env_setup_cmd()
 end
 
-print(S[[
+--~ print(S[[
 
-==========================
-== System check results ==
-==========================
+--~ ==========================
+--~ == System check results ==
+--~ ==========================
 
-Will configure LuaRocks with the following paths:
-LuaRocks        : $PREFIX
-Config file     : $CONFIG_FILE
-Rocktree        : $TREE_ROOT
+--~ Will configure LuaRocks with the following paths:
+--~ LuaRocks        : $PREFIX
+--~ Config file     : $CONFIG_FILE
+--~ Rocktree        : $TREE_ROOT
 
-Lua interpreter : $LUA_BINDIR\$LUA_INTERPRETER
-    binaries    : $LUA_BINDIR
-    libraries   : $LUA_LIBDIR
-    includes    : $LUA_INCDIR
-    architecture: $UNAME_M
-    binary link : $LUA_LIBNAME with runtime $LUA_RUNTIME.dll
-]])
+--~ Lua interpreter : $LUA_BINDIR\$LUA_INTERPRETER
+    --~ binaries    : $LUA_BINDIR
+    --~ libraries   : $LUA_LIBDIR
+    --~ includes    : $LUA_INCDIR
+    --~ architecture: $UNAME_M
+    --~ binary link : $LUA_LIBNAME with runtime $LUA_RUNTIME.dll
+--~ ]])
 
-if USE_MINGW then
-  print(S[[Compiler        : MinGW/gcc (make sure it is in your path before using LuaRocks)]])
-  print(S[[                  in: $MINGW_BIN_PATH]])
-else
-  if vars.COMPILER_ENV_CMD == "" then
-    print("Compiler        : Microsoft (make sure it is in your path before using LuaRocks)")
-  else
-    print(S[[Compiler        : Microsoft, using; $COMPILER_ENV_CMD]])
-  end
-end
-
-if PROMPT then
-	print("\nPress <ENTER> to start installing, or press <CTRL>+<C> to abort. Use install /? for installation options.")
-	io.read()
-end
-
-print([[
-
-============================
-== Creating Config file LuaRocks... ==
-============================
-
-]])
-
--- ***********************************************************
--- Install LuaRocks files
--- ***********************************************************
-
---~ if exists(vars.PREFIX) then
-  --~ if not FORCE then
-    --~ die(S"$PREFIX exists. Use /F to force removal and reinstallation.")
+--~ if USE_MINGW then
+  --~ print(S[[Compiler        : MinGW/gcc (make sure it is in your path before using LuaRocks)]])
+  --~ print(S[[                  in: $MINGW_BIN_PATH]])
+--~ else
+  --~ if vars.COMPILER_ENV_CMD == "" then
+    --~ print("Compiler        : Microsoft (make sure it is in your path before using LuaRocks)")
   --~ else
-    --~ backup_config_files()
-    --~ print(S"Removing $PREFIX...")
-    --~ exec(S[[RD /S /Q "$PREFIX"]])
-    --~ print()
+    --~ print(S[[Compiler        : Microsoft, using; $COMPILER_ENV_CMD]])
   --~ end
 --~ end
 
---~ print(S"Installing LuaRocks in $PREFIX...")
---~ if not exists(vars.BINDIR) then
-	--~ if not mkdir(vars.BINDIR) then
-		--~ die()
-	--~ end
+--~ PROMPT = nil
+--~ if PROMPT then
+	--~ print("\nPress <ENTER> to start installing, or press <CTRL>+<C> to abort. Use install /? for installation options.")
+	--~ io.read()
 --~ end
 
---~ if INSTALL_LUA then
-	--~ -- Copy the included Lua interpreter binaries
-	--~ if not exists(vars.LUA_BINDIR) then
-		--~ mkdir(vars.LUA_BINDIR)
-	--~ end
-	--~ if not exists(vars.LUA_INCDIR) then
-		--~ mkdir(vars.LUA_INCDIR)
-	--~ end
-	--~ exec(S[[COPY win32\lua5.1\bin\*.* "$LUA_BINDIR" >NUL]])
-	--~ exec(S[[COPY win32\lua5.1\include\*.* "$LUA_INCDIR" >NUL]])
-	--~ print(S"Installed the LuaRocks bundled Lua interpreter in $LUA_BINDIR")
---~ end
+--~ print([[
 
--- Copy the LuaRocks binaries
---~ if not exists(S[[$BINDIR\tools]]) then
-	--~ if not mkdir(S[[$BINDIR\tools]]) then
-		--~ die()
-	--~ end
---~ end
---~ if not exec(S[[COPY win32\tools\*.* "$BINDIR\tools" >NUL]]) then
-	--~ die()
---~ end
---~ -- Copy LR bin helper files
---~ if not exec(S[[COPY win32\*.* "$BINDIR" >NUL]]) then
-	--~ die()
---~ end
---~ -- Copy the LuaRocks lua source files
---~ if not exists(S[[$LUADIR\luarocks]]) then
-	--~ if not mkdir(S[[$LUADIR\luarocks]]) then
-		--~ die()
-	--~ end
---~ end
---~ if not exec(S[[XCOPY /S src\luarocks\*.* "$LUADIR\luarocks" >NUL]]) then
-	--~ die()
---~ end
--- Create start scripts
---~ if not exec(S[[COPY src\bin\*.* "$BINDIR" >NUL]]) then
-	--~ die()
---~ end
---~ for _, c in ipairs{"luarocks", "luarocks-admin"} do
-	--~ -- rename unix-lua scripts to .lua files
-	--~ if not exec( (S[[RENAME "$BINDIR\%s" %s.lua]]):format(c, c) ) then
-		--~ die()
-	--~ end
-	--~ -- create a bootstrap batch file for the lua file, to start them
-	--~ exec(S[[DEL /F /Q "$BINDIR\]]..c..[[.bat" 2>NUL]])
-	--~ local f = io.open(vars.BINDIR.."\\"..c..".bat", "w")
-	--~ f:write(S[[
---~ @ECHO OFF
---~ SETLOCAL ENABLEDELAYEDEXPANSION ENABLEEXTENSIONS
---~ $COMPILER_ENV_CMD
---~ SET "LUA_PATH=$LUADIR\?.lua;$LUADIR\?\init.lua;%LUA_PATH%"
---~ IF NOT "%LUA_PATH_5_2%"=="" (
-   --~ SET "LUA_PATH_5_2=$LUADIR\?.lua;$LUADIR\?\init.lua;%LUA_PATH_5_2%"
---~ )
---~ IF NOT "%LUA_PATH_5_3%"=="" (
-   --~ SET "LUA_PATH_5_3=$LUADIR\?.lua;$LUADIR\?\init.lua;%LUA_PATH_5_3%"
---~ )
---~ SET "PATH=$BINDIR;%PATH%"
---~ "$LUA_BINDIR\$LUA_INTERPRETER" "$BINDIR\]]..c..[[.lua" %*
---~ SET EXITCODE=%ERRORLEVEL%
---~ IF NOT "%EXITCODE%"=="2" GOTO EXITLR
+--~ ============================
+--~ == Creating Config file LuaRocks... ==
+--~ ============================
 
---~ REM Permission denied error, try and auto elevate...
---~ REM already an admin? (checking to prevent loops)
---~ NET SESSION >NUL 2>&1
---~ IF "%ERRORLEVEL%"=="0" GOTO EXITLR
-
---~ REM Do we have PowerShell available?
---~ PowerShell /? >NUL 2>&1
---~ IF NOT "%ERRORLEVEL%"=="0" GOTO EXITLR
-
---~ :GETTEMPNAME
---~ SET TMPFILE=%TEMP%\LuaRocks-Elevator-%RANDOM%.bat
---~ IF EXIST "%TMPFILE%" GOTO :GETTEMPNAME 
-
---~ ECHO @ECHO OFF                                  >  "%TMPFILE%"
---~ ECHO CHDIR /D %CD%                              >> "%TMPFILE%"
---~ ECHO ECHO %0 %*                                 >> "%TMPFILE%"
---~ ECHO ECHO.                                      >> "%TMPFILE%"
---~ ECHO CALL %0 %*                                 >> "%TMPFILE%"
---~ ECHO ECHO.                                      >> "%TMPFILE%"
---~ ECHO ECHO Press any key to close this window... >> "%TMPFILE%"
---~ ECHO PAUSE ^> NUL                               >> "%TMPFILE%"
---~ ECHO DEL "%TMPFILE%"                            >> "%TMPFILE%"
-
---~ ECHO Now retrying as a privileged user...
---~ PowerShell -Command (New-Object -com 'Shell.Application').ShellExecute('%TMPFILE%', '', '', 'runas')
-
---~ :EXITLR
---~ exit /b %EXITCODE% 
 --~ ]])
-	--~ f:close()
-	--~ print(S"Created LuaRocks command: $BINDIR\\"..c..".bat")
---~ end
+
 
 -- ***********************************************************
 -- Configure LuaRocks
@@ -1112,14 +1015,15 @@ print("Configuring LuaRocks...")
 if not exists(vars.SYSCONFDIR) then
 	mkdir(vars.SYSCONFDIR)
 end
-if exists(vars.CONFIG_FILE) then
-	local nname = backup(vars.CONFIG_FILE, vars.SYSCONFFILENAME..".bak")
-	print("***************")
-	print(S"*** WARNING *** LuaRocks config file already exists: '$CONFIG_FILE'. The old file has been renamed to '"..nname.."'")
-	print("***************")
-end
+--~ if exists(vars.CONFIG_FILE) then
+	--~ local nname = backup(vars.CONFIG_FILE, vars.SYSCONFFILENAME..".bak")
+	--~ print("***************")
+	--~ print(S"*** WARNING *** LuaRocks config file already exists: '$CONFIG_FILE'. The old file has been renamed to '"..nname.."'")
+	--~ print("***************")
+--~ end
 
 local f = io.open(vars.CONFIG_FILE, "w")
+print(vars.CONFIG_FILE)
 f:write([=[
 rocks_trees = {
 ]=])
@@ -1145,6 +1049,13 @@ f:write("}\n")
 f:write("variables = {\n")
 if USE_MINGW and vars.LUA_RUNTIME == "MSVCRT" then
 	f:write("    MSVCRT = 'm',   -- make MinGW use MSVCRT.DLL as runtime\n")
+elseif USE_WLC then
+	f:write(S"external_dep_dir = [[$WLC_LIB]] \n")
+	f:write(S[[external_deps_patterns = {
+         bin = { "?.exe", "?.bat" },
+         lib = { "lib?.a", "lib?.dll.a", "?.dll.a", "?.lib", "lib?.lib"},
+         include = { "?.h" }
+      }\n]])
 else
 	f:write("    MSVCRT = '"..vars.LUA_RUNTIME.."',\n")
 end
@@ -1160,18 +1071,26 @@ if USE_MINGW then
     AR = $MINGW_AR,
     RANLIB = $MINGW_RANLIB,
 ]])
+elseif USE_WLC then
+        f:write(S[[
+    CC = $WLC_CC,
+    MAKE = $WLC_MAKE,
+    RC = $WLC_RC,
+    LD = $WLC_LD,
+    AR = $WLC_AR,
+    RANLIB = $WLC_RANLIB]])
 end
 f:write("}\n")
 f:write("verbose = false   -- set to 'true' to enable verbose output\n")
 f:close()
 
-print(S"Created LuaRocks config file: $CONFIG_FILE")
+--~ print(S"Created LuaRocks config file: $CONFIG_FILE")
 --~ vars.SYSCONFDIR = vars.SYSCONFDIR:gsub("\\","\\\\")
 local set_variable = 'setx LUAROCKS_SYSCONFDIR "'..vars.SYSCONFDIR .. '"'
 exec(set_variable)
 
-print()
-print("Creating rocktrees...")
+--~ print()
+--~ print("Creating rocktrees...")
 if not exists(vars.TREE_ROOT) then
 	mkdir(vars.TREE_ROOT)
 	print(S[[Created system rocktree    : "$TREE_ROOT"]])
@@ -1188,6 +1107,8 @@ else
 	print(S[[Local user rocktree exists : "$LOCAL_TREE"]])
 end
 
+--~ 2020-02-22 - RH: Remove this for now. I need to see if I cant get this to work with WinLua
+REGISTRY = nil
 -- Load registry information
 if REGISTRY then
 	-- expand template with correct path information
@@ -1209,31 +1130,31 @@ exec( S[[del "$PREFIX\LuaRocks.reg.*" >NUL]] )
 vars.TREE_BIN     = vars.TREE_BIN     or vars.TREE_ROOT..[[\bin]]
 vars.TREE_LMODULE = vars.TREE_LMODULE or vars.TREE_ROOT..[[\share\lua\]]..vars.LUA_VERSION
 vars.TREE_CMODULE = vars.TREE_CMODULE or vars.TREE_ROOT..[[\lib\lua\]]..vars.LUA_VERSION
-print(S[[
+--~ print(S[[
 
-============================
-== LuaRocks is configured! ==
-============================
+--~ ============================
+--~ == LuaRocks is configured! ==
+--~ ============================
 
 
-You may want to add the following elements to your paths;
-Lua interpreter;
-  PATH     :   $LUA_BINDIR
-  PATHEXT  :   .LUA
-LuaRocks;
-  PATH     :   $PREFIX
-  LUA_PATH :   $PREFIX\lua\?.lua;$PREFIX\lua\?\init.lua
-Local user rocktree (Note: %APPDATA% is user dependent);
-  PATH     :   %APPDATA%\LuaRocks\bin
-  LUA_PATH :   %APPDATA%\LuaRocks\share\lua\$LUA_VERSION\?.lua;%APPDATA%\LuaRocks\share\lua\$LUA_VERSION\?\init.lua
-  LUA_CPATH:   %APPDATA%\LuaRocks\lib\lua\$LUA_VERSION\?.dll
-System rocktree
-  PATH     :   $TREE_BIN
-  LUA_PATH :   $TREE_LMODULE\?.lua;$TREE_LMODULE\?\init.lua
-  LUA_CPATH:   $TREE_CMODULE\?.dll
+--~ You may want to add the following elements to your paths;
+--~ Lua interpreter;
+  --~ PATH     :   $LUA_BINDIR
+  --~ PATHEXT  :   .LUA
+--~ LuaRocks;
+  --~ PATH     :   $PREFIX
+  --~ LUA_PATH :   $PREFIX\lua\?.lua;$PREFIX\lua\?\init.lua
+--~ Local user rocktree (Note: %APPDATA% is user dependent);
+  --~ PATH     :   %APPDATA%\LuaRocks\bin
+  --~ LUA_PATH :   %APPDATA%\LuaRocks\share\lua\$LUA_VERSION\?.lua;%APPDATA%\LuaRocks\share\lua\$LUA_VERSION\?\init.lua
+  --~ LUA_CPATH:   %APPDATA%\LuaRocks\lib\lua\$LUA_VERSION\?.dll
+--~ System rocktree
+  --~ PATH     :   $TREE_BIN
+  --~ LUA_PATH :   $TREE_LMODULE\?.lua;$TREE_LMODULE\?\init.lua
+  --~ LUA_CPATH:   $TREE_CMODULE\?.dll
 
-Note that the %APPDATA% element in the paths above is user specific and it MUST be replaced by its actual value.
-For the current user that value is: $APPDATA.
+--~ Note that the %APPDATA% element in the paths above is user specific and it MUST be replaced by its actual value.
+--~ For the current user that value is: $APPDATA.
 
-]])
+--~ ]])
 os.exit(0)

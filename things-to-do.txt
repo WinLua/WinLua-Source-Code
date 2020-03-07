@@ -1,11 +1,11 @@
-Release 2 outstanding
-Fix JamPlus installation - remove Jam baby! link
-- Add documenatation, even if it just points to the sample directory
-- Add the HTML documenation
+Release 3 outstanding:
+JamPlus installation?
+
 LibreSSL
-- Not building dlls? - fixed
-- not building x64
-- Need to add dll's to the installer - done
+- Move to Ninja?
+- **Move install path under WinLua
+
+- Finalize installer - Check with Shawn Fallow.
 
 Need to build everything for both 64 and 32 bit
 	For Jam, use jam C.TOOLCHAIN=win32/release or win64/release
@@ -14,20 +14,7 @@ Need to build everything for both 64 and 32 bit
 
 - Can I use JamPlus (or should I just use Lua) to execute msbuild projects?
 
-- Need to redo license EULA
 - Need to add back 32/64 bit title to window in R2 installer
-- test R2 against LuaRocks
-- Report LuaRocks /? issue  - Check against latest release
-	c:\temp\luarocks-2.4.3-win32>install.bat /?
-
-	c:\temp\luarocks-2.4.3-win32>rem=rem --[[
-	LuaRocks 2.4.x installer.
-
-	Unrecognized option: /D
-
-	Failed installing LuaRocks. Run with /? for help.
-
-
 
 Need to automate the builds
 need to copy sol.hpp to include files - Copied V2.20.1
@@ -37,3 +24,16 @@ for each project git pull
 build
 copy build output
 run wix toolset (candle light (burn?))
+
+Checklist:
+- EULA
+- SOL version
+- LibreSSL Version
+- WLC
+
+ENV_VARS:
+- LUAROCKS_SYSCONFDIR
+- Add WLC to path
+- Add Luarocks to path
+- add LibreSSL to path
+- 
