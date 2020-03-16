@@ -11,20 +11,21 @@
       <Directory Id="MergeRedirectFolder">
         <Directory Id="owd2CA9B1007E9632F33513B63B022635BF" Name="aarch64-w64-mingw32">
           <Directory Id="owd5085C70F97B611E1CDC6A1E6CE8AA79B" Name="bin">
-           <Component Win64="$(var.Win64)" Id="owc2D7F869BE50203AAC9FBBCF1DAEA301B" Guid="5ad2aeae-3d18-9583-4719-a99687218c1f">
+            <Component Win64="$(var.Win64)" Id="owc2D7F869BE50203AAC9FBBCF1DAEA301B" Guid="5ad2aeae-3d18-9583-4719-a99687218c1f">
               <File Id="owf2D7F869BE50203AAC9FBBCF1DAEA301B" Source="$(var.SourceDir)\llvm-mingw\aarch64-w64-mingw32\bin\libc++.dll" KeyPath="yes" />
             </Component>
-           <Component Win64="$(var.Win64)" Id="owc95BCE3E635CAA0E8943635E4C242C206" Guid="bafe3864-de11-fcb8-e211-e793d7bf5a4b">
+            <Component Win64="$(var.Win64)" Id="owc95BCE3E635CAA0E8943635E4C242C206" Guid="bafe3864-de11-fcb8-e211-e793d7bf5a4b">
               <File Id="owf95BCE3E635CAA0E8943635E4C242C206" Source="$(var.SourceDir)\llvm-mingw\aarch64-w64-mingw32\bin\libssp-0.dll" KeyPath="yes" />
             </Component>
-           <Component Win64="$(var.Win64)" Id="owcE4E482BED9CF2E7DAD9E28657FDF78DA" Guid="7288971e-10bf-bcc6-239a-1fc6a8b2b314">
+            <Component Win64="$(var.Win64)" Id="owcE4E482BED9CF2E7DAD9E28657FDF78DA" Guid="7288971e-10bf-bcc6-239a-1fc6a8b2b314">
               <File Id="owfE4E482BED9CF2E7DAD9E28657FDF78DA" Source="$(var.SourceDir)\llvm-mingw\aarch64-w64-mingw32\bin\libunwind.dll" KeyPath="yes" />
             </Component>
-           <Component Win64="$(var.Win64)" Id="owcA935535CD9F283C7CC29A6CB7A3EB43F" Guid="e039cd51-c6a7-e6d0-8b7c-7dc5dbb30b04">
+            <Component Win64="$(var.Win64)" Id="owcA935535CD9F283C7CC29A6CB7A3EB43F" Guid="e039cd51-c6a7-e6d0-8b7c-7dc5dbb30b04">
               <File Id="owfA935535CD9F283C7CC29A6CB7A3EB43F" Source="$(var.SourceDir)\llvm-mingw\aarch64-w64-mingw32\bin\libwinpthread-1.dll" KeyPath="yes" />
             </Component>
           </Directory>
-          <Directory Id="owdA057C6EC53A11B474FEDB60FED5731D0" Name="lib">
+        </Directory>
+        <!--<Directory Id="owdA057C6EC53A11B474FEDB60FED5731D0" Name="lib">
            <Component Win64="$(var.Win64)" Id="owc6260F4AE9F7D17EEEC328D7067AC2C9A" Guid="5b2b5492-076c-31e4-b88d-0aae015fee01">
               <File Id="owf6260F4AE9F7D17EEEC328D7067AC2C9A" Source="$(var.SourceDir)\llvm-mingw\aarch64-w64-mingw32\lib\binmode.o" KeyPath="yes" />
             </Component>
@@ -15200,7 +15201,7 @@
               <File Id="owf675BF7AE02BE640D95BACEB2AB0D58E6" Source="$(var.SourceDir)\llvm-mingw\x86_64-w64-mingw32\lib\txtmode.o" KeyPath="yes" />
             </Component>
           </Directory>
-        </Directory>
+        </Directory>-->
       </Directory>
     </Directory>
     <ComponentGroupRef Id="Custom" />

@@ -39,17 +39,20 @@
     <DirectoryRef Id="LLVMMINGW_INSTALLLOCATION" />
     
     <!--Properties for the LuaRocks configuraiton file that we generate with Configure.LuaRocks custom Action-->
-    <SetProperty Id="LuaRocksConfigFileName" Value="config-$(var.LuaVersion).lua" Before="SetLuaRocksConfigPath" Sequence="execute" />
-    <SetProperty Id="LuaRocksRootPath" Value="[LUAROCKS_INSTALLLOCATION]" Before="SetLuaRocksConfigPath" Sequence="execute" />
-    <SetProperty Id="LuaRocksConfigPath" Value="[LuaRocksRootPath]\[LuaRocksConfigFileName]" Before="SetConfigure.LuaRocks" Sequence="execute" />
+    <SetProperty Id="LuaVersion" Value="$(var.LuaVersion)" Before="SetConfigure.LuaRocks" Sequence="execute" />   
     <SetProperty Id="LuaRootPath" Value="[LUA_INSTALLLOCATION]" Before="SetConfigure.LuaRocks" Sequence="execute" />
+
+    <SetProperty Id="LuaRocksRootPath" Value="[LUAROCKS_INSTALLLOCATION]" Before="SetConfigure.LuaRocks" Sequence="execute">
+      <![CDATA[Installed OR ((&LuaRocks=3) AND NOT(!LuaRocks=3)) OR ((&LuaRocks=2) AND (!LuaRocks=3))]]>
+    </SetProperty>
     
     <!--Don't set this property if the LLVM compiler is not being installed-->
     <SetProperty Id="ToolsPath" Value="[LLVMMINGW_INSTALLLOCATION]" Before="SetConfigure.LuaRocks" Sequence="execute">
-      <![CDATA[Installed OR (&LLVM_MinGW=3) AND NOT(!LLVM_MinGW=3)]]>
+      <![CDATA[Installed OR ((&LLVM_MinGW=3) AND NOT(!LLVM_MinGW=3)) OR ((&LLVM_MinGW=2) AND (!LLVM_MinGW=3))]]>
     </SetProperty>
-    <SetProperty Id="Configure.LuaRocks" Value="LuaRocksConfigPath=[LuaRocksConfigPath];LuaRocksRootPath=[LuaRocksRootPath];LuaRootPath=[LuaRootPath];ToolsPath=[ToolsPath]" Before="Configure.LuaRocks" Sequence="execute" />
-
+    <SetProperty Id="Configure.LuaRocks" Value="LuaVersion=[LuaVersion];LuaRocksRootPath=[LuaRocksRootPath];LuaRootPath=[LuaRootPath];ToolsPath=[ToolsPath]" Before="Configure.LuaRocks" Sequence="execute" />
+    <SetProperty Id="Remove.Configure.LuaRocks" Value="LuaVersion=[LuaVersion];LuaRocksRootPath=[LuaRocksRootPath];LuaRootPath=[LuaRootPath];ToolsPath=[ToolsPath]" Before="Remove.Configure.LuaRocks" Sequence="execute" />
+    <SetProperty Id="Remove.Rocktree.LuaRocks" Value="LuaVersion=[LuaVersion];LuaRocksRootPath=[LuaRocksRootPath];LuaRootPath=[LuaRootPath];ToolsPath=[ToolsPath]" Before="Remove.Rocktree.LuaRocks" Sequence="execute" />
 
     <!--<UIRef Id="WinLuaInstallSequence"/>-->
     <!--<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Remove LuaRocks Options" />-->
@@ -57,22 +60,23 @@
     <!-- The deferred custom action -->
     <Binary Id='WinLua.Installer.CustomAction' SourceFile='..\Winlua.Installer.CustomAction\bin\Release\Winlua.Installer.CustomAction.CA.dll'/>
     <CustomAction Id="Configure.LuaRocks" BinaryKey="WinLua.Installer.CustomAction" DllEntry="ConfigureLuaRocks" Impersonate="no" Execute="deferred" Return="check" />
-    <CustomAction Id="Remove.Configure.LuaRocks"  BinaryKey="WinLua.Installer.CustomAction" DllEntry="RemoveLuaRocksConfig" Impersonate="no" Execute="immediate" Return="check" />
-    <CustomAction Id="Remove.Rocktree.LuaRocks"  BinaryKey="WinLua.Installer.CustomAction" DllEntry="RemoveRockTree" Impersonate="no" Execute="immediate" Return="check" />
+    <CustomAction Id="Remove.Configure.LuaRocks"  BinaryKey="WinLua.Installer.CustomAction" DllEntry="RemoveLuaRocksConfig" Impersonate="no" Execute="deferred" Return="check" />
+    <CustomAction Id="Remove.Rocktree.LuaRocks"  BinaryKey="WinLua.Installer.CustomAction" DllEntry="RemoveRockTree" Impersonate="no" Execute="deferred" Return="check" />
       <!-- Schedule the deferred custom action between InstallInitialize and InstallFinalize -->
       <InstallExecuteSequence>
         <!-- Only run this when the LuaRocks feature is installed-->
         <Custom Action="Configure.LuaRocks" After="InstallFiles">
           <![CDATA[Installed OR (&LuaRocks=3) AND NOT(!LuaRocks=3)]]>
         </Custom>        
-        <!--Remove the Luarocks configuration file--><!--
+        <!--Option to Remove (defaults to retain) the Luarocks configuration file-->
         <Custom Action="Remove.Configure.LuaRocks" Before="RemoveFiles">
-          <![CDATA[ADD A CHECKBOX THAT SETS A PROPERTY WE CHECK HERE]]>
+          <![CDATA[(&LuaRocks=2) AND NOT(!LuaRocks=3)]]>
         </Custom>
-        --><!--Remove the rocktree.--><!--
+        <!--Option to Remove (default to retain the rocktree.-->
       <Custom Action="Remove.Rocktree.LuaRocks" Before="RemoveFiles">
-        <![CDATA[ADD A CHECKBOX THAT SETS A PROPERTY WE CHECK HERE]]>
-      </Custom>-->
+        <![CDATA[(&LuaRocks=2) AND NOT(!LuaRocks=3)]]>
+        <!--<![CDATA[ADD A CHECKBOX THAT SETS A PROPERTY WE CHECK HERE]]>-->
+      </Custom>
     </InstallExecuteSequence>
     
   </Product>
