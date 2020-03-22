@@ -25,7 +25,8 @@
             </Component>
           </Directory>
         </Directory>
-        <!--<Directory Id="owdA057C6EC53A11B474FEDB60FED5731D0" Name="lib">
+        <!-- NOTE: THIS IS USUALLY WHERE I REMOVE SOME OF THE FILES TO REDUCE THE INSTALLER SIZE FOR TESTING -->
+          <Directory Id="owdA057C6EC53A11B474FEDB60FED5731D0" Name="lib">
            <Component Win64="$(var.Win64)" Id="owc6260F4AE9F7D17EEEC328D7067AC2C9A" Guid="5b2b5492-076c-31e4-b88d-0aae015fee01">
               <File Id="owf6260F4AE9F7D17EEEC328D7067AC2C9A" Source="$(var.SourceDir)\llvm-mingw\aarch64-w64-mingw32\lib\binmode.o" KeyPath="yes" />
             </Component>
@@ -15201,7 +15202,8 @@
               <File Id="owf675BF7AE02BE640D95BACEB2AB0D58E6" Source="$(var.SourceDir)\llvm-mingw\x86_64-w64-mingw32\lib\txtmode.o" KeyPath="yes" />
             </Component>
           </Directory>
-        </Directory>-->
+        </Directory>
+        <!--THIS IS THE END OF WHERE I CHOP THE FILES TO REDUCE THE INSTALLER SIZE FOR TESTING-->
       </Directory>
     </Directory>
     <ComponentGroupRef Id="Custom" />
