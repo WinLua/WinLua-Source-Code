@@ -51,32 +51,25 @@
       <![CDATA[Installed OR ((&LLVM_MinGW=3) AND NOT(!LLVM_MinGW=3)) OR ((&LLVM_MinGW=2) AND (!LLVM_MinGW=3))]]>
     </SetProperty>
     <SetProperty Id="Configure.LuaRocks" Value="LuaVersion=[LuaVersion];LuaRocksRootPath=[LuaRocksRootPath];LuaRootPath=[LuaRootPath];ToolsPath=[ToolsPath]" Before="Configure.LuaRocks" Sequence="execute" />
-    <SetProperty Id="Remove.Configure.LuaRocks" Value="LuaVersion=[LuaVersion];LuaRocksRootPath=[LuaRocksRootPath];LuaRootPath=[LuaRootPath];ToolsPath=[ToolsPath]" Before="Remove.Configure.LuaRocks" Sequence="execute" />
-    <SetProperty Id="Remove.Rocktree.LuaRocks" Value="LuaVersion=[LuaVersion];LuaRocksRootPath=[LuaRocksRootPath];LuaRootPath=[LuaRootPath];ToolsPath=[ToolsPath]" Before="Remove.Rocktree.LuaRocks" Sequence="execute" />
+    <SetProperty Id="Remove.ConfigAndRocktree.LuaRocks" Value="LuaVersion=[LuaVersion];LuaRocksRootPath=[LuaRocksRootPath];LuaRootPath=[LuaRootPath];ToolsPath=[ToolsPath]" Before="Remove.ConfigAndRocktree.LuaRocks" Sequence="execute" />
 
-    <!--<UIRef Id="WinLuaInstallSequence"/>-->
-    <!--<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Remove LuaRocks Options" />-->
+    <!--<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Remove LuaRocks Options"  />-->
     
     <!-- The deferred custom action -->
     <Binary Id='WinLua.Installer.CustomAction' SourceFile='..\Winlua.Installer.CustomAction\bin\Release\Winlua.Installer.CustomAction.CA.dll'/>
     <CustomAction Id="Configure.LuaRocks" BinaryKey="WinLua.Installer.CustomAction" DllEntry="ConfigureLuaRocks" Impersonate="no" Execute="deferred" Return="check" />
-    <CustomAction Id="Remove.Configure.LuaRocks"  BinaryKey="WinLua.Installer.CustomAction" DllEntry="RemoveLuaRocksConfig" Impersonate="no" Execute="deferred" Return="check" />
-    <CustomAction Id="Remove.Rocktree.LuaRocks"  BinaryKey="WinLua.Installer.CustomAction" DllEntry="RemoveRockTree" Impersonate="no" Execute="deferred" Return="check" />
+    <CustomAction Id="Remove.ConfigAndRocktree.LuaRocks"  BinaryKey="WinLua.Installer.CustomAction" DllEntry="RemoveLuaRocksConfig" Impersonate="no" Execute="deferred" Return="check" />
       <!-- Schedule the deferred custom action between InstallInitialize and InstallFinalize -->
       <InstallExecuteSequence>
         <!-- Only run this when the LuaRocks feature is installed-->
         <Custom Action="Configure.LuaRocks" After="InstallFiles">
           <![CDATA[Installed OR (&LuaRocks=3) AND NOT(!LuaRocks=3)]]>
         </Custom>        
-        <!--Option to Remove (defaults to retain) the Luarocks configuration file-->
-        <Custom Action="Remove.Configure.LuaRocks" Before="RemoveFiles">
-          <![CDATA[(&LuaRocks=2) AND NOT(!LuaRocks=3)]]>
+        <!--Option to Luarocks configuration file and Rocktree-->
+        <Custom Action="Remove.ConfigAndRocktree.LuaRocks" Before="RemoveFiles">
+          <!--<![CDATA[REMOVE and (WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1)]]>-->
+          <![CDATA[REMOVE]]>
         </Custom>
-        <!--Option to Remove (default to retain the rocktree.-->
-      <Custom Action="Remove.Rocktree.LuaRocks" Before="RemoveFiles">
-        <![CDATA[(&LuaRocks=2) AND NOT(!LuaRocks=3)]]>
-        <!--<![CDATA[ADD A CHECKBOX THAT SETS A PROPERTY WE CHECK HERE]]>-->
-      </Custom>
     </InstallExecuteSequence>
     
   </Product>

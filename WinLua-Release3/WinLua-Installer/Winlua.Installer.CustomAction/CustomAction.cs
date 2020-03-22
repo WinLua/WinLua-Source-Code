@@ -221,6 +221,8 @@ namespace Winlua.Installer.CustomAction
             }
             Environment.SetEnvironmentVariable(LUAROCKS_SYSCONFDIR, null, EnvironmentVariableTarget.Machine);
             session.Log("***WinLua: Config File Removed");
+
+            RemoveRockTree(session);
             return ActionResult.Success;
         }
 
@@ -228,7 +230,6 @@ namespace Winlua.Installer.CustomAction
         public static ActionResult RemoveRockTree(Session session)
         {
             session.Log("***WinLua: Begin Removing RockTree");
-
             string luaRootPath = session.CustomActionData["LuaRootPath"];
             string luaVersion = session.CustomActionData["LuaVersion"];
             session.Log(string.Format("WinLua: Lua version {0} is installed at {1} ", luaVersion, luaRootPath));
