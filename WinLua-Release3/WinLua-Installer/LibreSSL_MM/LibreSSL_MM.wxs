@@ -5,23 +5,24 @@
   <!-- SourceDir instructs IsWiX the location of the directory that contains files for this merge module -->
   <!--<?define SourceDir="..\..\5.4\Deploy\x86"?>-->
   <!--<?define SourceDir="..\..\Deploy\x86\"?>-->
-  <?define SourceDir="..\..\Deploy\$(var.Platform)\"?>
-  <Module Id="LibreSSL_MM" Language="1033" Version="3.0.2.0">
+  <!--<?define SourceDir="..\..\Deploy\$(var.Platform)\"?>-->
+  <?define SourceDir="C:\WinLua-Deploy\$(var.InstallerVersion)\$(var.Platform)\"?>
+  <Module Id="LibreSSL_MM" Language="1033" Version="3.1.0.0">
     <Package Id="ae00c157-b285-466b-9a13-9b994f74b69c" Manufacturer="OpenBSD" InstallerVersion="200" InstallScope="perMachine" Description="LibreSSL is the OpenBSD for of OpenSSL. The code has been modernized and scrutinized for security." />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="MergeRedirectFolder">
         <Directory Id="libressldir" Name="bin">
           <Component Win64="$(var.Win64)" Id="owcF7C8BA4390DB6D8E70EC1F5E31DF3AB8" Guid="19cd4e11-7617-95db-39ad-d359f34bb03a">
-            <File Id="owfF7C8BA4390DB6D8E70EC1F5E31DF3AB8" Source="$(var.SourceDir)LibreSSL\bin\crypto-45.dll" KeyPath="yes" />
+            <File Id="owfF7C8BA4390DB6D8E70EC1F5E31DF3AB8" Source="$(var.SourceDir)LibreSSL\bin\libcrypto-46.dll" KeyPath="yes" />
           </Component>
           <Component Win64="$(var.Win64)" Id="owc1868BC296A603B57039410B3ED82C226" Guid="8a294fda-516c-767b-0692-51da04561881">
             <File Id="owf1868BC296A603B57039410B3ED82C226" Source="$(var.SourceDir)LibreSSL\bin\openssl.exe" KeyPath="yes" />
           </Component>
           <Component Win64="$(var.Win64)" Id="owc9964A737BC2DB3DF98D242DD231CECD3" Guid="e82f21b3-b1c8-1c86-c888-e4d4b6745cb5">
-            <File Id="owf9964A737BC2DB3DF98D242DD231CECD3" Source="$(var.SourceDir)LibreSSL\bin\ssl-47.dll" KeyPath="yes" />
+            <File Id="owf9964A737BC2DB3DF98D242DD231CECD3" Source="$(var.SourceDir)LibreSSL\bin\libssl-48.dll" KeyPath="yes" />
           </Component>
           <Component Win64="$(var.Win64)" Id="owc74870CED37F1ED7F3B4D2BA47E80C31D" Guid="7f2615d6-2815-84c9-0bb5-e77f077c20b1">
-            <File Id="owf74870CED37F1ED7F3B4D2BA47E80C31D" Source="$(var.SourceDir)LibreSSL\bin\tls-19.dll" KeyPath="yes" />
+            <File Id="owf74870CED37F1ED7F3B4D2BA47E80C31D" Source="$(var.SourceDir)LibreSSL\bin\libtls-20.dll" KeyPath="yes" />
           </Component>
         </Directory>
         <Directory Id="owdDE1E446C069BCE37BE3841D45170A7CA" Name="etc">
@@ -52,9 +53,6 @@
             </Component>
             <Component Win64="$(var.Win64)" Id="owc99053DE29CAADE426A3231EE4B14C72C" Guid="32edd7fc-9049-869c-1191-7ce78b259d91">
               <File Id="owf99053DE29CAADE426A3231EE4B14C72C" Source="$(var.SourceDir)LibreSSL\include\openssl\asn1.h" KeyPath="yes" />
-            </Component>
-            <Component Win64="$(var.Win64)" Id="owcE805B416D759AE099F2F282379EAB507" Guid="82fbf2d6-2961-cb6c-8ea1-deeaee262666">
-              <File Id="owfE805B416D759AE099F2F282379EAB507" Source="$(var.SourceDir)LibreSSL\include\openssl\asn1_mac.h" KeyPath="yes" />
             </Component>
             <Component Win64="$(var.Win64)" Id="owcA898E18993FF0410344DA85CA068991A" Guid="b1e3bd2d-dc65-e348-7778-130bb158d61d">
               <File Id="owfA898E18993FF0410344DA85CA068991A" Source="$(var.SourceDir)LibreSSL\include\openssl\asn1t.h" KeyPath="yes" />
@@ -261,13 +259,13 @@
         </Directory>
         <Directory Id="owd16643BE9CBAEF26E96EDBB6FB712EE5D" Name="lib">
           <Component Win64="$(var.Win64)" Id="owc7BD001AEFCD17D8FF735F34D69A5365F" Guid="1d8ad339-38bc-54d4-d006-053bd5c48092">
-            <File Id="owf7BD001AEFCD17D8FF735F34D69A5365F" Source="$(var.SourceDir)LibreSSL\lib\crypto-45.lib" KeyPath="yes" />
+            <File Id="owf7BD001AEFCD17D8FF735F34D69A5365F" Source="$(var.SourceDir)LibreSSL\lib\libcrypto-46.dll.a" KeyPath="yes" />
           </Component>
           <Component Win64="$(var.Win64)" Id="owcA54A866F883337233BED241570A10471" Guid="2fa31527-2bee-0ddc-1762-34629bd717e1">
-            <File Id="owfA54A866F883337233BED241570A10471" Source="$(var.SourceDir)LibreSSL\lib\ssl-47.lib" KeyPath="yes" />
+            <File Id="owfA54A866F883337233BED241570A10471" Source="$(var.SourceDir)LibreSSL\lib\libssl-48.dll.a" KeyPath="yes" />
           </Component>
           <Component Win64="$(var.Win64)" Id="owc692840EEF23695BB18C41843FBF041B9" Guid="9f4e0917-9fc9-7b8a-b98b-6825c586713e">
-            <File Id="owf692840EEF23695BB18C41843FBF041B9" Source="$(var.SourceDir)LibreSSL\lib\tls-19.lib" KeyPath="yes" />
+            <File Id="owf692840EEF23695BB18C41843FBF041B9" Source="$(var.SourceDir)LibreSSL\lib\libtls-20.dll.a" KeyPath="yes" />
           </Component>
         </Directory>
         <Directory Id="owd2A8ED26A2AC05DCAED107202D9C7BF5F" Name="share">

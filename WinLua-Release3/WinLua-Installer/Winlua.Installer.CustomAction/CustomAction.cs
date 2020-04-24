@@ -148,6 +148,21 @@ namespace Winlua.Installer.CustomAction
 
         }
 
+        [CustomAction]
+        public static ActionResult RemoveWinLuaDir(Session session)
+        {
+            string path = session.CustomActionData["WinLuaPath"];
+            session.Log("WinLua: Checking for folder remaining at {0}", path);
+            if (Directory.Exists(path))
+            {
+                session.Log("WinLua: Removing everything leftover.");
+                Directory.Delete(path, true);
+            }
+            Environment.SetEnvironmentVariable(LUAROCKS_SYSCONFDIR, null, EnvironmentVariableTarget.Machine);
+            session.Log("***WinLua: Removed");
+            return ActionResult.Success;
+        }
+
         private static bool RunConfigScript(Session session, string LuaPath, string LuaRocksPath)
         {
             ///2020-02-01: RH - There is a bug in NeoLua 1.3.11 that incorrectly parses a table variable in 
@@ -219,6 +234,10 @@ namespace Winlua.Installer.CustomAction
                 session.Log("WinLua: Deleting LuaRocks Config file.");
                 File.Delete(luaRocksConfigFile);
             }
+            else
+            {
+                session.Log("WinLua: Could not find {0}.", luaRocksConfigFile);
+            }
             Environment.SetEnvironmentVariable(LUAROCKS_SYSCONFDIR, null, EnvironmentVariableTarget.Machine);
             session.Log("***WinLua: Config File Removed");
 
@@ -241,7 +260,7 @@ namespace Winlua.Installer.CustomAction
             {
                 luaRocksRootPath = session.CustomActionData["LuaRocksRootPath"];
                 session.Log("WinLua: LuaRocks installed in " + luaRocksRootPath);
-                rockTree = string.Format("{0}NOT A REAL ROCK TREE{1}.lua", luaRocksRootPath, luaVersion.Replace(".", ""));
+                rockTree = string.Format("{0}\\{1}/lib", luaRootPath, luaVersion);
             }
             else
             {
@@ -250,9 +269,9 @@ namespace Winlua.Installer.CustomAction
 
             if (!string.IsNullOrEmpty(session.CustomActionData["ToolsPath"]))
             {
-                session.Log("WinLua: WinLua Compiler Tools (WLC) have been installed.");
+                session.Log("WinLua: WinLua Compiler Tools (WLC) are present.");
                 toolsPath = session.CustomActionData["ToolsPath"];
-                session.Log("WinLua: Wrote config file for use with WLC");
+                session.Log("WinLua: Set Toolspath for removal");
             }
             else
             {
@@ -260,7 +279,7 @@ namespace Winlua.Installer.CustomAction
             }
 
             //build luarocks config file name/path
-
+            session.Log("WinLua: Checking for rocktree at {0}", rockTree);
             if (Directory.Exists(rockTree))
             {
                 session.Log("WinLua: Removing Rocktree.");

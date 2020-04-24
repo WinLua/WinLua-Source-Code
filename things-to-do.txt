@@ -1,11 +1,17 @@
 Release 3 outstanding:
 JamPlus installation?
 
+- XCA - Check about installer, version. Do I rebuild against LibreSSL?
+- WePoll - Get this into installer. Re: email-to-send.txt to Lua-l
+
 LibreSSL
 - Move to Ninja?
 - **Move install path under WinLua
 
-- Finalize installer - Check with Shawn Fallow.
+- Finalize installer 
+	- Check with Shawn Fallow.
+	- Uninstall running the Config stuff, not the remove stuff
+	- Add checkboxes for config file and RockTree
 
 Need to build everything for both 64 and 32 bit
 	For Jam, use jam C.TOOLCHAIN=win32/release or win64/release
