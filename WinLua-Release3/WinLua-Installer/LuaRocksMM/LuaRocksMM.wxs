@@ -5,7 +5,7 @@
   <!-- SourceDir instructs IsWiX the location of the directory that contains files for this merge module -->
   <?define SourceDir="..\..\Deploy\x86"?>
   <!--<?define SourceDir="..\..\Deploy\$(var.Platform)"?>-->
-  <Module Id="LuaRocksMM" Language="1033" Version="3.2.1">
+  <Module Id="LuaRocksMM" Language="1033" Version="3.0.3">
     <Package Id="3ddf1f2b-8f02-4457-8d83-12b7df43e7e8" Manufacturer="LuaRocks.org" InstallerVersion="200" />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="MergeRedirectFolder">

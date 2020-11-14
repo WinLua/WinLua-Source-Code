@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define ComponentRules="OneToOne"?>
+  <!-- SourceDir instructs IsWiX the location of the directory that contains files for this merge module -->
+  <?define SourceDir="..\Deploy"?>
+  <Module Id="XMake" Language="1033" Version="1.0.0.0">
+    <Package Id="3776f897-38bc-4f87-81f1-f95e4363c1ea" Manufacturer="XMake" InstallerVersion="200" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="MergeRedirectFolder"/>
+    </Directory>
+    <ComponentGroupRef Id="Custom"/>
+  </Module>
+</Wix>

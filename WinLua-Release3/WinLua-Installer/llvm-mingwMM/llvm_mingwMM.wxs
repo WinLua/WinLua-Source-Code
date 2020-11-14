@@ -4,9 +4,9 @@
   <?define ComponentRules="OneToOne"?>
   <!-- SourceDir instructs IsWiX the location of the directory that contains files for this merge module -->
   <!--<?define SourceDir="..\..\Deploy\x86"?>-->
-  <?define SourceDir="C:\WinLua-Deploy\2004b\x86"?>
+  <?define SourceDir="C:\Winlua-Deploy\2011b-BETA\x86"?>
   <!--<?define SourceDir="C:\WinLua-Deploy\$(var.InstallerVersion)\$(var.Platform)"?>-->
-  <Module Id="llvm_mingwMM" Language="1033" Version="9.0.0.0">
+  <Module Id="llvm_mingwMM" Language="1033" Version="11.0.0.0">
     <Package Id="02517eda-db85-4b7a-a7b7-6885f6237e72" Manufacturer="WinLua" InstallerVersion="200" Description="WinLua Compiler (WLC) is a C compiler and toolchain based on LLVM/CLang and includes the MinGW Windows System Library." />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="MergeRedirectFolder">
@@ -4698,7 +4698,7 @@
             <File Id="owf13BEAC25DA83D7F450EB6D5010FD37DF" Source="$(var.SourceDir)\WLC\bin\clang++.exe" KeyPath="yes" />
           </Component>
           <Component Win64="$(var.Win64)" Id="owcB937486CC5CFB18B0DF41BB40C7EEFF5" Guid="6c8699d5-a19a-ad50-c09b-2abf8bb6c0b3">
-            <File Id="owfB937486CC5CFB18B0DF41BB40C7EEFF5" Source="$(var.SourceDir)\WLC\bin\clang-10.exe" KeyPath="yes" />
+            <File Id="owfB937486CC5CFB18B0DF41BB40C7EEFF5" Source="$(var.SourceDir)\WLC\bin\clang-11.exe" KeyPath="yes" />
           </Component>
           <Component Win64="$(var.Win64)" Id="owcB4DE523296B89F61DAE6DCEAF1EBF5B2" Guid="452d4d4a-6b92-3a19-73bb-3373706fb545">
             <File Id="owfB4DE523296B89F61DAE6DCEAF1EBF5B2" Source="$(var.SourceDir)\WLC\bin\clang-target-wrapper.exe" KeyPath="yes" />
@@ -4917,7 +4917,7 @@
             <File Id="owfDC396A1D9DD8B044E944439CCC1023FF" Source="$(var.SourceDir)\WLC\bin\llvm-wrapper.exe" KeyPath="yes" />
           </Component>
           <Component Win64="$(var.Win64)" Id="owc3AD797B9303F05CB22EA14B19A8CBF20" Guid="a4ffd326-59b2-f852-29ef-d78f077d3eef">
-            <File Id="owf3AD797B9303F05CB22EA14B19A8CBF20" Source="$(var.SourceDir)\WLC\bin\mingw32-make.exe" KeyPath="yes" />
+            <File Id="owf3AD797B9303F05CB22EA14B19A8CBF20" Source="$(var.SourceDir)\WLC\bin\make.exe" KeyPath="yes" />
           </Component>
           <Component Win64="$(var.Win64)" Id="owcAB6A24C07514F8D9E5F7DBA270567933" Guid="1d30e854-b91c-5cb2-621b-828ac3e609d1">
             <File Id="owfAB6A24C07514F8D9E5F7DBA270567933" Source="$(var.SourceDir)\WLC\bin\nm.exe" KeyPath="yes" />
@@ -12078,520 +12078,520 @@
             <Directory Id="owdC8F59FB0D89844F11A1F79D6CAF1EE61" Name="10.0.0">
               <Directory Id="owdED2EE411A585322D4F51461188D79B87" Name="include">
                 <Component Win64="$(var.Win64)" Id="owcBE2682ECF596403864155C7C0D88B31C" Guid="fe2730f4-f7f4-46e2-5eae-0576913a80b5">
-                  <File Id="owfBE2682ECF596403864155C7C0D88B31C" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\__clang_cuda_builtin_vars.h" KeyPath="yes" />
+                  <File Id="owfBE2682ECF596403864155C7C0D88B31C" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\__clang_cuda_builtin_vars.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcBAABC298F19478D62E7EA1688A16E4F0" Guid="166d4c63-e27f-a3a7-794a-b6c53e6fd44a">
-                  <File Id="owfBAABC298F19478D62E7EA1688A16E4F0" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\__clang_cuda_cmath.h" KeyPath="yes" />
+                  <File Id="owfBAABC298F19478D62E7EA1688A16E4F0" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\__clang_cuda_cmath.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc3F7AFB54A67E4047A3BDB272432EB8DE" Guid="0157a838-ff02-879c-fd64-abb3f60f40ae">
-                  <File Id="owf3F7AFB54A67E4047A3BDB272432EB8DE" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\__clang_cuda_complex_builtins.h" KeyPath="yes" />
+                  <File Id="owf3F7AFB54A67E4047A3BDB272432EB8DE" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\__clang_cuda_complex_builtins.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc9B4C3B527BD534C368686CA702482CF9" Guid="6b9b3cb3-f9f3-ec41-14f3-48b21ff8ed14">
-                  <File Id="owf9B4C3B527BD534C368686CA702482CF9" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\__clang_cuda_device_functions.h" KeyPath="yes" />
+                  <File Id="owf9B4C3B527BD534C368686CA702482CF9" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\__clang_cuda_device_functions.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc99CFF9999CBC7C2605444DAE04E99676" Guid="94030fae-5418-b689-6a06-bca8ee551c8c">
-                  <File Id="owf99CFF9999CBC7C2605444DAE04E99676" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\__clang_cuda_intrinsics.h" KeyPath="yes" />
+                  <File Id="owf99CFF9999CBC7C2605444DAE04E99676" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\__clang_cuda_intrinsics.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc30C74DB63EDB401C1E4449C91FB12CEA" Guid="76edeaea-eb09-370e-e071-95c48d897da5">
-                  <File Id="owf30C74DB63EDB401C1E4449C91FB12CEA" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\__clang_cuda_libdevice_declares.h" KeyPath="yes" />
+                  <File Id="owf30C74DB63EDB401C1E4449C91FB12CEA" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\__clang_cuda_libdevice_declares.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc4669DCC035837A94A6C5751CA183B5D4" Guid="767cae43-a5d5-aca5-5792-2e2e1cc3d80d">
-                  <File Id="owf4669DCC035837A94A6C5751CA183B5D4" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\__clang_cuda_math_forward_declares.h" KeyPath="yes" />
+                  <File Id="owf4669DCC035837A94A6C5751CA183B5D4" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\__clang_cuda_math_forward_declares.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc5BB8FB15D322F5C605CF20C5A4D67ED5" Guid="9372c41a-6ed9-1745-a283-0708d2fbf0f0">
-                  <File Id="owf5BB8FB15D322F5C605CF20C5A4D67ED5" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\__clang_cuda_runtime_wrapper.h" KeyPath="yes" />
+                  <File Id="owf5BB8FB15D322F5C605CF20C5A4D67ED5" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\__clang_cuda_runtime_wrapper.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc4951A8B45AC2D01E6BE0A0D22F7E45FB" Guid="5647be89-7b97-4532-6719-30495dcff285">
-                  <File Id="owf4951A8B45AC2D01E6BE0A0D22F7E45FB" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\__stddef_max_align_t.h" KeyPath="yes" />
+                  <File Id="owf4951A8B45AC2D01E6BE0A0D22F7E45FB" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\__stddef_max_align_t.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc40C0B0F385C742432E01E1211046923B" Guid="0eda2a50-7ec2-8d3a-5599-82f8fcafd361">
-                  <File Id="owf40C0B0F385C742432E01E1211046923B" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\__wmmintrin_aes.h" KeyPath="yes" />
+                  <File Id="owf40C0B0F385C742432E01E1211046923B" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\__wmmintrin_aes.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcDE536CEBDAEAA5F0B396D530FF3E2AC0" Guid="4ff9ae39-98b5-8396-7aa7-c459695c5ec7">
-                  <File Id="owfDE536CEBDAEAA5F0B396D530FF3E2AC0" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\__wmmintrin_pclmul.h" KeyPath="yes" />
+                  <File Id="owfDE536CEBDAEAA5F0B396D530FF3E2AC0" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\__wmmintrin_pclmul.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc432A4CC6B29F069E724990CFA2117615" Guid="fe11f0b9-2250-cdd2-187b-8f3cb1600f43">
-                  <File Id="owf432A4CC6B29F069E724990CFA2117615" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\adxintrin.h" KeyPath="yes" />
+                  <File Id="owf432A4CC6B29F069E724990CFA2117615" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\adxintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcC75A0CE3654C0BA7F2D4F1D7DDA315A4" Guid="80a57e35-fb47-848f-eed3-15190d861b1b">
-                  <File Id="owfC75A0CE3654C0BA7F2D4F1D7DDA315A4" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\altivec.h" KeyPath="yes" />
+                  <File Id="owfC75A0CE3654C0BA7F2D4F1D7DDA315A4" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\altivec.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc0C25C0E43778C3C5FA9EFE8382027993" Guid="c957372c-4767-612f-cf7d-fb55cb6ffd00">
-                  <File Id="owf0C25C0E43778C3C5FA9EFE8382027993" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\ammintrin.h" KeyPath="yes" />
+                  <File Id="owf0C25C0E43778C3C5FA9EFE8382027993" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\ammintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc8DB0EF72B4223CD5DB67F65AA33D692A" Guid="216fb277-7e1b-ea94-0634-a48774817693">
-                  <File Id="owf8DB0EF72B4223CD5DB67F65AA33D692A" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\arm_acle.h" KeyPath="yes" />
+                  <File Id="owf8DB0EF72B4223CD5DB67F65AA33D692A" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\arm_acle.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcE7D33F3D1F44B7EE9B4C738496195A35" Guid="745fe16c-6d44-9e45-88e9-5d643db3d9e1">
-                  <File Id="owfE7D33F3D1F44B7EE9B4C738496195A35" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\arm_cmse.h" KeyPath="yes" />
+                  <File Id="owfE7D33F3D1F44B7EE9B4C738496195A35" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\arm_cmse.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc84024B5137F1B6A56CDB98881AA79C08" Guid="411ea295-99ad-9b4a-f4bb-223d053b327d">
-                  <File Id="owf84024B5137F1B6A56CDB98881AA79C08" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\arm_fp16.h" KeyPath="yes" />
+                  <File Id="owf84024B5137F1B6A56CDB98881AA79C08" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\arm_fp16.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcF0A9BA9204BDEE4E5BDEC4D775F3C3D2" Guid="71f3fd02-a3fc-0181-b30d-8d48a0a040d5">
-                  <File Id="owfF0A9BA9204BDEE4E5BDEC4D775F3C3D2" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\arm_mve.h" KeyPath="yes" />
+                  <File Id="owfF0A9BA9204BDEE4E5BDEC4D775F3C3D2" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\arm_mve.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc787D7D325D9D88E2BB911BEA30151208" Guid="a973c971-dadd-e2e4-9677-d087a1cff345">
-                  <File Id="owf787D7D325D9D88E2BB911BEA30151208" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\arm_neon.h" KeyPath="yes" />
+                  <File Id="owf787D7D325D9D88E2BB911BEA30151208" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\arm_neon.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc1124CFD71BAA34F1380374A868D3AAD9" Guid="be2a2976-b8f6-96cd-bee2-82bc41e6579f">
-                  <File Id="owf1124CFD71BAA34F1380374A868D3AAD9" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\arm64intr.h" KeyPath="yes" />
+                  <File Id="owf1124CFD71BAA34F1380374A868D3AAD9" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\arm64intr.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcA1E2549AE2B758F9F89C220413A590A7" Guid="3054af20-4de8-a1f3-0940-be4439ad76f9">
-                  <File Id="owfA1E2549AE2B758F9F89C220413A590A7" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\armintr.h" KeyPath="yes" />
+                  <File Id="owfA1E2549AE2B758F9F89C220413A590A7" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\armintr.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc5BF444CAA2574665CD0C0BDE4CB586A4" Guid="91b8e17a-4c70-bfac-d083-dcbf035f58b6">
-                  <File Id="owf5BF444CAA2574665CD0C0BDE4CB586A4" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx2intrin.h" KeyPath="yes" />
+                  <File Id="owf5BF444CAA2574665CD0C0BDE4CB586A4" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx2intrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc76DEBF22D9A5985D4366787C0096F859" Guid="666a0069-cdef-7940-d2b0-99e0e743b2a4">
-                  <File Id="owf76DEBF22D9A5985D4366787C0096F859" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512bf16intrin.h" KeyPath="yes" />
+                  <File Id="owf76DEBF22D9A5985D4366787C0096F859" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512bf16intrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc7BD3BE3542A98B50D3F9BE82274F8D2C" Guid="6e2858cd-abbb-d8b5-b51c-cb7bf7778dd5">
-                  <File Id="owf7BD3BE3542A98B50D3F9BE82274F8D2C" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512bitalgintrin.h" KeyPath="yes" />
+                  <File Id="owf7BD3BE3542A98B50D3F9BE82274F8D2C" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512bitalgintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc86ABB9BDED6C0668105C509D068C4E48" Guid="fd04d8ec-fa83-5b31-9a04-3bf420ed4e72">
-                  <File Id="owf86ABB9BDED6C0668105C509D068C4E48" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512bwintrin.h" KeyPath="yes" />
+                  <File Id="owf86ABB9BDED6C0668105C509D068C4E48" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512bwintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc31228C3FE844C466E10E32392B7BB97D" Guid="bfea2393-5681-07d7-4914-2a9ce3688b02">
-                  <File Id="owf31228C3FE844C466E10E32392B7BB97D" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512cdintrin.h" KeyPath="yes" />
+                  <File Id="owf31228C3FE844C466E10E32392B7BB97D" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512cdintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcA9BD099774A8AC03E21EDA4B9397C2D7" Guid="92ca39ec-37e0-5e48-4e50-6398c3a205d9">
-                  <File Id="owfA9BD099774A8AC03E21EDA4B9397C2D7" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512dqintrin.h" KeyPath="yes" />
+                  <File Id="owfA9BD099774A8AC03E21EDA4B9397C2D7" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512dqintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc0A6C251B5D15D339B6A2A9821F9DF76C" Guid="6c13b553-8214-db1f-c326-5e138d9f34ee">
-                  <File Id="owf0A6C251B5D15D339B6A2A9821F9DF76C" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512erintrin.h" KeyPath="yes" />
+                  <File Id="owf0A6C251B5D15D339B6A2A9821F9DF76C" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512erintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc88691EAA9D8AD2C8D7B485E74B821E24" Guid="94579582-5bdb-5630-4287-6bc81c8fba0f">
-                  <File Id="owf88691EAA9D8AD2C8D7B485E74B821E24" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512fintrin.h" KeyPath="yes" />
+                  <File Id="owf88691EAA9D8AD2C8D7B485E74B821E24" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512fintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc3B98AD978D980D0773706AC95786D6BD" Guid="98178c38-4e22-2e05-76e7-930e765b3ddd">
-                  <File Id="owf3B98AD978D980D0773706AC95786D6BD" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512ifmaintrin.h" KeyPath="yes" />
+                  <File Id="owf3B98AD978D980D0773706AC95786D6BD" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512ifmaintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcE9076E8CB31C87AB856D3801587D1AEF" Guid="8c64acb1-2517-f896-e4e5-3d21d996a68b">
-                  <File Id="owfE9076E8CB31C87AB856D3801587D1AEF" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512ifmavlintrin.h" KeyPath="yes" />
+                  <File Id="owfE9076E8CB31C87AB856D3801587D1AEF" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512ifmavlintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc7B26943319659CC297BCFEF75BCEFD01" Guid="ac12505b-a978-e541-e4e6-9d242d5d5d05">
-                  <File Id="owf7B26943319659CC297BCFEF75BCEFD01" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512pfintrin.h" KeyPath="yes" />
+                  <File Id="owf7B26943319659CC297BCFEF75BCEFD01" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512pfintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc5F497D9E8F9971D438A0B6F0AA9DD7B1" Guid="f246bb93-234b-cb60-72d9-0930d3a42791">
-                  <File Id="owf5F497D9E8F9971D438A0B6F0AA9DD7B1" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512vbmi2intrin.h" KeyPath="yes" />
+                  <File Id="owf5F497D9E8F9971D438A0B6F0AA9DD7B1" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512vbmi2intrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc5B79164B5FEC485EFD5FC4F5131F62D1" Guid="52a0267a-b588-0e94-d592-1b7611167af4">
-                  <File Id="owf5B79164B5FEC485EFD5FC4F5131F62D1" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512vbmiintrin.h" KeyPath="yes" />
+                  <File Id="owf5B79164B5FEC485EFD5FC4F5131F62D1" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512vbmiintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc6605D055B8515F4C58C3C188FEC44FF2" Guid="1defa2a5-6351-9cba-593a-238966c522e2">
-                  <File Id="owf6605D055B8515F4C58C3C188FEC44FF2" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512vbmivlintrin.h" KeyPath="yes" />
+                  <File Id="owf6605D055B8515F4C58C3C188FEC44FF2" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512vbmivlintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcAED83EBE02E4C71D716C24FD7439B8CD" Guid="477d3362-3fbf-25d4-d01d-770db7f48459">
-                  <File Id="owfAED83EBE02E4C71D716C24FD7439B8CD" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512vlbf16intrin.h" KeyPath="yes" />
+                  <File Id="owfAED83EBE02E4C71D716C24FD7439B8CD" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512vlbf16intrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcBE2912EE354D005AA3AD9689329E46EF" Guid="9b1d09f7-7fa0-ab55-4202-2a277d58e52d">
-                  <File Id="owfBE2912EE354D005AA3AD9689329E46EF" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512vlbitalgintrin.h" KeyPath="yes" />
+                  <File Id="owfBE2912EE354D005AA3AD9689329E46EF" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512vlbitalgintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc551F9BA183203D39DF5BE9C139B42CFC" Guid="b2cf73a8-ef79-e571-c5a5-28dd95a25640">
-                  <File Id="owf551F9BA183203D39DF5BE9C139B42CFC" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512vlbwintrin.h" KeyPath="yes" />
+                  <File Id="owf551F9BA183203D39DF5BE9C139B42CFC" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512vlbwintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcEE0FB1A04E8178E1102EACB083B8E73F" Guid="3aaddb7f-cea3-5519-f962-8c651ec26e57">
-                  <File Id="owfEE0FB1A04E8178E1102EACB083B8E73F" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512vlcdintrin.h" KeyPath="yes" />
+                  <File Id="owfEE0FB1A04E8178E1102EACB083B8E73F" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512vlcdintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcFEB5BDB64BA0EF63B05282AD0E692C6F" Guid="a1efba80-086b-fd1f-1355-a898922298ea">
-                  <File Id="owfFEB5BDB64BA0EF63B05282AD0E692C6F" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512vldqintrin.h" KeyPath="yes" />
+                  <File Id="owfFEB5BDB64BA0EF63B05282AD0E692C6F" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512vldqintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc059A84F1D7019B52172B884D6B9C5D2C" Guid="eca6526c-15a5-329d-1402-6736b5ff5dc3">
-                  <File Id="owf059A84F1D7019B52172B884D6B9C5D2C" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512vlintrin.h" KeyPath="yes" />
+                  <File Id="owf059A84F1D7019B52172B884D6B9C5D2C" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512vlintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc13528B445D9BEE096DE89789B1123762" Guid="845064a1-6ee5-776b-425b-c155c724166b">
-                  <File Id="owf13528B445D9BEE096DE89789B1123762" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512vlvbmi2intrin.h" KeyPath="yes" />
+                  <File Id="owf13528B445D9BEE096DE89789B1123762" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512vlvbmi2intrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc0876C4F0AE180FE5D07972A6EDAAA64F" Guid="bf5ff403-6775-1262-5e4c-d074f7dbf00f">
-                  <File Id="owf0876C4F0AE180FE5D07972A6EDAAA64F" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512vlvnniintrin.h" KeyPath="yes" />
+                  <File Id="owf0876C4F0AE180FE5D07972A6EDAAA64F" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512vlvnniintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc58D17E46538CC7CA574A3A25B1621355" Guid="084f915a-5c28-037d-5b7f-46018c5febe7">
-                  <File Id="owf58D17E46538CC7CA574A3A25B1621355" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512vlvp2intersectintrin.h" KeyPath="yes" />
+                  <File Id="owf58D17E46538CC7CA574A3A25B1621355" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512vlvp2intersectintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcF7329ADC33DBA96951DE9114B84E74B7" Guid="274e52e7-7aac-70f8-768e-dc77470aad86">
-                  <File Id="owfF7329ADC33DBA96951DE9114B84E74B7" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512vnniintrin.h" KeyPath="yes" />
+                  <File Id="owfF7329ADC33DBA96951DE9114B84E74B7" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512vnniintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc8CE279BF3114BEDAE0361A54ECAD3E32" Guid="e05636e5-88f3-8f2e-9157-c06bd96ca58a">
-                  <File Id="owf8CE279BF3114BEDAE0361A54ECAD3E32" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512vp2intersectintrin.h" KeyPath="yes" />
+                  <File Id="owf8CE279BF3114BEDAE0361A54ECAD3E32" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512vp2intersectintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc40B126E7D609EF4E7C7151B5C2A05C33" Guid="c4719d29-acff-a5c6-7fa7-a5a1f22e6272">
-                  <File Id="owf40B126E7D609EF4E7C7151B5C2A05C33" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512vpopcntdqintrin.h" KeyPath="yes" />
+                  <File Id="owf40B126E7D609EF4E7C7151B5C2A05C33" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512vpopcntdqintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcD8829C366A36AB447FFC798A0E06A91B" Guid="d636dc5a-7c31-acbd-5446-44d4e5241bcb">
-                  <File Id="owfD8829C366A36AB447FFC798A0E06A91B" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avx512vpopcntdqvlintrin.h" KeyPath="yes" />
+                  <File Id="owfD8829C366A36AB447FFC798A0E06A91B" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avx512vpopcntdqvlintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcD5847E17801F74628050778F0D15F4C0" Guid="c00f5403-078f-7cf3-4199-2c2eb4e8e712">
-                  <File Id="owfD5847E17801F74628050778F0D15F4C0" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\avxintrin.h" KeyPath="yes" />
+                  <File Id="owfD5847E17801F74628050778F0D15F4C0" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\avxintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc33DD3F51E411C194EDD1C5BB00DD1F8B" Guid="a8b72304-fab7-aea7-ec66-0c8f00a76faa">
-                  <File Id="owf33DD3F51E411C194EDD1C5BB00DD1F8B" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\bmi2intrin.h" KeyPath="yes" />
+                  <File Id="owf33DD3F51E411C194EDD1C5BB00DD1F8B" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\bmi2intrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc6E2FC4897A5E379DE6E8B5470A768669" Guid="ddfca3de-7b9f-0137-51dc-1ed35edf9d46">
-                  <File Id="owf6E2FC4897A5E379DE6E8B5470A768669" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\bmiintrin.h" KeyPath="yes" />
+                  <File Id="owf6E2FC4897A5E379DE6E8B5470A768669" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\bmiintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcD8C72708BD9A2530D474AAB6E657D1C3" Guid="2de82e8d-77a7-a146-75cc-6bd6aae8b7b5">
-                  <File Id="owfD8C72708BD9A2530D474AAB6E657D1C3" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\cetintrin.h" KeyPath="yes" />
+                  <File Id="owfD8C72708BD9A2530D474AAB6E657D1C3" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\cetintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc7B39571A943A7F5D4F8F2F303E61E674" Guid="5e3ee6d7-b052-882c-5cd2-181819bc80d0">
-                  <File Id="owf7B39571A943A7F5D4F8F2F303E61E674" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\cldemoteintrin.h" KeyPath="yes" />
+                  <File Id="owf7B39571A943A7F5D4F8F2F303E61E674" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\cldemoteintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc231711FF3E4A4F4F0B74672CFD20CC7C" Guid="47fd9304-2ff6-6135-8e22-e68a3f90be33">
-                  <File Id="owf231711FF3E4A4F4F0B74672CFD20CC7C" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\clflushoptintrin.h" KeyPath="yes" />
+                  <File Id="owf231711FF3E4A4F4F0B74672CFD20CC7C" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\clflushoptintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcF51E2B3C764977358345B8341FBD424A" Guid="d609c9ec-fc8e-7242-4794-732fb0d87ed7">
-                  <File Id="owfF51E2B3C764977358345B8341FBD424A" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\clwbintrin.h" KeyPath="yes" />
+                  <File Id="owfF51E2B3C764977358345B8341FBD424A" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\clwbintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcE7DBBFCF883662FB81A6201C49A0CCF4" Guid="cfab4366-e4a5-d5d1-0989-3fd667fc9f7e">
-                  <File Id="owfE7DBBFCF883662FB81A6201C49A0CCF4" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\clzerointrin.h" KeyPath="yes" />
+                  <File Id="owfE7DBBFCF883662FB81A6201C49A0CCF4" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\clzerointrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc6AC8BFB7F25B4566A1D77428108E01C1" Guid="bde640ac-9024-2a6c-ab05-e0476b9fc58a">
-                  <File Id="owf6AC8BFB7F25B4566A1D77428108E01C1" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\cpuid.h" KeyPath="yes" />
+                  <File Id="owf6AC8BFB7F25B4566A1D77428108E01C1" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\cpuid.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc55530B61CB9FEA9E327AED187307D8B0" Guid="4409fad5-64ba-d0de-a932-8d9d50536501">
-                  <File Id="owf55530B61CB9FEA9E327AED187307D8B0" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\emmintrin.h" KeyPath="yes" />
+                  <File Id="owf55530B61CB9FEA9E327AED187307D8B0" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\emmintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc391B2ED2727A82D7EE3BB12F2EF7A2BF" Guid="51f767d0-93c3-39e8-a62c-13a72ddb2204">
-                  <File Id="owf391B2ED2727A82D7EE3BB12F2EF7A2BF" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\enqcmdintrin.h" KeyPath="yes" />
+                  <File Id="owf391B2ED2727A82D7EE3BB12F2EF7A2BF" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\enqcmdintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc93CFC833045D06E43BBF0E3391EBA035" Guid="48c00662-14d9-bcb4-babd-1fa7653d9b60">
-                  <File Id="owf93CFC833045D06E43BBF0E3391EBA035" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\f16cintrin.h" KeyPath="yes" />
+                  <File Id="owf93CFC833045D06E43BBF0E3391EBA035" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\f16cintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc61208FDA602DC0539E4A3C20581011E5" Guid="ebeca2a9-ef05-0e20-0a0d-426ddf4a7976">
-                  <File Id="owf61208FDA602DC0539E4A3C20581011E5" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\float.h" KeyPath="yes" />
+                  <File Id="owf61208FDA602DC0539E4A3C20581011E5" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\float.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc75BE00809832FE9B7A812E2A6D731266" Guid="f080abbc-fddb-307b-af74-95a8cb53432c">
-                  <File Id="owf75BE00809832FE9B7A812E2A6D731266" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\fma4intrin.h" KeyPath="yes" />
+                  <File Id="owf75BE00809832FE9B7A812E2A6D731266" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\fma4intrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc2AF900DA11B9CE66EE82E288C652EC37" Guid="f6cfdce4-6841-6e69-627f-bde041884dca">
-                  <File Id="owf2AF900DA11B9CE66EE82E288C652EC37" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\fmaintrin.h" KeyPath="yes" />
+                  <File Id="owf2AF900DA11B9CE66EE82E288C652EC37" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\fmaintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc56B33D9251B4F63EF8A932194F11B28B" Guid="5e23c844-8e32-92e9-4a53-1b4c610fc037">
-                  <File Id="owf56B33D9251B4F63EF8A932194F11B28B" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\fxsrintrin.h" KeyPath="yes" />
+                  <File Id="owf56B33D9251B4F63EF8A932194F11B28B" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\fxsrintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc29A738A49C4D78C79079DEB770854127" Guid="fc87f767-4a33-3451-2e2e-6f1e0c4619c4">
-                  <File Id="owf29A738A49C4D78C79079DEB770854127" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\gfniintrin.h" KeyPath="yes" />
+                  <File Id="owf29A738A49C4D78C79079DEB770854127" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\gfniintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc6D9288DCC7A2DD5E340C3A2DD1660515" Guid="f0a91c88-e8c4-c55c-25d7-0d94cacbf792">
-                  <File Id="owf6D9288DCC7A2DD5E340C3A2DD1660515" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\htmintrin.h" KeyPath="yes" />
+                  <File Id="owf6D9288DCC7A2DD5E340C3A2DD1660515" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\htmintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcC02BC3D4D477E3661064296229C347C9" Guid="a18cb7ce-c22b-17d4-dd3a-4e9661b0fa1f">
-                  <File Id="owfC02BC3D4D477E3661064296229C347C9" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\htmxlintrin.h" KeyPath="yes" />
+                  <File Id="owfC02BC3D4D477E3661064296229C347C9" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\htmxlintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcE99D535C210DDB92364F05BDEBCD0E84" Guid="02c586f5-7d82-b00e-ce13-d0de98b80499">
-                  <File Id="owfE99D535C210DDB92364F05BDEBCD0E84" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\ia32intrin.h" KeyPath="yes" />
+                  <File Id="owfE99D535C210DDB92364F05BDEBCD0E84" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\ia32intrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc19EDD6151FBF012240AB2499CB086CF6" Guid="e9767b06-f678-ade5-5ef2-d21f56fd684a">
-                  <File Id="owf19EDD6151FBF012240AB2499CB086CF6" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\immintrin.h" KeyPath="yes" />
+                  <File Id="owf19EDD6151FBF012240AB2499CB086CF6" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\immintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcB3F00A5F2242C19D22AAD7624B724F70" Guid="aa23cb28-10f8-7663-7cd4-baa7c80874a5">
-                  <File Id="owfB3F00A5F2242C19D22AAD7624B724F70" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\intrin.h" KeyPath="yes" />
+                  <File Id="owfB3F00A5F2242C19D22AAD7624B724F70" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\intrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc4451AD2049F085F5703EA8A6E4803098" Guid="20444d3c-356d-2457-f81e-db680b64ad19">
-                  <File Id="owf4451AD2049F085F5703EA8A6E4803098" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\inttypes.h" KeyPath="yes" />
+                  <File Id="owf4451AD2049F085F5703EA8A6E4803098" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\inttypes.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc37010BE59427002E27C5C72ADD8A49A0" Guid="b94236e3-09b5-f1f3-1a9c-67b074011ccc">
-                  <File Id="owf37010BE59427002E27C5C72ADD8A49A0" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\invpcidintrin.h" KeyPath="yes" />
+                  <File Id="owf37010BE59427002E27C5C72ADD8A49A0" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\invpcidintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc1CDC66BEF962CF41390EBF1309E25351" Guid="5264543d-99e6-8647-78b5-b362f327d0e1">
-                  <File Id="owf1CDC66BEF962CF41390EBF1309E25351" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\iso646.h" KeyPath="yes" />
+                  <File Id="owf1CDC66BEF962CF41390EBF1309E25351" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\iso646.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcA43AE7B5C5D5E9746C1AEC7497730F75" Guid="10e1f9c8-b5a5-0cc9-6589-1a95c30e96b0">
-                  <File Id="owfA43AE7B5C5D5E9746C1AEC7497730F75" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\limits.h" KeyPath="yes" />
+                  <File Id="owfA43AE7B5C5D5E9746C1AEC7497730F75" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\limits.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc40A046EA08B280627542D6119C8C34C1" Guid="54dec3fc-b696-3b61-1747-d44c6ca90710">
-                  <File Id="owf40A046EA08B280627542D6119C8C34C1" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\lwpintrin.h" KeyPath="yes" />
+                  <File Id="owf40A046EA08B280627542D6119C8C34C1" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\lwpintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc3A3EB183F580788628BA5C7FC02266CF" Guid="b4a25b4f-8929-25f3-59f5-0f17f982d9a0">
-                  <File Id="owf3A3EB183F580788628BA5C7FC02266CF" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\lzcntintrin.h" KeyPath="yes" />
+                  <File Id="owf3A3EB183F580788628BA5C7FC02266CF" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\lzcntintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcC12DF8417950C7D496F0D7096F3A4F1D" Guid="c6b43dbf-e061-0138-0c0b-a7e13769b7f2">
-                  <File Id="owfC12DF8417950C7D496F0D7096F3A4F1D" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\mm_malloc.h" KeyPath="yes" />
+                  <File Id="owfC12DF8417950C7D496F0D7096F3A4F1D" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\mm_malloc.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc462539AD02982ABD963ED5CDFED54A80" Guid="fc6e52d8-aa8a-b752-bc88-5330a26da227">
-                  <File Id="owf462539AD02982ABD963ED5CDFED54A80" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\mm3dnow.h" KeyPath="yes" />
+                  <File Id="owf462539AD02982ABD963ED5CDFED54A80" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\mm3dnow.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc3E69206165CFD9A77E308D4ED2CEB781" Guid="5e64bc34-00ea-ec68-2af4-1d15492a62d9">
-                  <File Id="owf3E69206165CFD9A77E308D4ED2CEB781" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\mmintrin.h" KeyPath="yes" />
+                  <File Id="owf3E69206165CFD9A77E308D4ED2CEB781" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\mmintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc406C549688012B14F1F05969FBF7758A" Guid="977f42a6-9c0c-3252-245c-68ae69cb5cbf">
-                  <File Id="owf406C549688012B14F1F05969FBF7758A" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\module.modulemap" KeyPath="yes" />
+                  <File Id="owf406C549688012B14F1F05969FBF7758A" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\module.modulemap" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcC440EEFDE77ADC5CF2A5A3DC0E1F3DD9" Guid="26b9111f-1d35-e4e2-00b6-be2002e0dfa0">
-                  <File Id="owfC440EEFDE77ADC5CF2A5A3DC0E1F3DD9" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\movdirintrin.h" KeyPath="yes" />
+                  <File Id="owfC440EEFDE77ADC5CF2A5A3DC0E1F3DD9" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\movdirintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcEA07186C387A465FEB74ADDDD13A0A15" Guid="84c4c813-6ac9-bdb8-a687-5056f07b23ca">
-                  <File Id="owfEA07186C387A465FEB74ADDDD13A0A15" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\msa.h" KeyPath="yes" />
+                  <File Id="owfEA07186C387A465FEB74ADDDD13A0A15" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\msa.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc1715294E87F4E9C780AECD85E3BD27AC" Guid="0c236109-6ef4-f64c-5839-773c1135ac36">
-                  <File Id="owf1715294E87F4E9C780AECD85E3BD27AC" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\mwaitxintrin.h" KeyPath="yes" />
+                  <File Id="owf1715294E87F4E9C780AECD85E3BD27AC" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\mwaitxintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcECF3C7094DBDDA61C1E0D0383D91AF68" Guid="8fae4eaa-e48c-b686-279e-50acb140f244">
-                  <File Id="owfECF3C7094DBDDA61C1E0D0383D91AF68" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\nmmintrin.h" KeyPath="yes" />
+                  <File Id="owfECF3C7094DBDDA61C1E0D0383D91AF68" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\nmmintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcEEBD72FDFAC97C4BDE4669CC4F075474" Guid="8d953f7e-38ea-57e6-5223-cb360e8f227b">
-                  <File Id="owfEEBD72FDFAC97C4BDE4669CC4F075474" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\opencl-c.h" KeyPath="yes" />
+                  <File Id="owfEEBD72FDFAC97C4BDE4669CC4F075474" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\opencl-c.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcA82B03954D3F0B7A6428FB50173F0C7C" Guid="7d67fa29-79c0-ba10-465a-0fb1b2a0688d">
-                  <File Id="owfA82B03954D3F0B7A6428FB50173F0C7C" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\opencl-c-base.h" KeyPath="yes" />
+                  <File Id="owfA82B03954D3F0B7A6428FB50173F0C7C" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\opencl-c-base.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc04A4AC6D4EF35F87B7B04FCED2E3F3B3" Guid="b3326522-dd2f-e330-d679-c3c49c8c7a65">
-                  <File Id="owf04A4AC6D4EF35F87B7B04FCED2E3F3B3" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\pconfigintrin.h" KeyPath="yes" />
+                  <File Id="owf04A4AC6D4EF35F87B7B04FCED2E3F3B3" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\pconfigintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc00422AA2F1B368D460774A5D18713A2F" Guid="12eae536-d434-9b60-e81b-a331618042fe">
-                  <File Id="owf00422AA2F1B368D460774A5D18713A2F" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\pkuintrin.h" KeyPath="yes" />
+                  <File Id="owf00422AA2F1B368D460774A5D18713A2F" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\pkuintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc48C47694318AFB7794D86B24C8B345FB" Guid="c5791310-a681-87aa-eca3-7e378cf1e830">
-                  <File Id="owf48C47694318AFB7794D86B24C8B345FB" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\pmmintrin.h" KeyPath="yes" />
+                  <File Id="owf48C47694318AFB7794D86B24C8B345FB" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\pmmintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc901E5EE61A02C593CF531B69E3BC77D5" Guid="d0a38990-fa40-0b54-0045-41d7dd15aa09">
-                  <File Id="owf901E5EE61A02C593CF531B69E3BC77D5" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\popcntintrin.h" KeyPath="yes" />
+                  <File Id="owf901E5EE61A02C593CF531B69E3BC77D5" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\popcntintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcC64DBCC3F340EC8866545A932B9E1578" Guid="71fe44f1-661b-7e5f-49e5-86b14ebaa23e">
-                  <File Id="owfC64DBCC3F340EC8866545A932B9E1578" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\prfchwintrin.h" KeyPath="yes" />
+                  <File Id="owfC64DBCC3F340EC8866545A932B9E1578" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\prfchwintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcD1686AA13F52079D569022FB7C5C50E3" Guid="94fd5550-ceb5-72c8-7ea1-408a925d1fb9">
-                  <File Id="owfD1686AA13F52079D569022FB7C5C50E3" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\ptwriteintrin.h" KeyPath="yes" />
+                  <File Id="owfD1686AA13F52079D569022FB7C5C50E3" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\ptwriteintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc3DF7C029BB67B29A866092B4D733BA88" Guid="f6947300-80ad-91ba-2417-c71034e9eedf">
-                  <File Id="owf3DF7C029BB67B29A866092B4D733BA88" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\rdseedintrin.h" KeyPath="yes" />
+                  <File Id="owf3DF7C029BB67B29A866092B4D733BA88" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\rdseedintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcC5F61E67E3C9EB2F177E5BF368B27440" Guid="d7601a37-42c6-9897-f87b-781b86f43235">
-                  <File Id="owfC5F61E67E3C9EB2F177E5BF368B27440" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\rtmintrin.h" KeyPath="yes" />
+                  <File Id="owfC5F61E67E3C9EB2F177E5BF368B27440" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\rtmintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcB30F78C3844D66EE6FAC744FC39CDDD2" Guid="dc7740cd-6c5f-c2b1-2f2f-ffe6475b7931">
-                  <File Id="owfB30F78C3844D66EE6FAC744FC39CDDD2" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\s390intrin.h" KeyPath="yes" />
+                  <File Id="owfB30F78C3844D66EE6FAC744FC39CDDD2" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\s390intrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc5F4F341E9D143E1F6DE28ED1E0AACFEE" Guid="33f1db15-043c-8e81-484b-861cdb74c4e1">
-                  <File Id="owf5F4F341E9D143E1F6DE28ED1E0AACFEE" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\sgxintrin.h" KeyPath="yes" />
+                  <File Id="owf5F4F341E9D143E1F6DE28ED1E0AACFEE" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\sgxintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc1EE076162E627C756E467ACBE8F8E316" Guid="be26c2ba-2264-707e-ce10-65f6d869f35f">
-                  <File Id="owf1EE076162E627C756E467ACBE8F8E316" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\shaintrin.h" KeyPath="yes" />
+                  <File Id="owf1EE076162E627C756E467ACBE8F8E316" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\shaintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc67CAD0742243D5EA2FD8E3D36C916316" Guid="d49d1904-1048-621f-8557-34ae8c66afcd">
-                  <File Id="owf67CAD0742243D5EA2FD8E3D36C916316" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\smmintrin.h" KeyPath="yes" />
+                  <File Id="owf67CAD0742243D5EA2FD8E3D36C916316" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\smmintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc3C80810CB5F21B499D130C964BFA61B7" Guid="df8cb18c-7fd8-761e-c6e9-180c49aa3f6b">
-                  <File Id="owf3C80810CB5F21B499D130C964BFA61B7" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\stdalign.h" KeyPath="yes" />
+                  <File Id="owf3C80810CB5F21B499D130C964BFA61B7" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\stdalign.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc56C11E9E6B508B65239C843A2260A137" Guid="04ee106d-7d0c-e3e1-fa53-34b02bff8bc3">
-                  <File Id="owf56C11E9E6B508B65239C843A2260A137" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\stdarg.h" KeyPath="yes" />
+                  <File Id="owf56C11E9E6B508B65239C843A2260A137" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\stdarg.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcC7C50FECE0027EEF517D9A7D47958901" Guid="1162ac4e-8627-2de8-60b0-a50fa5a03666">
-                  <File Id="owfC7C50FECE0027EEF517D9A7D47958901" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\stdatomic.h" KeyPath="yes" />
+                  <File Id="owfC7C50FECE0027EEF517D9A7D47958901" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\stdatomic.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcDE4B056A341B87DB273031B522FEB157" Guid="4e81e29d-8ca2-f8e2-756b-e69fa45f5cf6">
-                  <File Id="owfDE4B056A341B87DB273031B522FEB157" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\stdbool.h" KeyPath="yes" />
+                  <File Id="owfDE4B056A341B87DB273031B522FEB157" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\stdbool.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcB9FF2492DFBFA54C14296A5ED2272DA3" Guid="5f512221-fc7b-91dd-2946-53cb7ad57dec">
-                  <File Id="owfB9FF2492DFBFA54C14296A5ED2272DA3" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\stddef.h" KeyPath="yes" />
+                  <File Id="owfB9FF2492DFBFA54C14296A5ED2272DA3" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\stddef.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcB74F3CF680817AE87C0833BD37115059" Guid="751c0e7d-765b-31fa-e8b1-691c5340f2bd">
-                  <File Id="owfB74F3CF680817AE87C0833BD37115059" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\stdint.h" KeyPath="yes" />
+                  <File Id="owfB74F3CF680817AE87C0833BD37115059" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\stdint.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc8E49067DB8860CE5AE58300537E64BE1" Guid="91eeede6-5f31-7118-82b0-e74502ca5ed7">
-                  <File Id="owf8E49067DB8860CE5AE58300537E64BE1" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\stdnoreturn.h" KeyPath="yes" />
+                  <File Id="owf8E49067DB8860CE5AE58300537E64BE1" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\stdnoreturn.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcD5A37C258EE79855E36F8EB34DFB9058" Guid="69c7cd17-b18e-24f2-e731-0d47fefe86a5">
-                  <File Id="owfD5A37C258EE79855E36F8EB34DFB9058" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\tbmintrin.h" KeyPath="yes" />
+                  <File Id="owfD5A37C258EE79855E36F8EB34DFB9058" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\tbmintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcA5F9B5185057F9BC20DBD6F327E34E65" Guid="a59222d9-c52c-2c2f-3a65-d300039840d2">
-                  <File Id="owfA5F9B5185057F9BC20DBD6F327E34E65" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\tgmath.h" KeyPath="yes" />
+                  <File Id="owfA5F9B5185057F9BC20DBD6F327E34E65" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\tgmath.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcC3B8129AE7D8A73001A54268D541DCA3" Guid="fab7461a-7ce9-6d3e-27d4-fd17f547c8b0">
-                  <File Id="owfC3B8129AE7D8A73001A54268D541DCA3" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\tmmintrin.h" KeyPath="yes" />
+                  <File Id="owfC3B8129AE7D8A73001A54268D541DCA3" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\tmmintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc8BB6D0C78EAE9E3A60D4757902BC9F5B" Guid="82041476-ef55-b0b6-fbb8-92709e682d8d">
-                  <File Id="owf8BB6D0C78EAE9E3A60D4757902BC9F5B" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\unwind.h" KeyPath="yes" />
+                  <File Id="owf8BB6D0C78EAE9E3A60D4757902BC9F5B" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\unwind.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcEDA599A2D824B24667568CC8BB4486E7" Guid="e06af3f7-953e-f529-77cf-eb57b15cc848">
-                  <File Id="owfEDA599A2D824B24667568CC8BB4486E7" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\vadefs.h" KeyPath="yes" />
+                  <File Id="owfEDA599A2D824B24667568CC8BB4486E7" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\vadefs.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcDAE8ACBEEF5A12A56AD4A43DE709252C" Guid="5dd440ae-6690-debb-64a3-a3ea422fa74f">
-                  <File Id="owfDAE8ACBEEF5A12A56AD4A43DE709252C" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\vaesintrin.h" KeyPath="yes" />
+                  <File Id="owfDAE8ACBEEF5A12A56AD4A43DE709252C" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\vaesintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc80B5C501DE2276D3514716A89DB18B57" Guid="2e44c56d-307f-55c8-6ea7-198403c92f61">
-                  <File Id="owf80B5C501DE2276D3514716A89DB18B57" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\varargs.h" KeyPath="yes" />
+                  <File Id="owf80B5C501DE2276D3514716A89DB18B57" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\varargs.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc89DC6726B284F5F3823185818DAA5319" Guid="eb15701f-7d7d-4a25-6df6-4db3540b7b0e">
-                  <File Id="owf89DC6726B284F5F3823185818DAA5319" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\vecintrin.h" KeyPath="yes" />
+                  <File Id="owf89DC6726B284F5F3823185818DAA5319" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\vecintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc33423B1783D5B5F647E43E3D116ADEF8" Guid="0072c097-9be1-05ba-c8ac-0cb39f180675">
-                  <File Id="owf33423B1783D5B5F647E43E3D116ADEF8" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\vpclmulqdqintrin.h" KeyPath="yes" />
+                  <File Id="owf33423B1783D5B5F647E43E3D116ADEF8" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\vpclmulqdqintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcE193D744CC1DD029D5E52484F72713F8" Guid="dc1e80da-fd17-0187-a677-e6b75dd8f979">
-                  <File Id="owfE193D744CC1DD029D5E52484F72713F8" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\waitpkgintrin.h" KeyPath="yes" />
+                  <File Id="owfE193D744CC1DD029D5E52484F72713F8" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\waitpkgintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc8DB9F737C951CD1BE98AA65DA6D5FC6A" Guid="42be798c-c8a9-d9e1-b7bc-33d5c316cbe1">
-                  <File Id="owf8DB9F737C951CD1BE98AA65DA6D5FC6A" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\wbnoinvdintrin.h" KeyPath="yes" />
+                  <File Id="owf8DB9F737C951CD1BE98AA65DA6D5FC6A" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\wbnoinvdintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcB5BBDDBEB1E4CF7D85DCC2EEA5BAA0B8" Guid="ed223e68-5ed0-c3ed-b904-6603f9ba6083">
-                  <File Id="owfB5BBDDBEB1E4CF7D85DCC2EEA5BAA0B8" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\wmmintrin.h" KeyPath="yes" />
+                  <File Id="owfB5BBDDBEB1E4CF7D85DCC2EEA5BAA0B8" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\wmmintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc5690FDE106961BFEEFB46BDDB6B8196D" Guid="43837339-ef7c-f402-456a-fe11cbb1c82a">
-                  <File Id="owf5690FDE106961BFEEFB46BDDB6B8196D" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\x86intrin.h" KeyPath="yes" />
+                  <File Id="owf5690FDE106961BFEEFB46BDDB6B8196D" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\x86intrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcBDA4E26F423468FFDF70B7D7F72E7510" Guid="58a55e06-45e4-549d-6adc-347c25a10018">
-                  <File Id="owfBDA4E26F423468FFDF70B7D7F72E7510" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\xmmintrin.h" KeyPath="yes" />
+                  <File Id="owfBDA4E26F423468FFDF70B7D7F72E7510" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\xmmintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcDD35BD81EC28293B423CAAA7F1AFD46E" Guid="40b3f0bc-306d-cd79-8e66-6d5f060d1662">
-                  <File Id="owfDD35BD81EC28293B423CAAA7F1AFD46E" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\xopintrin.h" KeyPath="yes" />
+                  <File Id="owfDD35BD81EC28293B423CAAA7F1AFD46E" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\xopintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc014E10B51BA49A195449D0997D99AADD" Guid="882fc8ea-32ad-a556-9ab8-cdf4b6fb9355">
-                  <File Id="owf014E10B51BA49A195449D0997D99AADD" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\xsavecintrin.h" KeyPath="yes" />
+                  <File Id="owf014E10B51BA49A195449D0997D99AADD" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\xsavecintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcE1A185475E2DDBE244064FEF945B9911" Guid="9591a032-06c9-fed3-2643-56e144c004ab">
-                  <File Id="owfE1A185475E2DDBE244064FEF945B9911" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\xsaveintrin.h" KeyPath="yes" />
+                  <File Id="owfE1A185475E2DDBE244064FEF945B9911" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\xsaveintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owcFDC5454BC801C5ED2824240D117E88C1" Guid="cb3a1761-3298-d0b9-cb93-36387bf057de">
-                  <File Id="owfFDC5454BC801C5ED2824240D117E88C1" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\xsaveoptintrin.h" KeyPath="yes" />
+                  <File Id="owfFDC5454BC801C5ED2824240D117E88C1" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\xsaveoptintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc51D6AAC79E61EE68196490811A2105B1" Guid="08636dbb-97c6-9aef-8adf-cb1e2f3ff5cd">
-                  <File Id="owf51D6AAC79E61EE68196490811A2105B1" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\xsavesintrin.h" KeyPath="yes" />
+                  <File Id="owf51D6AAC79E61EE68196490811A2105B1" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\xsavesintrin.h" KeyPath="yes" />
                 </Component>
                 <Component Win64="$(var.Win64)" Id="owc58B7388C41284152A0AA61C40561808F" Guid="28d332fb-a363-7a9e-583e-a2f23db2dafe">
-                  <File Id="owf58B7388C41284152A0AA61C40561808F" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\xtestintrin.h" KeyPath="yes" />
+                  <File Id="owf58B7388C41284152A0AA61C40561808F" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\xtestintrin.h" KeyPath="yes" />
                 </Component>
                 <Directory Id="owd67F8285EB1C706999727454675CB34CF" Name="cuda_wrappers">
                   <Component Win64="$(var.Win64)" Id="owc5DB4E67E2CD51F671B012CA9E758FD96" Guid="1a792a98-3de0-058d-6ae2-ebef757de4e2">
-                    <File Id="owf5DB4E67E2CD51F671B012CA9E758FD96" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\cuda_wrappers\algorithm" KeyPath="yes" />
+                    <File Id="owf5DB4E67E2CD51F671B012CA9E758FD96" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\cuda_wrappers\algorithm" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc652AEE22097C6AD03BA232A990232CF1" Guid="4643859a-b959-6e6d-868b-5bd891b79d31">
-                    <File Id="owf652AEE22097C6AD03BA232A990232CF1" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\cuda_wrappers\complex" KeyPath="yes" />
+                    <File Id="owf652AEE22097C6AD03BA232A990232CF1" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\cuda_wrappers\complex" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc9785E074DE466749EA73FEBCA602D11D" Guid="71bf444e-a67f-f056-361f-eec11d2f464d">
-                    <File Id="owf9785E074DE466749EA73FEBCA602D11D" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\cuda_wrappers\new" KeyPath="yes" />
+                    <File Id="owf9785E074DE466749EA73FEBCA602D11D" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\cuda_wrappers\new" KeyPath="yes" />
                   </Component>
                 </Directory>
                 <Directory Id="owd4743A32CDFA701AAECE8A16EFDEFAD82" Name="openmp_wrappers">
                   <Component Win64="$(var.Win64)" Id="owc4239A8692F6D88B652736FD1FFDC5FF7" Guid="2f2ceffb-c01c-a422-2103-aa5f10297e9c">
-                    <File Id="owf4239A8692F6D88B652736FD1FFDC5FF7" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\openmp_wrappers\__clang_openmp_math.h" KeyPath="yes" />
+                    <File Id="owf4239A8692F6D88B652736FD1FFDC5FF7" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\openmp_wrappers\__clang_openmp_math.h" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcC7BB4C7D479794CCC48437A6F1EF4946" Guid="12f8f04a-b123-e184-1186-ac7aaedbb94a">
-                    <File Id="owfC7BB4C7D479794CCC48437A6F1EF4946" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\openmp_wrappers\__clang_openmp_math_declares.h" KeyPath="yes" />
+                    <File Id="owfC7BB4C7D479794CCC48437A6F1EF4946" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\openmp_wrappers\__clang_openmp_math_declares.h" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc5F95B6F242674A2B1C82F2A85C4CFE92" Guid="14649c53-0034-6515-04d6-27352819674c">
-                    <File Id="owf5F95B6F242674A2B1C82F2A85C4CFE92" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\openmp_wrappers\cmath" KeyPath="yes" />
+                    <File Id="owf5F95B6F242674A2B1C82F2A85C4CFE92" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\openmp_wrappers\cmath" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc6D9A49BC5426D24D67CB97D6D292AFB8" Guid="8c00ba28-6568-a4b0-a606-66d314ac66f3">
-                    <File Id="owf6D9A49BC5426D24D67CB97D6D292AFB8" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\openmp_wrappers\math.h" KeyPath="yes" />
+                    <File Id="owf6D9A49BC5426D24D67CB97D6D292AFB8" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\openmp_wrappers\math.h" KeyPath="yes" />
                   </Component>
                 </Directory>
                 <Directory Id="owd1197DED8D94B58057B1872524A2476E3" Name="ppc_wrappers">
                   <Component Win64="$(var.Win64)" Id="owc00C1F52FE8CD4360AB33C2AF35FAFB5B" Guid="9d4e1195-8ec0-5d5f-6e84-3b8f4498472d">
-                    <File Id="owf00C1F52FE8CD4360AB33C2AF35FAFB5B" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\ppc_wrappers\emmintrin.h" KeyPath="yes" />
+                    <File Id="owf00C1F52FE8CD4360AB33C2AF35FAFB5B" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\ppc_wrappers\emmintrin.h" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc95C640601FD74D306C73003C6B6BF7AC" Guid="474cc7c7-4763-19d5-9e50-9558eb557fa5">
-                    <File Id="owf95C640601FD74D306C73003C6B6BF7AC" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\ppc_wrappers\mm_malloc.h" KeyPath="yes" />
+                    <File Id="owf95C640601FD74D306C73003C6B6BF7AC" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\ppc_wrappers\mm_malloc.h" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcB323B7D5846F10A3535DA4D5385930F4" Guid="d4cd09d8-9960-b216-476f-06a5320b5c9d">
-                    <File Id="owfB323B7D5846F10A3535DA4D5385930F4" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\ppc_wrappers\mmintrin.h" KeyPath="yes" />
+                    <File Id="owfB323B7D5846F10A3535DA4D5385930F4" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\ppc_wrappers\mmintrin.h" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcFBABFFFEAE926DB2CFC6EE7EF6CEA466" Guid="edd78f95-cc23-f730-3011-e8857b860e68">
-                    <File Id="owfFBABFFFEAE926DB2CFC6EE7EF6CEA466" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\ppc_wrappers\pmmintrin.h" KeyPath="yes" />
+                    <File Id="owfFBABFFFEAE926DB2CFC6EE7EF6CEA466" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\ppc_wrappers\pmmintrin.h" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcF7E2542BC2213EFFE3003F12EA55011F" Guid="0ee21e4f-31a6-f84d-9f15-2dfe354afe21">
-                    <File Id="owfF7E2542BC2213EFFE3003F12EA55011F" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\ppc_wrappers\smmintrin.h" KeyPath="yes" />
+                    <File Id="owfF7E2542BC2213EFFE3003F12EA55011F" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\ppc_wrappers\smmintrin.h" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcB1434ED809C8D5A5CEFD2EA53BAAAEB6" Guid="82164726-67c9-346b-e3b6-f5b901d5c56c">
-                    <File Id="owfB1434ED809C8D5A5CEFD2EA53BAAAEB6" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\ppc_wrappers\tmmintrin.h" KeyPath="yes" />
+                    <File Id="owfB1434ED809C8D5A5CEFD2EA53BAAAEB6" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\ppc_wrappers\tmmintrin.h" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc0BFEB09C53724AB3111C0E5750856163" Guid="a5a13b4d-ce5c-2ca7-1945-b1b608effac7">
-                    <File Id="owf0BFEB09C53724AB3111C0E5750856163" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\include\ppc_wrappers\xmmintrin.h" KeyPath="yes" />
+                    <File Id="owf0BFEB09C53724AB3111C0E5750856163" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\include\ppc_wrappers\xmmintrin.h" KeyPath="yes" />
                   </Component>
                 </Directory>
               </Directory>
               <Directory Id="owdB57AF8DD84FB4EBB593E4846C2B0769D" Name="lib">
                 <Directory Id="owd087E848DA03F01981270A6C9B9D3AB32" Name="windows">
                   <Component Win64="$(var.Win64)" Id="owc9396615EF0244FFB66A14DB8A4CC4682" Guid="b881c302-7862-2fa8-7af3-0a1b89e6af04">
-                    <File Id="owf9396615EF0244FFB66A14DB8A4CC4682" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.asan_cxx-i386.a" KeyPath="yes" />
+                    <File Id="owf9396615EF0244FFB66A14DB8A4CC4682" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.asan_cxx-i386.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc7D603595BC92421CFA14439248C77B24" Guid="e29cba98-331e-2bbf-e63a-b9382c0ff0d8">
-                    <File Id="owf7D603595BC92421CFA14439248C77B24" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.asan_cxx-x86_64.a" KeyPath="yes" />
+                    <File Id="owf7D603595BC92421CFA14439248C77B24" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.asan_cxx-x86_64.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc8378C197351BF53B7ED40DB05CFD89AF" Guid="f35ab7f6-9e0e-f838-16e2-e060f824b693">
-                    <File Id="owf8378C197351BF53B7ED40DB05CFD89AF" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.asan_dll_thunk-i386.a" KeyPath="yes" />
+                    <File Id="owf8378C197351BF53B7ED40DB05CFD89AF" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.asan_dll_thunk-i386.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc1E41B13870E5043DBBBCB54E9EC5D3F8" Guid="1d3ea077-5804-cf06-ce06-b19e25339b85">
-                    <File Id="owf1E41B13870E5043DBBBCB54E9EC5D3F8" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.asan_dll_thunk-x86_64.a" KeyPath="yes" />
+                    <File Id="owf1E41B13870E5043DBBBCB54E9EC5D3F8" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.asan_dll_thunk-x86_64.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc655D8E92E9A080E52794719469F74E67" Guid="cd3f1d4b-35b5-8c87-5a96-743d6ecb5966">
-                    <File Id="owf655D8E92E9A080E52794719469F74E67" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.asan_dynamic_runtime_thunk-i386.a" KeyPath="yes" />
+                    <File Id="owf655D8E92E9A080E52794719469F74E67" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.asan_dynamic_runtime_thunk-i386.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcDF2AEBBBC950D9D7E3EA947AFC7698E4" Guid="12309994-cf16-76c8-fe28-ae8b4b79ba33">
-                    <File Id="owfDF2AEBBBC950D9D7E3EA947AFC7698E4" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.asan_dynamic_runtime_thunk-x86_64.a" KeyPath="yes" />
+                    <File Id="owfDF2AEBBBC950D9D7E3EA947AFC7698E4" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.asan_dynamic_runtime_thunk-x86_64.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcCC65516179583F397030CFECCECB8D28" Guid="300a7421-c8f6-7ec1-fd67-1d53a06a671e">
-                    <File Id="owfCC65516179583F397030CFECCECB8D28" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.asan_dynamic-i386.dll.a" KeyPath="yes" />
+                    <File Id="owfCC65516179583F397030CFECCECB8D28" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.asan_dynamic-i386.dll.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcAA86BE7EB4061196E493E765317F27F8" Guid="89b68b4e-ba08-51ca-56d1-36273562bc4a">
-                    <File Id="owfAA86BE7EB4061196E493E765317F27F8" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.asan_dynamic-x86_64.dll.a" KeyPath="yes" />
+                    <File Id="owfAA86BE7EB4061196E493E765317F27F8" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.asan_dynamic-x86_64.dll.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcE391C7F6B5B14113E42BCD74CACFBE68" Guid="1b93bfb9-8760-dbf7-fa2b-23474b7dfde7">
-                    <File Id="owfE391C7F6B5B14113E42BCD74CACFBE68" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.asan-i386.a" KeyPath="yes" />
+                    <File Id="owfE391C7F6B5B14113E42BCD74CACFBE68" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.asan-i386.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc0A66A099663B0C53FE79EA867CE0B8E3" Guid="7be05d5e-4625-a239-c09d-d08ea6bcbc73">
-                    <File Id="owf0A66A099663B0C53FE79EA867CE0B8E3" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.asan-preinit-i386.a" KeyPath="yes" />
+                    <File Id="owf0A66A099663B0C53FE79EA867CE0B8E3" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.asan-preinit-i386.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc81C632B3044F1F4246FC3DE1768DAF88" Guid="1886b271-216d-e038-4571-f5e7acf8b766">
-                    <File Id="owf81C632B3044F1F4246FC3DE1768DAF88" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.asan-preinit-x86_64.a" KeyPath="yes" />
+                    <File Id="owf81C632B3044F1F4246FC3DE1768DAF88" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.asan-preinit-x86_64.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcF37931D4B3EC21CF2D10AEFF23DE78DB" Guid="82498a1f-9eb0-7ca5-47f5-55d4274c2f4e">
-                    <File Id="owfF37931D4B3EC21CF2D10AEFF23DE78DB" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.asan-x86_64.a" KeyPath="yes" />
+                    <File Id="owfF37931D4B3EC21CF2D10AEFF23DE78DB" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.asan-x86_64.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc77CDFD41D64D3F69495DDAE4B3E1B2EF" Guid="fa072cb1-d02b-5088-a55d-3e61f2538056">
-                    <File Id="owf77CDFD41D64D3F69495DDAE4B3E1B2EF" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.builtins-aarch64.a" KeyPath="yes" />
+                    <File Id="owf77CDFD41D64D3F69495DDAE4B3E1B2EF" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.builtins-aarch64.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc5520406C177A5BC9072D8C81456BD398" Guid="6d455bd0-c9ff-7c7b-bf2f-b0ad8c7944f9">
-                    <File Id="owf5520406C177A5BC9072D8C81456BD398" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.builtins-arm.a" KeyPath="yes" />
+                    <File Id="owf5520406C177A5BC9072D8C81456BD398" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.builtins-arm.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc73A45E96C40038456F4CEF90BD038269" Guid="2c5fbc38-5dc9-0145-9286-16aaba2c8f63">
-                    <File Id="owf73A45E96C40038456F4CEF90BD038269" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.builtins-i386.a" KeyPath="yes" />
+                    <File Id="owf73A45E96C40038456F4CEF90BD038269" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.builtins-i386.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcBC3ECC66BDCDABF7DCE61BAB9972518C" Guid="e78bfb54-d2fd-a870-c551-0bb32b37d073">
-                    <File Id="owfBC3ECC66BDCDABF7DCE61BAB9972518C" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.builtins-x86_64.a" KeyPath="yes" />
+                    <File Id="owfBC3ECC66BDCDABF7DCE61BAB9972518C" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.builtins-x86_64.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc2636EC807E87CE490B3205BF2D87A7B2" Guid="bc4cfec7-b2fb-5291-4164-42db114e53c3">
-                    <File Id="owf2636EC807E87CE490B3205BF2D87A7B2" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.fuzzer_no_main-i386.a" KeyPath="yes" />
+                    <File Id="owf2636EC807E87CE490B3205BF2D87A7B2" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.fuzzer_no_main-i386.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcB29716E5C4F31DE736AD0E6C0DE68B90" Guid="ff6201f0-3a21-bc02-7011-c51c59a03d6e">
-                    <File Id="owfB29716E5C4F31DE736AD0E6C0DE68B90" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.fuzzer_no_main-x86_64.a" KeyPath="yes" />
+                    <File Id="owfB29716E5C4F31DE736AD0E6C0DE68B90" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.fuzzer_no_main-x86_64.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc82D495A067EA8414F02B7DEB5BA82E73" Guid="02aefb16-c3a9-07ae-020d-44df0c798709">
-                    <File Id="owf82D495A067EA8414F02B7DEB5BA82E73" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.fuzzer-i386.a" KeyPath="yes" />
+                    <File Id="owf82D495A067EA8414F02B7DEB5BA82E73" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.fuzzer-i386.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc1E0CA9CCBE6E67F49F20CA3770BA8BAE" Guid="2d973c66-4623-a6f7-2957-daa159099030">
-                    <File Id="owf1E0CA9CCBE6E67F49F20CA3770BA8BAE" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.fuzzer-x86_64.a" KeyPath="yes" />
+                    <File Id="owf1E0CA9CCBE6E67F49F20CA3770BA8BAE" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.fuzzer-x86_64.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcD7616EE2A8AA8800ADE6567DF545DCE6" Guid="70685e72-f65a-2349-c1fa-3c8e3692fbef">
-                    <File Id="owfD7616EE2A8AA8800ADE6567DF545DCE6" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.profile-i386.a" KeyPath="yes" />
+                    <File Id="owfD7616EE2A8AA8800ADE6567DF545DCE6" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.profile-i386.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcA2815CD9545CE62D0F86BED97FB9D75F" Guid="1ab0c633-0446-6fb6-3f49-a213efab6d45">
-                    <File Id="owfA2815CD9545CE62D0F86BED97FB9D75F" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.profile-x86_64.a" KeyPath="yes" />
+                    <File Id="owfA2815CD9545CE62D0F86BED97FB9D75F" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.profile-x86_64.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc1F1C1AF26E1E56225AAA88950D4C6492" Guid="5cd21ebb-ddfc-5ef8-3d96-5bae1cf23d39">
-                    <File Id="owf1F1C1AF26E1E56225AAA88950D4C6492" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.stats_client-i386.a" KeyPath="yes" />
+                    <File Id="owf1F1C1AF26E1E56225AAA88950D4C6492" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.stats_client-i386.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcB15725524C8DDF69667409C5B42524EE" Guid="821e803c-7a41-ffcf-2a70-3e6a58c79b44">
-                    <File Id="owfB15725524C8DDF69667409C5B42524EE" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.stats_client-x86_64.a" KeyPath="yes" />
+                    <File Id="owfB15725524C8DDF69667409C5B42524EE" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.stats_client-x86_64.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcE0E652EBBBA8308BC1FE813E7AEFC8FC" Guid="014ec0ae-f0ba-5c68-de79-7726a0dc8dc2">
-                    <File Id="owfE0E652EBBBA8308BC1FE813E7AEFC8FC" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.stats-i386.a" KeyPath="yes" />
+                    <File Id="owfE0E652EBBBA8308BC1FE813E7AEFC8FC" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.stats-i386.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc4876795278D7FD2FA6365CAE55E610B1" Guid="203b57b6-2e0b-2c39-6f81-8ddb338211ff">
-                    <File Id="owf4876795278D7FD2FA6365CAE55E610B1" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.stats-x86_64.a" KeyPath="yes" />
+                    <File Id="owf4876795278D7FD2FA6365CAE55E610B1" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.stats-x86_64.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc581EE8461DCB624168A05B9B52E8586E" Guid="e0244f6f-8586-6005-5dc7-23d8c44cf787">
-                    <File Id="owf581EE8461DCB624168A05B9B52E8586E" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.ubsan_standalone_cxx-i386.a" KeyPath="yes" />
+                    <File Id="owf581EE8461DCB624168A05B9B52E8586E" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.ubsan_standalone_cxx-i386.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc505BB1F706D5E250D5D489696A841EB9" Guid="8d9b0c0e-5be6-0632-1ed6-c7e27a09caae">
-                    <File Id="owf505BB1F706D5E250D5D489696A841EB9" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.ubsan_standalone_cxx-x86_64.a" KeyPath="yes" />
+                    <File Id="owf505BB1F706D5E250D5D489696A841EB9" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.ubsan_standalone_cxx-x86_64.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owcFED46C1AF914B6042D667DE7227481E3" Guid="843e548b-817b-47f0-8589-74d0a72183c4">
-                    <File Id="owfFED46C1AF914B6042D667DE7227481E3" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.ubsan_standalone-i386.a" KeyPath="yes" />
+                    <File Id="owfFED46C1AF914B6042D667DE7227481E3" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.ubsan_standalone-i386.a" KeyPath="yes" />
                   </Component>
                   <Component Win64="$(var.Win64)" Id="owc40B224DAFA2D399428625C4D3D17A028" Guid="c2948c41-9a4d-4a5c-d1e5-e629637028a5">
-                    <File Id="owf40B224DAFA2D399428625C4D3D17A028" Source="$(var.SourceDir)\WLC\lib\clang\10.0.0\lib\windows\libclang_rt.ubsan_standalone-x86_64.a" KeyPath="yes" />
+                    <File Id="owf40B224DAFA2D399428625C4D3D17A028" Source="$(var.SourceDir)\WLC\lib\clang\11.0.0\lib\windows\libclang_rt.ubsan_standalone-x86_64.a" KeyPath="yes" />
                   </Component>
                 </Directory>
               </Directory>

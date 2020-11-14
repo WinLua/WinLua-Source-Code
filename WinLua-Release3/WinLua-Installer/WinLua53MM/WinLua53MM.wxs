@@ -5,17 +5,18 @@
   <!-- SourceDir instructs IsWiX the location of the directory that contains files for this merge module -->
   <!--<?define SourceDir="..\..\Deploy\x86"?>-->
   <!--<?define SourceDir="..\..\Deploy\$(var.Platform)"?>-->
-  <?define SourceDir="C:\WinLua-Deploy\$(var.InstallerVersion)\$(var.Platform)\Lua"?>
+  <!--<?define SourceDir="C:\WinLua-Deploy\$(var.InstallerVersion)\$(var.Platform)\Lua"?>-->
+  <?define SourceDir="C:\Winlua-Deploy\2011b-BETA\x86\Lua"?>
   <?define LUA_VER="5.3"?>
   <Module Id="WinLua" Language="1033" Version="5.3.0.0">
     <Package Id="af06fe31-dbfb-4971-bed9-0ab821a7a486" Manufacturer="WinLua" InstallerVersion="301" Keywords="Lua" Description="WinLua is a binary distribution of the Lua, luafilesystem, and sol2." />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="MergeRedirectFolder">
-        <Directory Id="luaversiondir" Name="$(var.LuaVersion)">
+        <Directory Id="luaversiondir" Name="$(var.LUA_VER)">
           <Directory Id="luabindir" Name="bin">
             <Component Win64="$(var.Win64)" Id="owc2AEA4E75727E1005932EADD776538C2A" Guid="a9f4aab4-9c2b-4bc4-a5d6-9fdd09e6396c">
               <File Id="owf2AEA4E75727E1005932EADD776538C2A" Source="$(var.SourceDir)\$(var.LUA_VER)\bin\lua.exe" KeyPath="yes">
-                <Shortcut Id="scBE87F9AE76F6BF2449AEE0259D5445BB" Name="Lua $(var.LuaVersion) $(var.PlatName) Bit Interpreter" Directory="scdC6281A678886E0381809F3F89C5DACBD" />
+                <Shortcut Id="scBE87F9AE76F6BF2449AEE0259D5445BB" Name="Lua $(var.LUA_VER) $(var.PlatName) Bit Interpreter" Directory="scdC6281A678886E0381809F3F89C5DACBD" />
               </File>
             </Component>
             <Component Win64="$(var.Win64)" Id="owc87F5236CFA55B1784AB133C1A856143D" Guid="320d73dd-47a0-41da-b57d-23c21800b7ec">
