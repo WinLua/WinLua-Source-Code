@@ -5,7 +5,7 @@
   <!--<?define SourceDir="C:\WinLua-Deploy\$(var.InstallerVersion)\$(var.Platform)\"?>-->
   <?define SourceDir="C:\WinLua-Deploy\2011b-BETA\x86"?>
   <Module Id="XMakeMM" Language="1033" Version="1.0.0.0">
-    <Package Id="9a25474e-de2d-4ebb-bb0e-aa45827bd858" Manufacturer="TBOOX" InstallerVersion="200" Description="A cross-platform build utility based on Lua." InstallPrivileges="elevated" Platform="x64" />
+    <Package Id="9a25474e-de2d-4ebb-bb0e-aa45827bd858" Manufacturer="TBOOX" InstallerVersion="200" Description="A cross-platform build utility based on Lua." InstallPrivileges="elevated" Platform="x86" />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="MergeRedirectFolder">
         <Directory Id="owdA4E67A615D44DBDB58112EDC5774C269" Name="xmake">

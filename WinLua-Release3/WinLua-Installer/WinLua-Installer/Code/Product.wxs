@@ -32,10 +32,11 @@
     
     <UIRef Id="UI" />
     <!-- Include Features and Directories Fragment -->
-    <DirectoryRef Id="LUA_INSTALLLOCATION" />
+    <DirectoryRef Id="LUA53_INSTALLLOCATION" />
+    <DirectoryRef Id="LUA54_INSTALLLOCATION" />
     <DirectoryRef Id="LUAROCKS_INSTALLLOCATION" />
     <DirectoryRef Id="LIBRESSL_INSTALLLOCATION" />
-    <DirectoryRef Id="JAMPLUS_INSTALLLOCATION" />
+    <DirectoryRef Id="XMAKE_INSTALLLOCATION" />
     <DirectoryRef Id="LLVMMINGW_INSTALLLOCATION" />
     
     <!--Properties for the LuaRocks configuraiton file that we generate with Configure.LuaRocks custom Action-->

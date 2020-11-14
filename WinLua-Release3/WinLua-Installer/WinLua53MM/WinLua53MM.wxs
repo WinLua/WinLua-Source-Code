@@ -51,7 +51,7 @@
           </Directory>
           <Directory Id="owd2A5197CE7430BBCE8EECA5162CBB6379" Name="lib">
             <Component Win64="$(var.Win64)" Id="owcE80EC0E47787CC07D24A7408250ED2B6" Guid="7afe7edb-c555-418a-bc78-65b4e365f0b6">
-              <File Id="owfE80EC0E47787CC07D24A7408250ED2B6" Source="$(var.SourceDir)\$(var.LUA_VER)\lib\lua\5.3\lfs.dll" KeyPath="yes" />
+              <File Id="owfE80EC0E47787CC07D24A7408250ED2B6" Source="$(var.SourceDir)\$(var.LUA_VER)\lib\lua\$(var.LUA_VER)\lfs.dll" KeyPath="yes" />
             </Component>
             <Component Win64="$(var.Win64)" Id="owcE80EC0E49311CC07D24A7408250ED2B6" Guid="7afe7edb-f713-418a-bc78-65b4e3654c4c">
               <File Id="owfE80EC0E49311CC07D24A7408250ED2B6" Source="$(var.SourceDir)\$(var.LUA_VER)\lib\liblua.a" KeyPath="yes" />

@@ -4,7 +4,7 @@
   <?include $(var.SolutionDir)\Include.wxi ?>
   <!-- SourceDir instructs IsWiX the location of the directory that contains files for this merge module -->
   <?define SourceDir="..\..\Deploy\x86"?>
-  <!--<?define SourceDir="..\..\Deploy\$(var.Platform)"?>-->
+  <?define SourceDir="C:\Winlua-Deploy\2011b-BETA\x86\"?>
   <Module Id="LuaRocksMM" Language="1033" Version="3.0.3">
     <Package Id="3ddf1f2b-8f02-4457-8d83-12b7df43e7e8" Manufacturer="LuaRocks.org" InstallerVersion="200" />
     <Directory Id="TARGETDIR" Name="SourceDir">
@@ -16,9 +16,9 @@
           <Component Id="owcB067DC11745CC73E900E958C7B73D8E9" Guid="355a2a71-20e3-baa1-26a9-2a94fe7f7d27">
             <File Id="owfB067DC11745CC73E900E958C7B73D8E9" Source="$(var.SourceDir)\luarocks\luarocks-admin.exe" KeyPath="yes" />
           </Component>
-          <Component Id="owcAE48D75E758E3EA75696F8CB7B24E942" Guid="31c4d0a6-fb7e-e4fc-a4c7-14d9677c229b">
+          <!--<Component Id="owcAE48D75E758E3EA75696F8CB7B24E942" Guid="31c4d0a6-fb7e-e4fc-a4c7-14d9677c229b">
             <File Id="owfAE48D75E758E3EA75696F8CB7B24E942" Source="$(var.SourceDir)\winlua-luarocks\config-winlua-luarocks.bat" KeyPath="yes" />
-          </Component>
+          </Component>-->
         </Directory>
         <Directory Id="owd2A8ED26A2AC05DCAED107202D9C7BF5F" Name="share">
           <Component Id="owc90C32C084E2B29D4EF5CB22A5AB04249" Guid="2b116175-c7a3-dbef-99ce-ae3f701eb7b6">
