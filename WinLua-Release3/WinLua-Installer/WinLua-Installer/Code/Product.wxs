@@ -32,8 +32,7 @@
     
     <UIRef Id="UI" />
     <!-- Include Features and Directories Fragment -->
-    <DirectoryRef Id="LUA53_INSTALLLOCATION" />
-    <DirectoryRef Id="LUA54_INSTALLLOCATION" />
+    <DirectoryRef Id="LUA_INSTALLLOCATION" />
     <DirectoryRef Id="LUAROCKS_INSTALLLOCATION" />
     <DirectoryRef Id="LIBRESSL_INSTALLLOCATION" />
     <DirectoryRef Id="XMAKE_INSTALLLOCATION" />

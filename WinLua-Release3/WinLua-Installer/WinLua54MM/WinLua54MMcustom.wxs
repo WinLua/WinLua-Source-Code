@@ -4,16 +4,9 @@
     <?include $(var.SolutionDir)\Include.wxi ?>    
     <!-- Reference Custom Components Below -->
     <ComponentGroup Id="Custom">
-      <Component Id="set_path"  Directory="MergeRedirectFolder" Guid="BA49EB55-4061-46F1-91DC-31313A7B8F77" Win64="$(var.Win64)" KeyPath="yes">
+      <Component Id="set_path"  Directory="MergeRedirectFolder" Guid="b6505012-eb92-45a8-bcfc-1b2b9f7e32ef" Win64="$(var.Win64)" KeyPath="yes">
         <CreateFolder/>
-          <Environment Id="PATH" Name="PATH" Value="[luabindir]" Permanent="no" Part="last" Action="set" System="yes" />
-        <!-- ;; adds the default path. Until I have something eles to put in there, 
-         these paths add no value.-->
-          <!--<Environment Id="PATH_51" Name="PATH" Value="[lua51bindir]" Permanent="no" Part="last" Action="set" System="yes" />
-          <Environment Id="LUA_PATH" Name="LUA_PATH" Value=";;" Permanent="no" Part="last" Action="set" System="yes" />
-          <Environment Id="LUA51_PATH" Name="LUA51_PATH" Value=";;" Permanent="no" Part="last" Action="set" System="yes" />
-          <Environment Id="LUA_CPATH" Name="LUA_CPATH" Value=";;" Permanent="no" Part="last" Action="set" System="yes" />
-          <Environment Id="LUA51_CPATH" Name="LUA51_CPATH" Value=";;" Permanent="no" Part="last" Action="set" System="yes" />-->
+          <Environment Id="PATH" Name="PATH" Value="[lua54bindir]" Permanent="no" Part="last" Action="set" System="yes" />
 
       </Component>
     </ComponentGroup>

@@ -9,7 +9,7 @@
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="MergeRedirectFolder">
         <Directory Id="owdA4E67A615D44DBDB58112EDC5774C269" Name="xmake">
-          <Directory Id="owd170C21284159AAD07FEA652BF136C442" Name="bin">
+          <Directory Id="xmakebindir" Name="bin">
             <Component Id="owcFD1C527606007CC2BF21C2CDB86B2670" Guid="b1381202-7988-1b90-70a0-1a162edf822a">
               <File Id="owfFD1C527606007CC2BF21C2CDB86B2670" Source="$(var.SourceDir)\xmake\bin\xmake.exe" KeyPath="yes" />
             </Component>

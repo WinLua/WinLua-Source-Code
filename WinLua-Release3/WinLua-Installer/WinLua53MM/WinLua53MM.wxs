@@ -13,7 +13,7 @@
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="MergeRedirectFolder">
         <Directory Id="luaversiondir" Name="$(var.LUA_VER)">
-          <Directory Id="luabindir" Name="bin">
+          <Directory Id="lua53bindir" Name="bin">
             <Component Win64="$(var.Win64)" Id="owc2AEA4E75727E1005932EADD776538C2A" Guid="a9f4aab4-9c2b-4bc4-a5d6-9fdd09e6396c">
               <File Id="owf2AEA4E75727E1005932EADD776538C2A" Source="$(var.SourceDir)\$(var.LUA_VER)\bin\lua.exe" KeyPath="yes">
                 <Shortcut Id="scBE87F9AE76F6BF2449AEE0259D5445BB" Name="Lua $(var.LUA_VER) $(var.PlatName) Bit Interpreter" Directory="scdC6281A678886E0381809F3F89C5DACBD" />
@@ -50,9 +50,13 @@
             </Component>
           </Directory>
           <Directory Id="owd2A5197CE7430BBCE8EECA5162CBB6379" Name="lib">
-            <Component Win64="$(var.Win64)" Id="owcE80EC0E47787CC07D24A7408250ED2B6" Guid="7afe7edb-c555-418a-bc78-65b4e365f0b6">
-              <File Id="owfE80EC0E47787CC07D24A7408250ED2B6" Source="$(var.SourceDir)\$(var.LUA_VER)\lib\lua\$(var.LUA_VER)\lfs.dll" KeyPath="yes" />
-            </Component>
+            <Directory Id="lualib" Name="lua">
+              <Directory Id="lualibversion" Name="$(var.LUA_VER)">
+                <Component Win64="$(var.Win64)" Id="owcE80EC0E47787CC07D24A7408250ED2B6" Guid="7afe7edb-c555-418a-bc78-65b4e365f0b6">
+                  <File Id="owfE80EC0E47787CC07D24A7408250ED2B6" Source="$(var.SourceDir)\$(var.LUA_VER)\lib\lua\$(var.LUA_VER)\lfs.dll" KeyPath="yes" />
+                </Component>
+              </Directory>
+            </Directory>
             <Component Win64="$(var.Win64)" Id="owcE80EC0E49311CC07D24A7408250ED2B6" Guid="7afe7edb-f713-418a-bc78-65b4e3654c4c">
               <File Id="owfE80EC0E49311CC07D24A7408250ED2B6" Source="$(var.SourceDir)\$(var.LUA_VER)\lib\liblua.a" KeyPath="yes" />
             </Component>

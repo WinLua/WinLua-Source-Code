@@ -6,12 +6,10 @@
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="$(var.PlatformProgramFilesFolder)">
         <Directory Id="CompanyFolder" Name="WinLua">
-          <Directory Id="LUA53_INSTALLLOCATION" Name="Lua53">
-            <Merge Id="WinLua53MM" SourceFile="$(var.WinLua53MM.TargetPath)" DiskId="1" Language="1033" />
-          </Directory>
-          <Directory Id="LUA54_INSTALLLOCATION" Name="Lua54">
-            <Merge Id="WinLua54MM" SourceFile="$(var.WinLua54MM.TargetPath)" DiskId="1" Language="1033" />
-          </Directory>
+            <Directory Id="LUA_INSTALLLOCATION" Name="Lua">
+              <Merge Id="WinLua53MM" SourceFile="$(var.WinLua53MM.TargetPath)" DiskId="1" Language="1033" />
+              <Merge Id="WinLua54MM" SourceFile="$(var.WinLua54MM.TargetPath)" DiskId="1" Language="1033" />
+            </Directory>
           <Directory Id="LUAROCKS_INSTALLLOCATION" Name="LuaRocks">
             <Merge Id="LuaRocksMM" SourceFile="$(var.LuaRocksMM.TargetPath)" DiskId="1" Language="1033" />
           </Directory>
@@ -27,10 +25,10 @@
         </Directory>
       </Directory>
     </Directory>
-    <Feature Id="WinLua53" Title="Lua 5.3" Description="Base installation of Lua Interpreter, DLLs, LuaFileSystem and the Sol 3 C++ bindings" Level="1" AllowAdvertise="no" ConfigurableDirectory="LUA53_INSTALLLOCATION">
+    <Feature Id="WinLua53" Title="Lua 5.3" Description="Base installation of Lua Interpreter, DLLs, LuaFileSystem and the Sol 3 C++ bindings" Level="1" AllowAdvertise="no" ConfigurableDirectory="LUA_INSTALLLOCATION">
       <MergeRef Id="WinLua53MM" />
     </Feature>
-    <Feature Id="WinLua54" Title="Lua 5.4" Description="Base installation of Lua Interpreter, DLLs, LuaFileSystem and the Sol 3 C++ bindings" Level="1" AllowAdvertise="no" ConfigurableDirectory="LUA54_INSTALLLOCATION">
+    <Feature Id="WinLua54" Title="Lua 5.4" Description="Base installation of Lua Interpreter, DLLs, LuaFileSystem and the Sol 3 C++ bindings" Level="1" AllowAdvertise="no" ConfigurableDirectory="LUA_INSTALLLOCATION">
       <MergeRef Id="WinLua54MM" />
     </Feature>
     <Feature Id="LuaRocks" Title="LuaRocks" Description="Package Manager and build system for Lua."  Level="1" AllowAdvertise="no" ConfigurableDirectory="LUAROCKS_INSTALLLOCATION">

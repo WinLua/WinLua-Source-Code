@@ -4489,7 +4489,7 @@
             </Component>
           </Directory>
         </Directory>
-        <Directory Id="owd00BD073775AEE2E88B74CCEE86DD7715" Name="bin">
+        <Directory Id="llvm_mingw_bin" Name="bin">
           <Component Win64="$(var.Win64)" Id="owc3EC37F357AF295803E2B3573B97EF589" Guid="653f419a-1c48-bce0-da2a-40881ca3b2bb">
             <File Id="owf3EC37F357AF295803E2B3573B97EF589" Source="$(var.SourceDir)\WLC\bin\aarch64-w64-mingw32-addr2line.exe" KeyPath="yes" />
           </Component>
