@@ -5,8 +5,9 @@
   <!-- SourceDir instructs IsWiX the location of the directory that contains files for this merge module -->
   <!--<?define SourceDir="..\..\Deploy\x86"?>-->
   <!--<?define SourceDir="..\..\Deploy\$(var.Platform)"?>-->
-  <!--<?define SourceDir="C:\WinLua-Deploy\$(var.InstallerVersion)\$(var.Platform)\Lua"?>-->
-  <?define SourceDir="C:\Winlua-Deploy\2011b-BETA\x86\Lua"?>
+  <?define SourceDir="C:\Winlua-Deploy\2011c\x86\Lua"?>
+  <?define SourceDir="C:\WinLua-Deploy\$(var.InstallerVersion)\$(var.Platform)\Lua"?>
+  
   <?define LUA_VER="5.4"?>
   <Module Id="WinLua" Language="1033" Version="5.4.1.0">
     <Package Id="a761143b-0d5b-448d-b624-54c2e27f43ee" Manufacturer="WinLua" InstallerVersion="301" Keywords="Lua" Description="WinLua is a binary distribution of the Lua, luafilesystem, and sol2." />
@@ -15,7 +16,7 @@
         <Directory Id="lua54" Name="$(var.LUA_VER)">
           <Directory Id="lua54bindir" Name="bin">
             <Component Id="l548891522954bdbbd0696173f23d811" Guid="ebd1c801-1fe0-a24c-e706-65e0a2ac8f74">
-              <File Id="l548891522954bdbbd0696173f23d811" Source="$(var.SourceDir)\5.4\bin\lua.exe" KeyPath="yes">
+              <File Id="l548891522954bdbbd0696173f23d811" Source="$(var.SourceDir)\5.4\bin\lua54.exe" KeyPath="yes">
                 <Shortcut Id="scBE87F9AE76F6BF2449AEE0259D5445BB" Name="Lua $(var.LUA_VER) $(var.PlatName) Bit Interpreter" Directory="scdC6281A678886E0381809F3F89C5DACBD" />
               </File>
             </Component>
@@ -26,7 +27,7 @@
               <File Id="l543240D155CF91D340A40BFBAE3B3478B3" Source="$(var.SourceDir)\5.4\bin\lua54.lib" KeyPath="yes" />
             </Component>
             <Component Id="l549F701B58CBEF23512225C4451BC0A9AE" Guid="527b51ef-2d3c-8859-a0d7-71e151a2b838">
-              <File Id="l549F701B58CBEF23512225C4451BC0A9AE" Source="$(var.SourceDir)\5.4\bin\luac.exe" KeyPath="yes" />
+              <File Id="l549F701B58CBEF23512225C4451BC0A9AE" Source="$(var.SourceDir)\5.4\bin\luac54.exe" KeyPath="yes" />
             </Component>
           </Directory>
           <Directory Id="l54703030468B2651C909C217A57695C42D" Name="include">
@@ -57,25 +58,6 @@
               <Directory Id="owd58578D19BDACEDF677EC77D89F11A33A" Name="5.4">
                 <Component Id="owc0BB00BBE7912FBAE2BC7D9E9875089C6" Guid="30f3a699-d1c1-de78-afb0-95c778479d1e">
                   <File Id="owf0BB00BBE7912FBAE2BC7D9E9875089C6" Source="$(var.SourceDir)\5.4\lib\lua\5.4\lfs.dll" KeyPath="yes" />
-                </Component>
-              </Directory>
-            </Directory>
-          </Directory>
-          <Directory Id="owd6FDF30C95903D0D840023CDA79CA5483" Name="man">
-            <Directory Id="owd57A957252EE6EE64B785723FD5CA0742" Name="man1">
-              <Component Id="owcD08A68262B0E4ADF6C6501B225B52C6E" Guid="b125c57e-039b-ca1d-c01b-ff0d46fe8384">
-                <File Id="owfD08A68262B0E4ADF6C6501B225B52C6E" Source="$(var.SourceDir)\5.4\man\man1\lua.1" KeyPath="yes" />
-              </Component>
-              <Component Id="owc923AA2932B5F7E3BA3CE900F9051C56D" Guid="7e37e273-93fa-4f2e-b239-e0b1852b7fc6">
-                <File Id="owf923AA2932B5F7E3BA3CE900F9051C56D" Source="$(var.SourceDir)\5.4\man\man1\luac.1" KeyPath="yes" />
-              </Component>
-            </Directory>
-          </Directory>
-          <Directory Id="owd2A8ED26A2AC05DCAED107202D9C7BF5F" Name="share">
-            <Directory Id="owdBF5C3F6D7E61AD30E7D53F02E3C4E113" Name="lua">
-              <Directory Id="owdF3594D1D58D5833FA439A56DF30C6A7B" Name="5.4">
-                <Component Id="owcF3594D1D58D5833FA439A56DF30C6A7B" Guid="e5f2e210-ae35-41bf-908c-9dcadd431492">
-                  <CreateFolder />
                 </Component>
               </Directory>
             </Directory>

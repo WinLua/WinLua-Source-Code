@@ -51,7 +51,7 @@ namespace Winlua.Installer.CustomAction
             }
             return ActionResult.Success;
         }
-         
+
         /// <summary>
         /// If the user installs llvm-mingw, we write the config file ourselves.
         /// </summary>
@@ -61,21 +61,27 @@ namespace Winlua.Installer.CustomAction
             ///configuration script so we can work with any compiler.
 
             bool result = false;
-            ///This is a first crack at creating the config file, 
-            ///it's also a test of what I can do with NeoLua so 
-            ///bear with me...
+
             session.Log("WinLua: Create Config File for LuaRocks with WLC.");
             dynamic d = g;
-            //This is creating tables and table values in C# using dynamic
-            d.rocks_trees = new LuaTable();
-            d.rocks_trees[1] = new LuaTable();
-            d.rocks_trees[1].name = "user";
-            d.rocks_trees[1].root = "home..[[/luarocks]]";
-            d.rocks_trees[2] = new LuaTable();
-            d.rocks_trees[2].name = "system";
-            g.DoChunk(@"luaRootPath = luaRootPath:gsub('\\','/').. luaVersion .. '/'", "c1");            
-            d.rocks_trees[2].root = d.luaRootPath;
+            //Add the version to the root path. 
+            g.DoChunk(@"luaRootPath = luaRootPath .. luaVersion", "c1");
 
+            //So, here we create a C# string representing a table because I need to copy in the `root = home .. [[\\luarocks]]` verbatum
+            // and I don't want lua interpereting it. Next, I need to get the luaRootPath into the the string with the correct
+            // double slash formatting.
+            d.rockstrees_string = @"rocks_trees = {
+    {
+        name = 'user',
+        root = home .. [[\\luarocks]]
+    },
+    {
+        name = 'system',
+        root = '?'
+    }                
+}";
+            //Now update the string with the proper double slashes to escape in a C/Lua environment
+            g.DoChunk(@"rockstrees_string = rockstrees_string:gsub('%?', luaRootPath:gsub('\\','\\\\')) ", "c1");
             //This is creating tables and values in Lua
             ///- Create the variables table and add LUA_LIBDIR and LUA_INCDIR.
             ///- Format the lua version and create the path for the new config file
@@ -84,9 +90,10 @@ namespace Winlua.Installer.CustomAction
             session.Log("WinLua: Running custom Lua chunk...");
             g.DoChunk(@"
             variables = {}
-            lua_version_formatted = luaVersion:gsub('%.','')                        
-            variables.LUA_LIBDIR = luaRootPath..'bin/'
-            variables.LUA_INCDIR = luaRootPath..'include/'            
+            lua_version_formatted = luaVersion:gsub('%.','')
+            variables.LUA_DIR = luaRootPath..'\\bin'
+            variables.LUA_LIBDIR = luaRootPath..'\\bin'
+            variables.LUA_INCDIR = luaRootPath..'\\include'            
             variables.LUALIB = string.format('lua%s.lib', lua_version_formatted)
             luaRocksConfigPath = string.format('%sconfig-%s.lua', luaRocksRootPath, luaVersion)
             ", "c1");
@@ -105,14 +112,16 @@ namespace Winlua.Installer.CustomAction
                 
                 //TODO: Remove hard code tools lib path (needs to be arch independant)
                 d.external_deps_dirs[1] = d.toolsPath + d.x86_lib + "/";
-                g.DoChunk(@"external_deps_dirs[1] = external_deps_dirs[1]:gsub('\\','/')", "c1");
+                //g.DoChunk(@"external_deps_dirs[1] = external_deps_dirs[1]", "c1");
                 //I got lazy at the end...
                 g.DoChunk(@"
                     external_deps_patterns = {
                         bin = { '?.exe', '?.bat' },
-                        lib = { 'lib?.a', 'lib?.dll.a', '?.dll.a', '?.lib', 'lib?.lib'},
+                        lib = { '?.lib', 'lib?.lib', 'lib?.a', 'lib?.dll.a', '?.dll.a' },
                         include = { '?.h' }
-                    }", "c1");
+                    }
+                    external_lib_extension = 'lib'
+                ", "c1");
             }
             else
             {
@@ -120,30 +129,33 @@ namespace Winlua.Installer.CustomAction
             }
 
             //Prepend the table names for formatting in the config file.
-            string trees = "rocks_trees = " + LuaTable.ToLson(d.rocks_trees);
+            //string trees = "rocks_trees = " + LuaTable.ToLson(d.rocks_trees);
             string variables = "variables = " + LuaTable.ToLson(d.variables);
             string ex_deps_dirs = "";
             string ex_deps_patterns = "";
+            string ex_lib_extension = "";
             string verbose = "verbose = false-- set to 'true' to enable verbose output";
+            string use_local = "local_by_default = true";
 
             if (d.toolsPath != null)
             {
                 session.Log("WinLua: Format external_* tables");
                 ex_deps_dirs = "external_deps_dirs = " + LuaTable.ToLson(d.external_deps_dirs);
                 ex_deps_patterns = "external_deps_patterns = " + LuaTable.ToLson(d.external_deps_patterns);
-                
+                ex_lib_extension = "external_lib_extension = '" + d.external_lib_extension + "'";
             }
                         
             //Write to file, append each table to the file (newline seperated). 
             //Note, the d.luaRocksConfigPath variable is created in a Lua chunk above.
-            File.WriteAllText(d.luaRocksConfigPath, string.Format("{0}\r\n{1}\r\n{2}\r\n{3}\r\n{4}\r\n",
-                trees, variables, ex_deps_dirs, ex_deps_patterns, verbose));
+            //Note 2: the d.rockstrees_string variable is a lua string representation of a Lua table in the lua environment. (head explodes)
+            File.WriteAllText(d.luaRocksConfigPath, string.Format("{0}\r\n{1}\r\n{2}\r\n{3}\r\n{4}\r\n{5}\r\n{6}\r\n",
+                d.rockstrees_string, variables, ex_deps_dirs, ex_deps_patterns, ex_lib_extension, use_local, verbose));
 
             session.Log(string.Format("WinLua: Created config file at {0}.", d.luaRocksRootPath));
             //TODO: Do this properly in the installer, not in the custom action. It's too opaque.
             //Set the LUAROCKS_SYSCONFDIR variable.
-            Environment.SetEnvironmentVariable(LUAROCKS_SYSCONFDIR, d.luaRocksRootPath, EnvironmentVariableTarget.Machine);
-            session.Log("WinLua: Set LUAROCKS_SYSCONFDIR. LuaRocks configuration complete.");
+            //Environment.SetEnvironmentVariable(LUAROCKS_SYSCONFDIR, d.luaRocksRootPath, EnvironmentVariableTarget.Machine);
+            //session.Log("WinLua: Set LUAROCKS_SYSCONFDIR. LuaRocks configuration complete.");
             return result;
 
         }
@@ -158,7 +170,7 @@ namespace Winlua.Installer.CustomAction
                 session.Log("WinLua: Removing everything leftover.");
                 Directory.Delete(path, true);
             }
-            Environment.SetEnvironmentVariable(LUAROCKS_SYSCONFDIR, null, EnvironmentVariableTarget.Machine);
+            //Environment.SetEnvironmentVariable(LUAROCKS_SYSCONFDIR, null, EnvironmentVariableTarget.Machine);
             session.Log("***WinLua: Removed");
             return ActionResult.Success;
         }

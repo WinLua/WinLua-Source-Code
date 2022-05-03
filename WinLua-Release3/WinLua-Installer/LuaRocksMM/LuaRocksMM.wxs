@@ -4,8 +4,10 @@
   <?include $(var.SolutionDir)\Include.wxi ?>
   <!-- SourceDir instructs IsWiX the location of the directory that contains files for this merge module -->
   <!--<?define SourceDir="..\..\Deploy\x86"?>-->
-  <?define SourceDir="C:\Winlua-Deploy\2011b-BETA\x86\"?>
-  <Module Id="LuaRocksMM" Language="1033" Version="3.0.3">
+  <!--<?define SourceDir="C:\Winlua-Deploy\2011c\x86\"?>-->
+  <?define SourceDir="C:\WinLua-Deploy\$(var.InstallerVersion)\$(var.Platform)"?>
+  <?define ExtrasDir="C:\Users\russh\git\winlua-source-code\WinLua-Release3\Sources\"?>
+    <Module Id="LuaRocksMM" Language="1033" Version="3.0.3">
     <Package Id="3ddf1f2b-8f02-4457-8d83-12b7df43e7e8" Manufacturer="LuaRocks.org" InstallerVersion="200" />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="MergeRedirectFolder">
@@ -22,13 +24,13 @@
         </Directory>
         <Directory Id="owd2A8ED26A2AC05DCAED107202D9C7BF5F" Name="share">
           <Component Id="owc90C32C084E2B29D4EF5CB22A5AB04249" Guid="2b116175-c7a3-dbef-99ce-ae3f701eb7b6">
-            <File Id="owf90C32C084E2B29D4EF5CB22A5AB04249" Source="$(var.SourceDir)\winlua-luarocks\create-config.lua" KeyPath="yes" />
+            <File Id="owf90C32C084E2B29D4EF5CB22A5AB04249" Source="$(var.ExtrasDir)\winlua-luarocks\create-config.lua" KeyPath="yes" />
           </Component>
           <Component Id="owc4285884F1CE8A4005857B9261FFEBC90" Guid="f2833162-d457-1934-5b2c-01e857ae0cf1">
-            <File Id="owf4285884F1CE8A4005857B9261FFEBC90" Source="$(var.SourceDir)\winlua-luarocks\pe-parser.lua" KeyPath="yes" />
+            <File Id="owf4285884F1CE8A4005857B9261FFEBC90" Source="$(var.ExtrasDir)\winlua-luarocks\pe-parser.lua" KeyPath="yes" />
           </Component>
           <Component Id="owc8DBFEE7B0CDD8F2D64F7E10BC4AB8307" Guid="9386ab2f-2f54-5f9a-659d-8a4b3fa389b2">
-            <File Id="owf8DBFEE7B0CDD8F2D64F7E10BC4AB8307" Source="$(var.SourceDir)\winlua-luarocks\vsvars.ps1" KeyPath="yes" />
+            <File Id="owf8DBFEE7B0CDD8F2D64F7E10BC4AB8307" Source="$(var.ExtrasDir)\winlua-luarocks\vsvars.ps1" KeyPath="yes" />
           </Component>
         </Directory>
       </Directory>

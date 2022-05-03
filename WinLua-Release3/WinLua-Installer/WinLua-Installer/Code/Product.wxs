@@ -11,9 +11,9 @@
   <!--<Product Id="*" Name="WinLua" Language="1033" Version="$(var.MSIProductVersion)" Manufacturer="WinLua" UpgradeCode="5849f6bd-16b5-4b7a-9053-1c95ab8b60bf">-->
   <?include $(var.SolutionDir)\Include.wxi ?>
   
-  <Product Id="C12E9534-6ACB-4E08-8D9A-FC74F2B74319" Name="WinLua $(var.PlatName) Bit" 
+  <Product Id="C12E9534-6ACB-4E08-8D9A-FC74F2B74319" Name="WinLua Toolchain - $(var.PlatName) Bit" 
       Language="1033" 
-      Version="3.20.04.2"
+      Version="3.20.12.1"
       Manufacturer="WinLua Project" 
     UpgradeCode="5849f6bd-16b5-4b7a-9053-1c95ab8b60bf">
     <Package InstallerVersion="301" Compressed="yes" InstallPrivileges="elevated" AdminImage="yes" InstallScope="perMachine" 
@@ -58,7 +58,7 @@
     <!--<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Remove LuaRocks Options"  />-->
     
     <!-- The deferred custom action -->
-    <Binary Id='WinLua.Installer.CustomAction' SourceFile='..\Winlua.Installer.CustomAction\bin\Release\Winlua.Installer.CustomAction.CA.dll'/>
+    <Binary Id='WinLua.Installer.CustomAction' SourceFile='..\Winlua.Installer.CustomAction\bin\$(var.Configuration)\Winlua.Installer.CustomAction.CA.dll'/>
     <CustomAction Id="Configure.LuaRocks" BinaryKey="WinLua.Installer.CustomAction" DllEntry="ConfigureLuaRocks" Impersonate="no" Execute="deferred" Return="check" />
     <!--<CustomAction Id="Remove.ConfigAndRocktree.LuaRocks"  BinaryKey="WinLua.Installer.CustomAction" DllEntry="RemoveLuaRocksConfig" Impersonate="no" Execute="deferred" Return="check" />-->
     <CustomAction Id="Remove.WinLua"  BinaryKey="WinLua.Installer.CustomAction" DllEntry="RemoveWinLuaDir" Impersonate="no" Execute="deferred" Return="check" />

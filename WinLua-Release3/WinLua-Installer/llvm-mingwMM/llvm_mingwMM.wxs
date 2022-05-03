@@ -4,8 +4,8 @@
   <?define ComponentRules="OneToOne"?>
   <!-- SourceDir instructs IsWiX the location of the directory that contains files for this merge module -->
   <!--<?define SourceDir="..\..\Deploy\x86"?>-->
-  <?define SourceDir="C:\Winlua-Deploy\2011b-BETA\x86"?>
-  <!--<?define SourceDir="C:\WinLua-Deploy\$(var.InstallerVersion)\$(var.Platform)"?>-->
+  <!--<?define SourceDir="C:\Winlua-Deploy\2011c\x86"?>-->
+  <?define SourceDir="C:\WinLua-Deploy\$(var.InstallerVersion)\$(var.Platform)"?>
   <Module Id="llvm_mingwMM" Language="1033" Version="11.0.0.0">
     <Package Id="02517eda-db85-4b7a-a7b7-6885f6237e72" Manufacturer="WinLua" InstallerVersion="200" Description="WinLua Compiler (WLC) is a C compiler and toolchain based on LLVM/CLang and includes the MinGW Windows System Library." />
     <Directory Id="TARGETDIR" Name="SourceDir">
@@ -4769,9 +4769,6 @@
           <Component Win64="$(var.Win64)" Id="owc78DE8B28B6743B2A7F2CFEA7116622A0" Guid="3c6ed278-264d-aed8-de7d-10dc81956320">
             <File Id="owf78DE8B28B6743B2A7F2CFEA7116622A0" Source="$(var.SourceDir)\WLC\bin\clang-11.exe" KeyPath="yes" />
           </Component>
-          <Component Win64="$(var.Win64)" Id="owcBC213EC42DEAFBAE63AF558860A2A705" Guid="b624b1e7-be97-ea1a-6115-50f6044d92db">
-            <File Id="owfBC213EC42DEAFBAE63AF558860A2A705" Source="$(var.SourceDir)\WLC\bin\clangd.exe" KeyPath="yes" />
-          </Component>
           <Component Win64="$(var.Win64)" Id="owcB4DE523296B89F61DAE6DCEAF1EBF5B2" Guid="452d4d4a-6b92-3a19-73bb-3373706fb545">
             <File Id="owfB4DE523296B89F61DAE6DCEAF1EBF5B2" Source="$(var.SourceDir)\WLC\bin\clang-target-wrapper.exe" KeyPath="yes" />
           </Component>
@@ -4783,9 +4780,6 @@
           </Component>
           <Component Win64="$(var.Win64)" Id="owc0B0E4E150487140D3546FF57C36A1955" Guid="b0004e81-5133-3de6-e7e3-4d424ea6caca">
             <File Id="owf0B0E4E150487140D3546FF57C36A1955" Source="$(var.SourceDir)\WLC\bin\dlltool-wrapper.sh" KeyPath="yes" />
-          </Component>
-          <Component Win64="$(var.Win64)" Id="owcEB0E3B263DE9E3390B573107C1B2EE7E" Guid="af0db1ee-8443-bc1e-67b1-154906cdbbb5">
-            <File Id="owfEB0E3B263DE9E3390B573107C1B2EE7E" Source="$(var.SourceDir)\WLC\bin\find-all-symbols.exe" KeyPath="yes" />
           </Component>
           <Component Win64="$(var.Win64)" Id="owcA4731D577EC2EC874BBAA0DD0986BAA7" Guid="20244d17-197a-f450-3f6b-a7c2532aaf74">
             <File Id="owfA4731D577EC2EC874BBAA0DD0986BAA7" Source="$(var.SourceDir)\WLC\bin\g++.exe" KeyPath="yes" />
@@ -5003,9 +4997,6 @@
           <Component Win64="$(var.Win64)" Id="owc5A25435B1874DC57D8AAAB56630EFFB8" Guid="0583df9a-8cfb-6adc-2985-c29d78e4123d">
             <File Id="owf5A25435B1874DC57D8AAAB56630EFFB8" Source="$(var.SourceDir)\WLC\bin\make.exe" KeyPath="yes" />
           </Component>
-          <Component Win64="$(var.Win64)" Id="owc27318962A11DD1B6052E7D7149D8CCB8" Guid="d72179f5-1ccd-725d-920a-d732cb42ef8a">
-            <File Id="owf27318962A11DD1B6052E7D7149D8CCB8" Source="$(var.SourceDir)\WLC\bin\modularize.exe" KeyPath="yes" />
-          </Component>
           <Component Win64="$(var.Win64)" Id="owcAB6A24C07514F8D9E5F7DBA270567933" Guid="1d30e854-b91c-5cb2-621b-828ac3e609d1">
             <File Id="owfAB6A24C07514F8D9E5F7DBA270567933" Source="$(var.SourceDir)\WLC\bin\nm.exe" KeyPath="yes" />
           </Component>
@@ -5017,9 +5008,6 @@
           </Component>
           <Component Win64="$(var.Win64)" Id="owcE443FB0F5B95B3CE55FD5EC049C2758D" Guid="4245d6c9-c32c-8f21-f8d2-896a53a83ada">
             <File Id="owfE443FB0F5B95B3CE55FD5EC049C2758D" Source="$(var.SourceDir)\WLC\bin\objdump-wrapper.sh" KeyPath="yes" />
-          </Component>
-          <Component Win64="$(var.Win64)" Id="owcF5204D2A434ADB9E9AC607055C022E9D" Guid="4e43c3f8-951d-20b9-026e-ce2b273b51fe">
-            <File Id="owfF5204D2A434ADB9E9AC607055C022E9D" Source="$(var.SourceDir)\WLC\bin\pp-trace.exe" KeyPath="yes" />
           </Component>
           <Component Win64="$(var.Win64)" Id="owc63031E1D57D2F2E2A877B9C1666513D2" Guid="92d8ea95-78df-65c7-e853-0088327b2094">
             <File Id="owf63031E1D57D2F2E2A877B9C1666513D2" Source="$(var.SourceDir)\WLC\bin\ranlib.exe" KeyPath="yes" />

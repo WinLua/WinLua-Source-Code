@@ -3,10 +3,8 @@
   <?include $(var.SolutionDir)\Include.wxi ?>
   <?define ComponentRules="OneToOne"?>
   <!-- SourceDir instructs IsWiX the location of the directory that contains files for this merge module -->
-  <!--<?define SourceDir="..\..\5.4\Deploy\x86"?>-->
-  <!--<?define SourceDir="..\..\Deploy\x86\"?>-->
-  <!--<?define SourceDir="..\..\Deploy\$(var.Platform)\"?>-->
-  <?define SourceDir="C:\Winlua-Deploy\2011b-BETA\x86\"?>
+  <!--<?define SourceDir="C:\Winlua-Deploy\2011c\x86\"?>-->
+  <?define SourceDir="C:\WinLua-Deploy\$(var.InstallerVersion)\$(var.Platform)\"?>
   <Module Id="LibreSSL_MM" Language="1033" Version="3.1.0.0">
     <Package Id="ae00c157-b285-466b-9a13-9b994f74b69c" Manufacturer="OpenBSD" InstallerVersion="200" InstallScope="perMachine" Description="LibreSSL is the OpenBSD for of OpenSSL. The code has been modernized and scrutinized for security." />
     <Directory Id="TARGETDIR" Name="SourceDir">

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define ComponentRules="OneToOne"?>
+  <!-- SourceDir instructs IsWiX the location of the directory that contains files for this merge module -->
+  <!--<?define SourceDir="..\Deploy"?>-->
+  <?define SourceDir="C:\Winlua-Deploy\2011c\x86"?>
+  <Module Id="WLC_TinyMM" Language="1033" Version="1.0.0.0">
+    <Package Id="bfe220f2-1f10-45ea-a622-0a927a478f9a" Manufacturer="WLC_TinyMM" InstallerVersion="200" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="MergeRedirectFolder"/>
+    </Directory>
+    <ComponentGroupRef Id="Custom"/>
+  </Module>
+</Wix>
+ 

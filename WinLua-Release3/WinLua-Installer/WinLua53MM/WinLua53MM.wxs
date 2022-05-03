@@ -3,10 +3,8 @@
   <?include $(var.SolutionDir)\Include.wxi ?>
   <?define ComponentRules="OneToOne"?>
   <!-- SourceDir instructs IsWiX the location of the directory that contains files for this merge module -->
-  <!--<?define SourceDir="..\..\Deploy\x86"?>-->
-  <!--<?define SourceDir="..\..\Deploy\$(var.Platform)"?>-->
-  <!--<?define SourceDir="C:\WinLua-Deploy\$(var.InstallerVersion)\$(var.Platform)\Lua"?>-->
-  <?define SourceDir="C:\Winlua-Deploy\2011b-BETA\x86\Lua"?>
+  <!--<?define SourceDir="C:\Winlua-Deploy\2012a\x86\Lua"?>-->
+  <?define SourceDir="C:\WinLua-Deploy\$(var.InstallerVersion)\$(var.Platform)\Lua"?>
   <?define LUA_VER="5.3"?>
   <Module Id="WinLua" Language="1033" Version="5.3.0.0">
     <Package Id="af06fe31-dbfb-4971-bed9-0ab821a7a486" Manufacturer="WinLua" InstallerVersion="301" Keywords="Lua" Description="WinLua is a binary distribution of the Lua, luafilesystem, and sol2." />
